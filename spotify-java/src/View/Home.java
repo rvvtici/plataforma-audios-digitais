@@ -1,22 +1,137 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package View;
 
-/**
- *
- * @author ravi
- */
+import java.awt.Choice;
+import javax.swing.JButton;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JTextField;
+import Model.Usuario;
+import Controller.ControleHome;
+
+
 public class Home extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Home
-     */
     public Home() {
         initComponents();
+        c = new ControleHome(this);
+
     }
 
+    public Home(Usuario usuario) {
+        initComponents();
+        lbl_user.setText(usuario.getUsuario());
+        c = new ControleHome(this);
+    }
+    
+
+    public JButton getBt_buscar() {
+        return bt_buscar;
+    }
+
+    public void setBt_buscar(JButton bt_buscar) {
+        this.bt_buscar = bt_buscar;
+    }
+
+    public Choice getChoice_filtro() {
+        return choice_filtro;
+    }
+
+    public void setChoice_filtro(Choice choice_filtro) {
+        this.choice_filtro = choice_filtro;
+    }
+
+    public JCheckBoxMenuItem getjCheckBoxMenuItem1() {
+        return jCheckBoxMenuItem1;
+    }
+
+    public void setjCheckBoxMenuItem1(JCheckBoxMenuItem jCheckBoxMenuItem1) {
+        this.jCheckBoxMenuItem1 = jCheckBoxMenuItem1;
+    }
+
+    public JMenu getjMenu1() {
+        return jMenu1;
+    }
+
+    public void setjMenu1(JMenu jMenu1) {
+        this.jMenu1 = jMenu1;
+    }
+
+    public JRadioButtonMenuItem getjRadioButtonMenuItem1() {
+        return jRadioButtonMenuItem1;
+    }
+
+    public void setjRadioButtonMenuItem1(JRadioButtonMenuItem jRadioButtonMenuItem1) {
+        this.jRadioButtonMenuItem1 = jRadioButtonMenuItem1;
+    }
+
+    public JLabel getLbl_busca() {
+        return lbl_busca;
+    }
+
+    public void setLbl_busca(JLabel lbl_busca) {
+        this.lbl_busca = lbl_busca;
+    }
+
+    public JLabel getLbl_filtro() {
+        return lbl_filtro;
+    }
+
+    public void setLbl_filtro(JLabel lbl_filtro) {
+        this.lbl_filtro = lbl_filtro;
+    }
+
+    public JLabel getLbl_historico() {
+        return lbl_historico;
+    }
+
+    public void setLbl_historico(JLabel lbl_historico) {
+        this.lbl_historico = lbl_historico;
+    }
+
+    public JLabel getLbl_perfil() {
+        return lbl_perfil;
+    }
+
+    public void setLbl_perfil(JLabel lbl_perfil) {
+        this.lbl_perfil = lbl_perfil;
+    }
+
+    public JLabel getLbl_playlists() {
+        return lbl_playlists;
+    }
+
+    public void setLbl_playlists(JLabel lbl_playlists) {
+        this.lbl_playlists = lbl_playlists;
+    }
+
+    public JLabel getLbl_user() {
+        return lbl_user;
+    }
+
+    public void setLbl_user(JLabel lbl_user) {
+        this.lbl_user = lbl_user;
+    }
+
+    public JLabel getLbl_welcome() {
+        return lbl_welcome;
+    }
+
+    public void setLbl_welcome(JLabel lbl_welcome) {
+        this.lbl_welcome = lbl_welcome;
+    }
+
+    public JTextField getTxt_busca() {
+        return txt_busca;
+    }
+
+    public void setTxt_busca(JTextField txt_busca) {
+        this.txt_busca = txt_busca;
+    }
+
+    
     
     
     
@@ -37,13 +152,16 @@ public class Home extends javax.swing.JFrame {
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        choice1 = new java.awt.Choice();
+        lbl_welcome = new javax.swing.JLabel();
+        lbl_playlists = new javax.swing.JLabel();
+        lbl_historico = new javax.swing.JLabel();
+        txt_busca = new javax.swing.JTextField();
+        bt_buscar = new javax.swing.JButton();
+        lbl_busca = new javax.swing.JLabel();
+        choice_filtro = new java.awt.Choice();
+        lbl_filtro = new javax.swing.JLabel();
+        lbl_perfil = new javax.swing.JLabel();
+        lbl_user = new javax.swing.JLabel();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -54,23 +172,54 @@ public class Home extends javax.swing.JFrame {
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("Boas-vindas, USER");
-
-        jLabel2.setText("Playlists");
-
-        jLabel3.setText("Histórico");
-
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+        setTitle("Home");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
             }
         });
 
-        jButton1.setText("jButton1");
+        lbl_welcome.setText("Boas-vindas, ");
 
-        jLabel4.setText("busca");
+        lbl_playlists.setText("Playlists");
+        lbl_playlists.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbl_playlists.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_playlistsMouseClicked(evt);
+            }
+        });
+
+        lbl_historico.setText("Histórico");
+        lbl_historico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbl_historico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_historicoMouseClicked(evt);
+            }
+        });
+
+        txt_busca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_buscaActionPerformed(evt);
+            }
+        });
+
+        bt_buscar.setText("buscar");
+        bt_buscar.setToolTipText("");
+
+        lbl_busca.setText("busca");
+
+        lbl_filtro.setText("filtro");
+
+        lbl_perfil.setText("Perfil");
+        lbl_perfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbl_perfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_perfilMouseClicked(evt);
+            }
+        });
+
+        lbl_user.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_user.setText("USER");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,51 +228,102 @@ public class Home extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(183, 183, 183)
-                        .addComponent(jLabel4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(235, 235, 235)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(choice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)))))
-                .addContainerGap(107, Short.MAX_VALUE))
+                                .addGap(125, 125, 125)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbl_busca)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbl_historico)
+                                    .addComponent(lbl_playlists)
+                                    .addComponent(lbl_perfil))))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_filtro)
+                            .addComponent(bt_buscar)
+                            .addComponent(choice_filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(239, 239, 239)
+                        .addComponent(lbl_welcome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_user)))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(30, 30, 30)
+                .addComponent(lbl_perfil)
+                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(8, 8, 8)
+                    .addComponent(lbl_welcome)
+                    .addComponent(lbl_user))
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(choice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addComponent(jLabel3)
-                .addContainerGap(196, Short.MAX_VALUE))
+                    .addComponent(lbl_busca)
+                    .addComponent(lbl_filtro))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(choice_filtro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bt_buscar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txt_busca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16)
+                        .addComponent(lbl_playlists)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_historico)
+                .addContainerGap(214, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txt_buscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txt_buscaActionPerformed
+
+    private void lbl_perfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_perfilMouseClicked
+        c.paginaPerfilUser();
+        
+        //Perfil p = new Perfil();
+        //p.setVisible(true);
+        //this.setVisible(false);
+        
+    }//GEN-LAST:event_lbl_perfilMouseClicked
+
+    private void lbl_playlistsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_playlistsMouseClicked
+        Playlist pl = new Playlist();
+        pl.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_lbl_playlistsMouseClicked
+
+    private void lbl_historicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_historicoMouseClicked
+        
+        //lbl_user.getLbl_user();
+
+        
+        
+        Historico h = new Historico();
+        h.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_lbl_historicoMouseClicked
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == evt.VK_H){
+            
+            
+            
+            Historico h = new Historico();
+            h.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments
@@ -159,17 +359,24 @@ public class Home extends javax.swing.JFrame {
 //            }
 //        });
 //    }
+    
+    private ControleHome c;
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Choice choice1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bt_buscar;
+    private java.awt.Choice choice_filtro;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lbl_busca;
+    private javax.swing.JLabel lbl_filtro;
+    private javax.swing.JLabel lbl_historico;
+    private javax.swing.JLabel lbl_perfil;
+    private javax.swing.JLabel lbl_playlists;
+    private javax.swing.JLabel lbl_user;
+    private javax.swing.JLabel lbl_welcome;
+    private javax.swing.JTextField txt_busca;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,17 +1,16 @@
 package Model;
 
 public class Usuario {
-    private String nome, usuario, senha;
+    private String usuario, nome, senha;
 
     public Usuario() {
     }
 
-    public Usuario(String nome, String usuario, String senha) {
-        this.nome = nome;
+    public Usuario(String usuario, String nome, String senha) {
         this.usuario = usuario;
+        this.nome = nome;
         this.senha = senha;
     }
-
     
     public Usuario(String usuario, String senha) {
         this.usuario = usuario;

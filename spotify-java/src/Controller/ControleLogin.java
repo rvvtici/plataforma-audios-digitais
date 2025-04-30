@@ -19,25 +19,28 @@ public class ControleLogin {
     }
     
 public void loginUsuario(){
-        Usuario usuario = new Usuario(null, 
+        Usuario usuario = new Usuario(
                                 view.getTxt_user().getText(),
+                                null,                 
                                 view.getTxt_senha().getText());
         Conexao conexao = new Conexao();
         try{
             Connection conn = conexao.getConnection();
             UsuarioDAO dao = new UsuarioDAO(conn);
-            ResultSet res = dao.consultar(usuario);
+            ResultSet res = dao.consultar_login(usuario);
             if(res.next()){
                 JOptionPane.showMessageDialog(view, 
                                               "Login efetuado!", 
                                               "Aviso",
                                               JOptionPane.INFORMATION_MESSAGE);
-                Usuario aluno2 = new Usuario(res.getString("nome"), 
-                                       res.getString("usuario"), 
-                                     res.getString("senha"));
-                //Home h = new Home(aluno2);
-                Home h = new Home();
+                Usuario usuario2 = new Usuario(view.getTxt_user().getText(), "");
+                
+                view.setVisible(false);
+                Home h = new Home(usuario2);
+                
+                
                 h.setVisible(true);
+                
             } else{
                 JOptionPane.showMessageDialog(view, 
                                               "Login NÃO efetuado!", 
