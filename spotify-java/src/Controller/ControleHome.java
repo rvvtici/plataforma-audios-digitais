@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import Model.Usuario;
 import View.Login;
+import View.Historico;
+import View.Playlist;
 import View.Home;
 import View.Perfil;
 import java.sql.ResultSet;
@@ -43,10 +45,7 @@ public class ControleHome {
                 view.setVisible(false);
                 Perfil p = new Perfil(usuario2);
                 p.setVisible(true);
-            }
-           
-            
-            
+            }    
             //Usuario usuario = new Usuario();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(view,
@@ -56,6 +55,50 @@ public class ControleHome {
             }
 
     }
+    
+    
+        public void redirectPlaylist(Usuario usuario){
+        Conexao conexao = new Conexao();
+        try{
+            //confirma existencia do usuário com banco de dados
+            Connection conn = conexao.getConnection();
+            UsuarioDAO dao = new UsuarioDAO(conn);
+            ResultSet res = dao.consultar_perfil(usuario); 
+            
+//            if(res.next()){                
+//                view.setVisible(false);
+//                Playlist p = new Playlist(usuario);
+//                p.setVisible(true);
+//            }
+        } catch (SQLException e) {
+                JOptionPane.showMessageDialog(view,
+                    "Erro: " + e.getMessage(),
+                    "Erro ao redirecionar a playlist",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        }
+        
+        public void redirectHistorico(Usuario usuario){
+        Conexao conexao = new Conexao();
+        try{
+            Connection conn = conexao.getConnection();
+            UsuarioDAO dao = new UsuarioDAO(conn);
+            ResultSet res = dao.consultar_perfil(usuario);
+            
+            if(res.next()){                
+                view.setVisible(false);
+                Historico h = new Historico(usuario);
+                h.setVisible(true);
+            }
+        } catch (SQLException e) {
+                JOptionPane.showMessageDialog(view,
+                    "Erro: " + e.getMessage(),
+                    "Erro ao redirecionar ao histórico",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+    } 
+
     
     
     

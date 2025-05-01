@@ -29,7 +29,7 @@ public class ControleCadastro {
             Connection conn = conexao.getConnection();
             UsuarioDAO dao = new UsuarioDAO(conn);
             dao.inserir_novo_usuario(usuario);
-            JOptionPane.showMessageDialog(view, "Usuario Cadastrado!","Aviso", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(view, "Usuário cadastrado com sucesso!","Aviso", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(view, "Usuário não cadastrado!","Erro", JOptionPane.ERROR_MESSAGE);
         }

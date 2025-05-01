@@ -14,6 +14,8 @@ import Controller.ControleHome;
 
 public class Home extends javax.swing.JFrame {
 
+    private String nome, senha, user;
+        
     public Home() {
         initComponents();
         c = new ControleHome(this);
@@ -22,7 +24,10 @@ public class Home extends javax.swing.JFrame {
 
     public Home(Usuario usuario) {
         initComponents();
-        lbl_user.setText(usuario.getUsuario());
+        user = usuario.getUsuario();
+        lbl_user.setText(user);
+        nome = usuario.getNome();
+        senha = usuario.getSenha();
         c = new ControleHome(this);
     }
     
@@ -305,12 +310,12 @@ public class Home extends javax.swing.JFrame {
     private void lbl_historicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_historicoMouseClicked
         
         //lbl_user.getLbl_user();
-
+        Usuario usuario2 = new Usuario(user,nome,senha);
+        c.redirectHistorico(usuario2);
         
-        
-        Historico h = new Historico();
-        h.setVisible(true);
-        this.setVisible(false);
+//        Historico h = new Historico();
+//        h.setVisible(true);
+//        this.setVisible(false);
     }//GEN-LAST:event_lbl_historicoMouseClicked
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed

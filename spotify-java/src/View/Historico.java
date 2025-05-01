@@ -4,18 +4,55 @@
  */
 package View;
 
+import javax.swing.JLabel;
+import Model.Usuario;
+import Controller.ControleHistorico;
+
 /**
  *
  * @author ravi
  */
 public class Historico extends javax.swing.JFrame {
 
+    private String user, nome, senha;
+    
     /**
      * Creates new form Historico
      */
     public Historico() {
         initComponents();
+        c = new ControleHistorico(this);
     }
+
+    public Historico(Usuario usuario){
+        initComponents();
+        user = usuario.getUsuario();
+        nome = usuario.getNome();
+        senha = usuario.getSenha();
+        c = new ControleHistorico(this);
+
+        
+    }
+    
+    public JLabel getLbl_historico() {
+        return lbl_historico;
+    }
+
+    public void setLbl_historico(JLabel lbl_historico) {
+        this.lbl_historico = lbl_historico;
+    }
+
+    public JLabel getLbl_voltar() {
+        return lbl_voltar;
+    }
+
+    public void setLbl_voltar(JLabel lbl_voltar) {
+        this.lbl_voltar = lbl_voltar;
+    }
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,9 +106,11 @@ public class Historico extends javax.swing.JFrame {
 
     private void lbl_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_voltarMouseClicked
         // TODO add your handling code here:
-        Home h = new Home();
-        h.setVisible(true);
-        this.setVisible(false);
+//        Home h = new Home();
+//        h.setVisible(true);
+//        this.setVisible(false);
+        Usuario usuario2 = new Usuario(user, nome, senha);
+        c.redirectPaginaHome(usuario2);
     }//GEN-LAST:event_lbl_voltarMouseClicked
 
     /**
@@ -108,6 +147,8 @@ public class Historico extends javax.swing.JFrame {
 //            }
 //        });
 //    }
+    
+    private ControleHistorico c;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lbl_historico;

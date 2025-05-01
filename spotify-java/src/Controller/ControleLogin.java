@@ -27,18 +27,18 @@ public void loginUsuario(){
         try{
             Connection conn = conexao.getConnection();
             UsuarioDAO dao = new UsuarioDAO(conn);
-            ResultSet res = dao.consultar_login(usuario);
+            //ResultSet res = dao.consultar_login(usuario);
+            ResultSet res = dao.consultar_perfil(usuario);
             if(res.next()){
                 JOptionPane.showMessageDialog(view, 
                                               "Login efetuado!", 
                                               "Aviso",
                                               JOptionPane.INFORMATION_MESSAGE);
-                Usuario usuario2 = new Usuario(view.getTxt_user().getText(), "");
+                //Usuario usuario2 = new Usuario(view.getTxt_user().getText(), "");
                 
                 view.setVisible(false);
-                Home h = new Home(usuario2);
-                
-                
+                //Home h = new Home(usuario2);
+                Home h = new Home(usuario);
                 h.setVisible(true);
                 
             } else{
@@ -53,7 +53,5 @@ public void loginUsuario(){
                                               "Aviso",
                                               JOptionPane.ERROR_MESSAGE);
         }
-    }
-    
-    
+    }    
 }

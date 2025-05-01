@@ -4,17 +4,47 @@
  */
 package View;
 
+import javax.swing.JLabel;
+import Controller.ControlePlaylist;
+import Model.Usuario;
+
 /**
  *
  * @author ravi
  */
 public class Playlist extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Playlist
-     */
+    private String user, nome, senha;
     public Playlist() {
         initComponents();
+        c = new ControlePlaylist(this);
+    }
+
+    public Playlist(Usuario usuario){
+        initComponents();
+        
+        user = usuario.getUsuario();
+        nome = usuario.getNome();
+        senha = usuario.getSenha();
+        c = new ControlePlaylist(this);    
+    }
+    
+    
+    
+    public JLabel getLbl_playlists() {
+        return lbl_playlists;
+    }
+
+    public void setLbl_playlists(JLabel lbl_playlists) {
+        this.lbl_playlists = lbl_playlists;
+    }
+
+    public JLabel getLbl_voltar() {
+        return lbl_voltar;
+    }
+
+    public void setLbl_voltar(JLabel lbl_voltar) {
+        this.lbl_voltar = lbl_voltar;
     }
 
     /**
@@ -69,9 +99,12 @@ public class Playlist extends javax.swing.JFrame {
 
     private void lbl_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_voltarMouseClicked
         // TODO add your handling code here:
-        Home h = new Home();
-        h.setVisible(true);
-        this.setVisible(false);
+        // h = new Home();
+        //h.setVisible(true);
+        //this.setVisible(false);
+        System.out.println("teste");
+        Usuario usuario2 = new Usuario(user,nome,senha);
+        c.redirectPaginaHome(usuario2);
     }//GEN-LAST:event_lbl_voltarMouseClicked
 
     /**
@@ -109,6 +142,8 @@ public class Playlist extends javax.swing.JFrame {
 //        });
 //    }
 
+    private ControlePlaylist c;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lbl_playlists;
     private javax.swing.JLabel lbl_voltar;
