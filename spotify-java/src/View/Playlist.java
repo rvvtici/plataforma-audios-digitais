@@ -102,7 +102,7 @@ public class Playlist extends javax.swing.JFrame {
         // h = new Home();
         //h.setVisible(true);
         //this.setVisible(false);
-        System.out.println("teste");
+
         Usuario usuario2 = new Usuario(user,nome,senha);
         c.redirectPaginaHome(usuario2);
     }//GEN-LAST:event_lbl_voltarMouseClicked

@@ -27,23 +27,9 @@ public class ControleHistorico {
     
     
     
-        public void redirectPaginaHome(Usuario usuario){        
-        Conexao conexao = new Conexao();
-        try{
-            Connection conn = conexao.getConnection();
-            UsuarioDAO dao = new UsuarioDAO(conn);
-            ResultSet res = dao.consultar_perfil(usuario);
-
-            if(res.next()){
-                view.setVisible(false);
-                Home h = new Home(usuario);
-                h.setVisible(true);
-            }
-        } catch (SQLException e) {
-                JOptionPane.showMessageDialog(view,
-                    "Erro: " + e.getMessage(),
-                    "Erro ao redirecionar a home",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+        public void redirectPaginaHome(Usuario usuario){     
+            view.setVisible(false);
+            Home h = new Home(usuario);
+            h.setVisible(true);
     } 
 }

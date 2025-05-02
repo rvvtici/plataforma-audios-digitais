@@ -13,6 +13,8 @@ import View.Playlist;
 import View.Home;
 import View.Perfil;
 import java.sql.ResultSet;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 
 public class ControleHome {
@@ -79,27 +81,45 @@ public class ControleHome {
         }
         
         public void redirectHistorico(Usuario usuario){
-        Conexao conexao = new Conexao();
-        try{
-            Connection conn = conexao.getConnection();
-            UsuarioDAO dao = new UsuarioDAO(conn);
-            ResultSet res = dao.consultar_perfil(usuario);
-            
-            if(res.next()){                
                 view.setVisible(false);
                 Historico h = new Historico(usuario);
                 h.setVisible(true);
-            }
-        } catch (SQLException e) {
-                JOptionPane.showMessageDialog(view,
-                    "Erro: " + e.getMessage(),
-                    "Erro ao redirecionar ao histórico",
-                    JOptionPane.ERROR_MESSAGE);
+    }
+        
+        
+        
+        public void buscar(){
+            String search = view.getTxt_busca().getText();
+            String filtro = view.getCombobox_filtro().getSelectedItem().toString();
+           
+            JTable tabela = view.getTabela();    
+            DefaultTableModel resultado_busca = (DefaultTableModel) tabela.getModel();
+
+            Conexao conexao = new Conexao();
+            try{
+                Connection conn = conexao.getConnection();
+                UsuarioDAO dao = new UsuarioDAO(conn);
+                ResultSet res = dao.buscar_musica(filtro, search);
+                while(res.next()){
+                //if(res.next()){
+                    String nomeMusica = res.getString(1);
+                    String nomeAlbum = res.getString(2);
+                    String nomeArtista = res.getString(3);
+                    String duracao = res.getString(4);
+
+                    System.out.println(nomeMusica + " - " + nomeAlbum + " - " + nomeArtista + " - " + duracao);
+                }
+} catch(SQLException e){    
+    e.printStackTrace(); // mostra o erro completo no console
+    JOptionPane.showMessageDialog(view, 
+        "Erro de busca!\n" + e.getMessage(), 
+        "Aviso",
+        JOptionPane.ERROR_MESSAGE);
+}
+
+            
+            
+            //resultado_busca.addRow(rowData);
         }
-
-    } 
-
-    
-    
     
 }

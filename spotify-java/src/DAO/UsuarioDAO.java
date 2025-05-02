@@ -15,6 +15,7 @@ public class UsuarioDAO {
         this.conn = conn;
     }
     
+    //consultas
     public ResultSet consultar_login(Usuario usuario) throws SQLException{
         String sql = "select usuario, nome, senha from usuario where usuario = ? and senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -34,6 +35,35 @@ public class UsuarioDAO {
         return resultado;
     }
     
+    public ResultSet buscar_musica(String filtro, String search) throws SQLException{
+        
+        String coluna = switch(filtro){
+            case "musica" -> "m.nome";
+            case "album" -> "al.nome";
+            case "artista" -> "art.nome";
+            case "genero" -> "al.genero";
+            //case "duracao" -> "m.duracao";
+            default -> "";
+        };
+        
+        String sql = "select m.nome, al.nome, art.nome, m.duracao " +
+                     "from musica m " +
+                     "inner join album al on al.id_album = m.id_album " +
+                     "inner join artista art on art.id_artista = al.id_artista " +
+                     "where " + coluna + " = ?"; // Usando ? para o parâmetro
+
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, search.trim()); // Passando o parâmetro para o SQL
+
+        ResultSet resultado = statement.executeQuery(); // executeQuery é o método correto para SELECTs
+        return resultado;
+
+    }
+    
+    
+    
+    
+    //inserir
     public void inserir_novo_usuario(Usuario usuario) throws SQLException{
         String sql = "insert into usuario (usuario, nome, senha) values ('"
                       + usuario.getUsuario() + "', '"
@@ -44,6 +74,10 @@ public class UsuarioDAO {
         conn.close();
     }
     
+    
+    
+    
+    //atualizar
     public void atualizar_usuario(Usuario usuario, String usuario_antigo) throws SQLException{
         String sql = "update usuario set usuario = ?, nome = ?, senha = ? WHERE usuario = ?";
 
@@ -55,7 +89,10 @@ public class UsuarioDAO {
         statement.execute();
         conn.close();
     }
+     
     
+    
+    //remover
     public void remover_usuario(Usuario usuario) throws SQLException{
         System.out.println(usuario);
         
