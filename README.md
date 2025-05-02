@@ -1,14 +1,12 @@
 # spotify-java
 
-réplica plataforma de áudios digitais utilizado Swing (Java) + JDBC PostgreSQL + MVC (Model, View, Controller)
-
+réplica plataforma de áudios digitais utilizando Swing (Java) + JDBC PostgreSQL + MVC (Model, View, Controller)
 conexão java-banco de dados escrita primeiramente em MER
 
-##como  rodar
+## como rodar
 deve ser instalado o postgresql (versão utilizada na aplicação: 16.8), com port em 5432*, nome de admin "postgres"*, senha "123"*
 crie um banco de dados nomeado "spotify"* com a spotify-tabela.sql
-*nomes alteráveis no DAO/Conexao.java
-
+*nomes alteráveis através de DAO/Conexao.java
 
 ## funcionalidades:
 1. cadastrar novo usuário
@@ -23,6 +21,7 @@ crie um banco de dados nomeado "spotify"* com a spotify-tabela.sql
 7.1 visualizar ultimas 10 músicas buscadas
 7.2 visualizar lista de músicas curtidas
 7.3 visualizar lista de músicas não curtidas
+
 adicionais:
 8. login como adm
 9. cadastrar e excluir músicas

@@ -50,14 +50,13 @@ public class UsuarioDAO {
                      "from musica m " +
                      "inner join album al on al.id_album = m.id_album " +
                      "inner join artista art on art.id_artista = al.id_artista " +
-                     "where " + coluna + " = ?"; // Usando ? para o parâmetro
+                     "where " + coluna + " ilike ?";
 
         PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, search.trim()); // Passando o parâmetro para o SQL
+        statement.setString(1, "%" + search.trim() + "%");
 
-        ResultSet resultado = statement.executeQuery(); // executeQuery é o método correto para SELECTs
+        ResultSet resultado = statement.executeQuery();
         return resultado;
-
     }
     
     

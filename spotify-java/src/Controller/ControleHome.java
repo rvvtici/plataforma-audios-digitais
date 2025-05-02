@@ -58,29 +58,13 @@ public class ControleHome {
 
     }
     
-    
-        public void redirectPlaylist(Usuario usuario){
-        Conexao conexao = new Conexao();
-        try{
-            //confirma existencia do usuário com banco de dados
-            Connection conn = conexao.getConnection();
-            UsuarioDAO dao = new UsuarioDAO(conn);
-            ResultSet res = dao.consultar_perfil(usuario); 
-            
-//            if(res.next()){                
-//                view.setVisible(false);
-//                Playlist p = new Playlist(usuario);
-//                p.setVisible(true);
-//            }
-        } catch (SQLException e) {
-                JOptionPane.showMessageDialog(view,
-                    "Erro: " + e.getMessage(),
-                    "Erro ao redirecionar a playlist",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-        }
+    public void redirectPlaylist(Usuario usuario){
+                view.setVisible(false);
+                Playlist p = new Playlist(usuario);
+                p.setVisible(true);
+   }
         
-        public void redirectHistorico(Usuario usuario){
+    public void redirectHistorico(Usuario usuario){
                 view.setVisible(false);
                 Historico h = new Historico(usuario);
                 h.setVisible(true);
@@ -95,31 +79,37 @@ public class ControleHome {
             JTable tabela = view.getTabela();    
             DefaultTableModel resultado_busca = (DefaultTableModel) tabela.getModel();
 
+            resultado_busca.setRowCount(0); //remove todas as linhas antes de colcoar novas linhas na tabela
             Conexao conexao = new Conexao();
             try{
                 Connection conn = conexao.getConnection();
                 UsuarioDAO dao = new UsuarioDAO(conn);
                 ResultSet res = dao.buscar_musica(filtro, search);
                 while(res.next()){
-                //if(res.next()){
-                    String nomeMusica = res.getString(1);
-                    String nomeAlbum = res.getString(2);
-                    String nomeArtista = res.getString(3);
+                    String nome_musica = res.getString(1);
+                    String nome_album = res.getString(2);
+                    String nome_artista = res.getString(3);
                     String duracao = res.getString(4);
 
-                    System.out.println(nomeMusica + " - " + nomeAlbum + " - " + nomeArtista + " - " + duracao);
+                    //System.out.println(nome_musica + " - " + nome_album + " - " + nome_artista + " - " + duracao);
+                    
+                    resultado_busca.addRow(add_dados_tabela(nome_musica, nome_album, nome_artista, duracao));
+                    
+                    //System.out.println(add_dados_tabela(nome_musica, nome_album, nome_artista, duracao));
+                    //Object objeto = new Object[] {nomeMusica, nomeAlbum, nomeArtista, duracao};
+                    //resultado_busca.addRow(objeto);
                 }
-} catch(SQLException e){    
-    e.printStackTrace(); // mostra o erro completo no console
-    JOptionPane.showMessageDialog(view, 
-        "Erro de busca!\n" + e.getMessage(), 
-        "Aviso",
-        JOptionPane.ERROR_MESSAGE);
-}
-
-            
-            
-            //resultado_busca.addRow(rowData);
+            } catch(SQLException e){    
+                e.printStackTrace(); // mostra o erro completo no console
+                JOptionPane.showMessageDialog(view, 
+                    "Erro de busca!\n" + e.getMessage(), 
+                    "Aviso",
+                    JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
+        public Object[] add_dados_tabela(String musica, String album, String artista, String duracao){
+            return new Object[] {musica, album, artista, duracao};
         }
     
 }

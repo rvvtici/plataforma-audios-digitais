@@ -196,8 +196,10 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        lbl_welcome.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         lbl_welcome.setText("Boas-vindas, ");
 
+        lbl_playlists.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lbl_playlists.setText("Playlists");
         lbl_playlists.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbl_playlists.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -206,6 +208,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        lbl_historico.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lbl_historico.setText("Histórico");
         lbl_historico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbl_historico.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -232,6 +235,7 @@ public class Home extends javax.swing.JFrame {
 
         lbl_filtro.setText("filtro");
 
+        lbl_perfil.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lbl_perfil.setText("Perfil");
         lbl_perfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbl_perfil.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -240,7 +244,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        lbl_user.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_user.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_user.setText("USER");
 
         combobox_filtro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "musica", "album", "artista", "genero" }));
@@ -273,57 +277,50 @@ public class Home extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_historico)
+                    .addComponent(lbl_playlists)
+                    .addComponent(lbl_perfil))
+                .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_historico)
-                            .addComponent(lbl_playlists))
-                        .addGap(61, 61, 61)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lbl_busca)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(114, 114, 114)
-                                                .addComponent(lbl_welcome)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(lbl_user)))
-                                        .addGap(136, 136, 136))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(txt_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(combobox_filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(bt_buscar))
-                                    .addComponent(lbl_filtro)))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(lbl_perfil))
-                .addContainerGap(58, Short.MAX_VALUE))
+                        .addComponent(lbl_welcome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_user))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lbl_busca)
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(txt_busca))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(combobox_filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(bt_buscar))
+                                .addComponent(lbl_filtro)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(lbl_perfil)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_playlists)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(lbl_historico))))
+                        .addComponent(lbl_perfil)
+                        .addGap(117, 117, 117)
+                        .addComponent(lbl_playlists)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbl_historico))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbl_welcome)
+                        .addComponent(lbl_user))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_welcome)
-                            .addComponent(lbl_user))
-                        .addGap(5, 5, 5)
+                        .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl_filtro)
                             .addComponent(lbl_busca))
@@ -333,8 +330,8 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(txt_busca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bt_buscar))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(156, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         pack();
@@ -358,7 +355,7 @@ public class Home extends javax.swing.JFrame {
 //        pl.setVisible(true);
 //        this.setVisible(false);
             Usuario usuario2 = new Usuario(user,nome,senha);
-          c.redirectHistorico(usuario2);
+          c.redirectPlaylist(usuario2);
     }//GEN-LAST:event_lbl_playlistsMouseClicked
 
     private void lbl_historicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_historicoMouseClicked
