@@ -27,8 +27,8 @@ public class Home extends javax.swing.JFrame {
     public Home(Usuario usuario) {
         initComponents();
         user = usuario.getUsuario();
-        lbl_user.setText(user);
         nome = usuario.getNome();
+        lbl_nome.setText(nome);
         senha = usuario.getSenha();
         c = new ControleHome(this);
     }
@@ -106,12 +106,12 @@ public class Home extends javax.swing.JFrame {
         this.lbl_playlists = lbl_playlists;
     }
 
-    public JLabel getLbl_user() {
-        return lbl_user;
+    public JLabel getLbl_nome() {
+        return lbl_nome;
     }
 
-    public void setLbl_user(JLabel lbl_user) {
-        this.lbl_user = lbl_user;
+    public void setLbl_nome(JLabel lbl_nome) {
+        this.lbl_nome = lbl_nome;
     }
 
     public JLabel getLbl_welcome() {
@@ -175,10 +175,11 @@ public class Home extends javax.swing.JFrame {
         lbl_busca = new javax.swing.JLabel();
         lbl_filtro = new javax.swing.JLabel();
         lbl_perfil = new javax.swing.JLabel();
-        lbl_user = new javax.swing.JLabel();
+        lbl_nome = new javax.swing.JLabel();
         combobox_filtro = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
+        lbl_musicas_curtidas = new javax.swing.JLabel();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -222,6 +223,11 @@ public class Home extends javax.swing.JFrame {
                 txt_buscaActionPerformed(evt);
             }
         });
+        txt_busca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_buscaKeyPressed(evt);
+            }
+        });
 
         bt_buscar.setText("buscar");
         bt_buscar.setToolTipText("");
@@ -244,8 +250,8 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        lbl_user.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbl_user.setText("USER");
+        lbl_nome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbl_nome.setText("NOME");
 
         combobox_filtro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "musica", "album", "artista", "genero" }));
         combobox_filtro.addActionListener(new java.awt.event.ActionListener() {
@@ -259,11 +265,11 @@ public class Home extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Música", "Artista", "Álbum", "Duração", "Curtida"
+                "Música", "Artista", "Álbum", "Gênero", "Duração", "Curtida"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -271,6 +277,15 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tabela);
+
+        lbl_musicas_curtidas.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lbl_musicas_curtidas.setText("Músicas curtidas");
+        lbl_musicas_curtidas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbl_musicas_curtidas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_musicas_curtidasMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -281,13 +296,14 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_historico)
                     .addComponent(lbl_playlists)
-                    .addComponent(lbl_perfil))
+                    .addComponent(lbl_perfil)
+                    .addComponent(lbl_musicas_curtidas))
                 .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbl_welcome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_user))
+                        .addComponent(lbl_nome))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,7 +319,7 @@ public class Home extends javax.swing.JFrame {
                                     .addComponent(bt_buscar))
                                 .addComponent(lbl_filtro)))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,13 +328,15 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbl_perfil)
-                        .addGap(117, 117, 117)
+                        .addGap(92, 92, 92)
+                        .addComponent(lbl_musicas_curtidas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbl_playlists)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbl_historico))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lbl_welcome)
-                        .addComponent(lbl_user))
+                        .addComponent(lbl_nome))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -387,8 +405,21 @@ public class Home extends javax.swing.JFrame {
 
     private void bt_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_buscarActionPerformed
         // TODO add your handling code here:
-        c.buscar();
+        Usuario usuario2 = new Usuario(user,nome,senha);
+        c.buscar(usuario2);
     }//GEN-LAST:event_bt_buscarActionPerformed
+
+    private void txt_buscaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscaKeyPressed
+        if(evt.getKeyCode() == evt.VK_ENTER){
+            Usuario usuario2 = new Usuario(user,nome,senha);
+            c.buscar(usuario2);            
+        }
+    }//GEN-LAST:event_txt_buscaKeyPressed
+
+    private void lbl_musicas_curtidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_musicas_curtidasMouseClicked
+        Usuario usuario2 = new Usuario(user,nome,senha);
+        c.redirectMusicasCurtidas(usuario2);
+    }//GEN-LAST:event_lbl_musicas_curtidasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -439,9 +470,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_busca;
     private javax.swing.JLabel lbl_filtro;
     private javax.swing.JLabel lbl_historico;
+    private javax.swing.JLabel lbl_musicas_curtidas;
+    private javax.swing.JLabel lbl_nome;
     private javax.swing.JLabel lbl_perfil;
     private javax.swing.JLabel lbl_playlists;
-    private javax.swing.JLabel lbl_user;
     private javax.swing.JLabel lbl_welcome;
     private javax.swing.JTable tabela;
     private javax.swing.JTextField txt_busca;

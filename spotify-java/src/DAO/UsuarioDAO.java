@@ -35,6 +35,15 @@ public class UsuarioDAO {
         return resultado;
     }
     
+    public ResultSet obter_nome(Usuario usuario) throws SQLException{
+        String sql = "select nome from usuario where usuario = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, usuario.getUsuario());
+        statement.execute();
+        ResultSet resultado = statement.getResultSet();
+        return resultado;
+    }    
+    
     public ResultSet buscar_musica(String filtro, String search) throws SQLException{
         
         String coluna = switch(filtro){
@@ -46,7 +55,7 @@ public class UsuarioDAO {
             default -> "";
         };
         
-        String sql = "select m.nome, al.nome, art.nome, m.duracao " +
+        String sql = "select m.nome, al.nome, art.nome, al.genero, m.duracao " +
                      "from musica m " +
                      "inner join album al on al.id_album = m.id_album " +
                      "inner join artista art on art.id_artista = al.id_artista " +

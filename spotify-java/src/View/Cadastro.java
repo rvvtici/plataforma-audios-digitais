@@ -126,10 +126,20 @@ public class Cadastro extends javax.swing.JFrame {
                 txt_nomeActionPerformed(evt);
             }
         });
+        txt_nome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_nomeKeyPressed(evt);
+            }
+        });
 
         txt_senha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_senhaActionPerformed(evt);
+            }
+        });
+        txt_senha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_senhaKeyPressed(evt);
             }
         });
 
@@ -138,6 +148,11 @@ public class Cadastro extends javax.swing.JFrame {
         txt_user.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_userActionPerformed(evt);
+            }
+        });
+        txt_user.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_userKeyPressed(evt);
             }
         });
 
@@ -216,6 +231,27 @@ public class Cadastro extends javax.swing.JFrame {
         
         c.salvarUsuario();
     }//GEN-LAST:event_bt_cadastrarActionPerformed
+
+    private void txt_nomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nomeKeyPressed
+        
+        if(evt.getKeyCode() == evt.VK_ENTER){
+            c.salvarUsuario();
+        }
+    }//GEN-LAST:event_txt_nomeKeyPressed
+
+    private void txt_userKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_userKeyPressed
+        
+        if(evt.getKeyCode() == evt.VK_ENTER){
+            c.salvarUsuario();
+        }
+    }//GEN-LAST:event_txt_userKeyPressed
+
+    private void txt_senhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_senhaKeyPressed
+        
+        if(evt.getKeyCode() == evt.VK_ENTER){
+            c.salvarUsuario();
+        }
+    }//GEN-LAST:event_txt_senhaKeyPressed
 
     /**
      * @param args the command line arguments

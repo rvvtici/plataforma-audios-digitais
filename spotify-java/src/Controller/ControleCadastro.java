@@ -16,22 +16,28 @@ public class ControleCadastro {
     }
     
     public void salvarUsuario(){
-        Usuario usuario = new Usuario (
-                view.getTxt_user().getText(),
-                view.getTxt_nome().getText(),
-                view.getTxt_senha().getText()
-        );
+        String user = view.getTxt_user().getText();
+        String nome = view.getTxt_nome().getText();
+        String senha = view.getTxt_senha().getText();
         
-        System.out.println(usuario);
+        
+        Usuario usuario = new Usuario (user, nome, senha);
+        
+        //System.out.println(usuario);
         
         Conexao conexao = new Conexao();
-        try {
-            Connection conn = conexao.getConnection();
-            UsuarioDAO dao = new UsuarioDAO(conn);
-            dao.inserir_novo_usuario(usuario);
-            JOptionPane.showMessageDialog(view, "Usuário cadastrado com sucesso!","Aviso", JOptionPane.INFORMATION_MESSAGE);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(view, "Usuário não cadastrado!","Erro", JOptionPane.ERROR_MESSAGE);
+        if (user.equals("") || nome.equals("") || senha.equals("")){
+            JOptionPane.showMessageDialog(view, "Campo de cadastro vazio!","Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try {
+                Connection conn = conexao.getConnection();
+                UsuarioDAO dao = new UsuarioDAO(conn);
+                dao.inserir_novo_usuario(usuario);
+                JOptionPane.showMessageDialog(view, "Usuário cadastrado com sucesso!","Aviso", JOptionPane.INFORMATION_MESSAGE);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(view, "Usuário não cadastrado!","Erro", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
     

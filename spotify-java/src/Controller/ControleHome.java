@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import Model.Usuario;
 import View.Login;
+import View.MusicasCurtidas;
 import View.Historico;
 import View.Playlist;
 import View.Home;
@@ -28,7 +29,7 @@ public class ControleHome {
     public void paginaPerfilUser(){
         
         Usuario usuario = new Usuario(
-                                       view.getLbl_user().getText(),
+                                       view.getLbl_nome().getText(),
                                         null,
                                        null);
         Conexao conexao = new Conexao();
@@ -69,10 +70,15 @@ public class ControleHome {
                 Historico h = new Historico(usuario);
                 h.setVisible(true);
     }
+
         
+    public void redirectMusicasCurtidas(Usuario usuario){
+                view.setVisible(false);
+                MusicasCurtidas mc = new MusicasCurtidas(usuario);
+                mc.setVisible(true);
+    }        
         
-        
-        public void buscar(){
+        public void buscar(Usuario usuario){
             String search = view.getTxt_busca().getText();
             String filtro = view.getCombobox_filtro().getSelectedItem().toString();
            
@@ -89,11 +95,15 @@ public class ControleHome {
                     String nome_musica = res.getString(1);
                     String nome_album = res.getString(2);
                     String nome_artista = res.getString(3);
-                    String duracao = res.getString(4);
+                    String genero = res.getString(4);
+                    String duracao = res.getString(5);
+                    String curtida = usuario.getNome();
+                    
+                    //view.get
 
                     //System.out.println(nome_musica + " - " + nome_album + " - " + nome_artista + " - " + duracao);
                     
-                    resultado_busca.addRow(add_dados_tabela(nome_musica, nome_album, nome_artista, duracao));
+                    resultado_busca.addRow(add_dados_tabela(nome_musica, nome_album, nome_artista, genero, duracao, curtida));
                     
                     //System.out.println(add_dados_tabela(nome_musica, nome_album, nome_artista, duracao));
                     //Object objeto = new Object[] {nomeMusica, nomeAlbum, nomeArtista, duracao};
@@ -108,8 +118,8 @@ public class ControleHome {
             }
         }
         
-        public Object[] add_dados_tabela(String musica, String album, String artista, String duracao){
-            return new Object[] {musica, album, artista, duracao};
+        public Object[] add_dados_tabela(String musica, String album, String artista, String genero, String duracao, String curtida){
+            return new Object[] {musica, album, artista, genero, duracao, curtida};
         }
     
 }

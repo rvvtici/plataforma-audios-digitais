@@ -134,6 +134,7 @@ public class EditarPerfil extends javax.swing.JFrame {
         txt_novo_user = new javax.swing.JTextField();
         txt_senha_antiga = new javax.swing.JTextField();
         txt_nova_senha = new javax.swing.JTextField();
+        lbl_editar_perfil = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Editar perfil");
@@ -157,6 +158,11 @@ public class EditarPerfil extends javax.swing.JFrame {
                 txt_novo_nomeActionPerformed(evt);
             }
         });
+        txt_novo_nome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_novo_nomeKeyPressed(evt);
+            }
+        });
 
         bt_confirmar.setText("Confirmar");
         bt_confirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -174,57 +180,69 @@ public class EditarPerfil extends javax.swing.JFrame {
                 txt_novo_userActionPerformed(evt);
             }
         });
+        txt_novo_user.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_novo_userKeyPressed(evt);
+            }
+        });
+
+        txt_senha_antiga.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_senha_antigaKeyPressed(evt);
+            }
+        });
+
+        txt_nova_senha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_nova_senhaKeyPressed(evt);
+            }
+        });
+
+        lbl_editar_perfil.setText("Editar perfil");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 54, Short.MAX_VALUE)
+                .addComponent(lbl_aviso)
+                .addGap(40, 40, 40))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(95, 95, 95)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lbl_novo_nome)
-                                        .addGap(34, 34, 34))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lbl_novo_user)
-                                        .addGap(27, 27, 27))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbl_senha_antiga)
-                                    .addComponent(lbl_nova_senha))
-                                .addGap(26, 26, 26)))
+                            .addComponent(lbl_novo_nome)
+                            .addComponent(lbl_novo_user)
+                            .addComponent(lbl_nova_senha)
+                            .addComponent(lbl_senha_antiga))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txt_nova_senha)
                             .addComponent(txt_senha_antiga)
-                            .addComponent(txt_novo_nome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                            .addComponent(txt_novo_user, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(txt_novo_nome, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txt_novo_user, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(lbl_voltar)))
-                .addContainerGap(105, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 51, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(bt_confirmar)
-                        .addGap(159, 159, 159))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lbl_aviso)
-                        .addGap(43, 43, 43))))
+                        .addComponent(lbl_voltar)
+                        .addGap(141, 141, 141)
+                        .addComponent(lbl_editar_perfil))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addComponent(bt_confirmar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(lbl_voltar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_voltar)
+                    .addComponent(lbl_editar_perfil))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(lbl_aviso)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_novo_user)
                     .addComponent(txt_novo_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -266,6 +284,34 @@ public class EditarPerfil extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lbl_voltarMouseClicked
 
+    private void txt_novo_userKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_novo_userKeyPressed
+        Usuario usuario = new Usuario(user, nome, senha); 
+        if(evt.getKeyCode() == evt.VK_ENTER){
+            c.editarPerfil(usuario);
+        }
+    }//GEN-LAST:event_txt_novo_userKeyPressed
+
+    private void txt_novo_nomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_novo_nomeKeyPressed
+        Usuario usuario = new Usuario(user, nome, senha); 
+        if(evt.getKeyCode() == evt.VK_ENTER){
+            c.editarPerfil(usuario);
+        }
+    }//GEN-LAST:event_txt_novo_nomeKeyPressed
+
+    private void txt_nova_senhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nova_senhaKeyPressed
+        Usuario usuario = new Usuario(user, nome, senha); 
+        if(evt.getKeyCode() == evt.VK_ENTER){
+            c.editarPerfil(usuario);
+        }
+    }//GEN-LAST:event_txt_nova_senhaKeyPressed
+
+    private void txt_senha_antigaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_senha_antigaKeyPressed
+        Usuario usuario = new Usuario(user, nome, senha); 
+        if(evt.getKeyCode() == evt.VK_ENTER){
+            c.editarPerfil(usuario);
+        }
+    }//GEN-LAST:event_txt_senha_antigaKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -306,6 +352,7 @@ public class EditarPerfil extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton bt_confirmar;
     private javax.swing.JLabel lbl_aviso;
+    private javax.swing.JLabel lbl_editar_perfil;
     private javax.swing.JLabel lbl_nova_senha;
     private javax.swing.JLabel lbl_novo_nome;
     private javax.swing.JLabel lbl_novo_user;

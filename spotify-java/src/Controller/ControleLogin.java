@@ -19,25 +19,33 @@ public class ControleLogin {
     }
     
 public void loginUsuario(){
+        String nome;
+        String user = view.getTxt_user().getText();
+        String senha = view.getTxt_senha().getText();
+    
         Usuario usuario = new Usuario(
-                                view.getTxt_user().getText(),
+                                user,
                                 null,                 
-                                view.getTxt_senha().getText());
+                                senha);
         Conexao conexao = new Conexao();
         try{
             Connection conn = conexao.getConnection();
             UsuarioDAO dao = new UsuarioDAO(conn);
-            //ResultSet res = dao.consultar_login(usuario);
             ResultSet res = dao.consultar_perfil(usuario);
+
+            //colocar nome do usuairo na tela home
+            ResultSet res_nome = dao.obter_nome(usuario);                
+            if(res_nome.next()){
+                nome = res_nome.getString(1);
+                usuario.setNome(nome);
+            }
+       
             if(res.next()){
                 JOptionPane.showMessageDialog(view, 
                                               "Login efetuado!", 
                                               "Aviso",
                                               JOptionPane.INFORMATION_MESSAGE);
-                //Usuario usuario2 = new Usuario(view.getTxt_user().getText(), "");
-                
                 view.setVisible(false);
-                //Home h = new Home(usuario2);
                 Home h = new Home(usuario);
                 h.setVisible(true);
                 

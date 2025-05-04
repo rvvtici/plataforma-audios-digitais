@@ -24,58 +24,41 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="54" max="32767" attributes="0"/>
+              <Component id="lbl_aviso" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+          </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="lbl_novo_nome" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="lbl_novo_user" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lbl_senha_antiga" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_nova_senha" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lbl_novo_nome" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_novo_user" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_nova_senha" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_senha_antiga" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txt_nova_senha" alignment="0" max="32767" attributes="0"/>
                           <Component id="txt_senha_antiga" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txt_novo_nome" alignment="1" pref="115" max="32767" attributes="0"/>
-                          <Component id="txt_novo_user" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txt_novo_nome" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txt_novo_user" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Component id="lbl_voltar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
+                      <Component id="lbl_editar_perfil" min="-2" max="-2" attributes="0"/>
                   </Group>
-              </Group>
-              <EmptySpace pref="105" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="51" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
                       <Component id="bt_confirmar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="lbl_aviso" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -83,10 +66,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="lbl_voltar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbl_voltar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbl_editar_perfil" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
               <Component id="lbl_aviso" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbl_novo_user" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txt_novo_user" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -143,6 +129,7 @@
     <Component class="javax.swing.JTextField" name="txt_novo_nome">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_novo_nomeActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_novo_nomeKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="bt_confirmar">
@@ -166,11 +153,23 @@
     <Component class="javax.swing.JTextField" name="txt_novo_user">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_novo_userActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_novo_userKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txt_senha_antiga">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_senha_antigaKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txt_nova_senha">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_nova_senhaKeyPressed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_editar_perfil">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Editar perfil"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
