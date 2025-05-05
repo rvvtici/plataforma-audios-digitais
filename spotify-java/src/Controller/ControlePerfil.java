@@ -38,7 +38,7 @@ public class ControlePerfil {
                 Connection conn = conexao.getConnection();
                 UsuarioDAO dao = new UsuarioDAO(conn);
                 dao.remover_usuario(usuario);
-                JOptionPane.showMessageDialog(view, "Usuario removido com Sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(view, "Usuario removido com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
                 
 
                 Login l = new Login();

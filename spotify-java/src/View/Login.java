@@ -3,6 +3,7 @@ package View;
 import Controller.ControleLogin;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class Login extends javax.swing.JFrame {
@@ -47,13 +48,25 @@ public class Login extends javax.swing.JFrame {
         this.lbl_user = lbl_user;
     }
 
-    public JTextField getTxt_senha() {
+    public JPasswordField getTxt_senha() {
         return txt_senha;
     }
 
-    public void setTxt_senha(JTextField txt_senha) {
+    public void setTxt_senha(JPasswordField txt_senha) {
         this.txt_senha = txt_senha;
     }
+    
+    
+
+    public JLabel getLbl_cadastrar() {
+        return lbl_cadastrar;
+    }
+
+    public void setLbl_cadastrar(JLabel lbl_cadastrar) {
+        this.lbl_cadastrar = lbl_cadastrar;
+    }
+    
+    
 
     public JTextField getTxt_user() {
         return txt_user;
@@ -78,9 +91,9 @@ public class Login extends javax.swing.JFrame {
         lbl_user = new javax.swing.JLabel();
         lbl_senha = new javax.swing.JLabel();
         txt_user = new javax.swing.JTextField();
-        txt_senha = new javax.swing.JTextField();
         bt_login = new javax.swing.JButton();
         lbl_cadastrar = new javax.swing.JLabel();
+        txt_senha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -100,17 +113,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        txt_senha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_senhaActionPerformed(evt);
-            }
-        });
-        txt_senha.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txt_senhaKeyPressed(evt);
-            }
-        });
-
         bt_login.setText("Login");
         bt_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,26 +128,31 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        txt_senha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_senhaKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(92, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txt_user)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bt_login))
+                        .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl_senha)
                             .addComponent(lbl_user))
                         .addGap(86, 86, 86))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txt_user, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txt_senha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bt_login))
-                        .addGap(18, 18, 18)))
+                    .addComponent(txt_senha))
                 .addGap(81, 81, 81))
         );
         layout.setVerticalGroup(
@@ -159,7 +166,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(lbl_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(8, 8, 8)
                 .addComponent(bt_login)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbl_cadastrar)
@@ -172,10 +179,6 @@ public class Login extends javax.swing.JFrame {
     private void txt_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_userActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_userActionPerformed
-
-    private void txt_senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_senhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_senhaActionPerformed
 
     private void lbl_cadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_cadastrarMouseClicked
         // TODO add your handling code here:
@@ -201,6 +204,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_userKeyPressed
 
     private void txt_senhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_senhaKeyPressed
+                                    
         if(evt.getKeyCode() == evt.VK_ENTER){
             c.loginUsuario();
         }
@@ -248,7 +252,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_cadastrar;
     private javax.swing.JLabel lbl_senha;
     private javax.swing.JLabel lbl_user;
-    private javax.swing.JTextField txt_senha;
+    private javax.swing.JPasswordField txt_senha;
     private javax.swing.JTextField txt_user;
     // End of variables declaration//GEN-END:variables
 }

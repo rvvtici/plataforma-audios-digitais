@@ -7,6 +7,7 @@ conexão java-banco de dados escrita primeiramente em MER
 deve ser instalado o postgresql (versão utilizada na aplicação: 16.8), com port em 5432*, nome de admin "postgres"*, senha "123"*
 crie um banco de dados nomeado "spotify"* com a spotify-tabela.sql
 *nomes alteráveis através de DAO/Conexao.java
+postgresql-42.7.5.jar deve estar em Libraries
 
 ## funcionalidades:
 1. cadastrar novo usuário

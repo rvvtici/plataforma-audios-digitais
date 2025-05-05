@@ -354,13 +354,14 @@ public class Home extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+   
     private void txt_buscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_buscaActionPerformed
 
     private void lbl_perfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_perfilMouseClicked
-        c.paginaPerfilUser();
+        Usuario usuario2 = new Usuario(user,nome,senha);
+        c.redirectPerfil(usuario2);
         
         //Perfil p = new Perfil();
         //p.setVisible(true);

@@ -38,6 +38,14 @@ CREATE TABLE playlist (
 
 );
 
+CREATE TABLE liked_songs (
+	usuario TEXT NOT NULL,
+	id_musica INT NOT NULL,
+	FOREIGN KEY (usuario) REFERENCES usuario(usuario)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
+	FOREIGN KEY (id_musica) REFERENCES musica(id_musica)
+);
 
 
 INSERT INTO artista (id_artista, nome) 
@@ -118,7 +126,7 @@ select m.nome as nome_musica, al.nome as nome_album, art.nome as nome_arista, m.
 
 
 /*
-DROP TABLE IF EXISTS playlist, musica, album, usuario, artista CASCADE;
+DROP TABLE IF EXISTS playlist, musica, album, usuario, artista, liked_songs CASCADE;
 */
 
 

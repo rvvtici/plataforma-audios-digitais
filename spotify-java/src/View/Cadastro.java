@@ -4,6 +4,7 @@ package View;
 import Controller.ControleCadastro;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class Cadastro extends javax.swing.JFrame {
@@ -61,13 +62,14 @@ public class Cadastro extends javax.swing.JFrame {
         this.txt_nome = txt_nome;
     }
 
-    public JTextField getTxt_senha() {
+    public JPasswordField getTxt_senha() {
         return txt_senha;
     }
 
-    public void setTxt_senha(JTextField txt_senha) {
+    public void setTxt_senha(JPasswordField txt_senha) {
         this.txt_senha = txt_senha;
     }
+    
 
     public JTextField getTxt_user() {
         return txt_user;
@@ -96,9 +98,9 @@ public class Cadastro extends javax.swing.JFrame {
         lbl_nome = new javax.swing.JLabel();
         lbl_senha = new javax.swing.JLabel();
         txt_nome = new javax.swing.JTextField();
-        txt_senha = new javax.swing.JTextField();
         lbl_user = new javax.swing.JLabel();
         txt_user = new javax.swing.JTextField();
+        txt_senha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,17 +134,6 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        txt_senha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_senhaActionPerformed(evt);
-            }
-        });
-        txt_senha.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txt_senhaKeyPressed(evt);
-            }
-        });
-
         lbl_user.setText("User");
 
         txt_user.addActionListener(new java.awt.event.ActionListener() {
@@ -156,6 +147,17 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
+        txt_senha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_senhaActionPerformed(evt);
+            }
+        });
+        txt_senha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_senhaKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -166,17 +168,16 @@ public class Cadastro extends javax.swing.JFrame {
                         .addGap(81, 81, 81)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl_user)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(lbl_senha)
                                 .addComponent(lbl_nome)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txt_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txt_nome, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addGap(19, 19, 19)
                                     .addComponent(bt_cadastrar)
                                     .addGap(14, 14, 14))
-                                .addComponent(txt_user, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txt_user, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                .addComponent(txt_senha))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(125, 125, 125)
                         .addComponent(lbl_login)))
@@ -195,9 +196,9 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(txt_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbl_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(txt_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
                 .addComponent(bt_cadastrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbl_login)
@@ -210,10 +211,6 @@ public class Cadastro extends javax.swing.JFrame {
     private void txt_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nomeActionPerformed
-
-    private void txt_senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_senhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_senhaActionPerformed
 
     private void txt_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_userActionPerformed
         // TODO add your handling code here:
@@ -246,8 +243,11 @@ public class Cadastro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_userKeyPressed
 
+    private void txt_senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_senhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_senhaActionPerformed
+
     private void txt_senhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_senhaKeyPressed
-        
         if(evt.getKeyCode() == evt.VK_ENTER){
             c.salvarUsuario();
         }
@@ -297,7 +297,7 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_senha;
     private javax.swing.JLabel lbl_user;
     private javax.swing.JTextField txt_nome;
-    private javax.swing.JTextField txt_senha;
+    private javax.swing.JPasswordField txt_senha;
     private javax.swing.JTextField txt_user;
     // End of variables declaration//GEN-END:variables
 }

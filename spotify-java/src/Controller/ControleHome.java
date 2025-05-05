@@ -26,36 +26,11 @@ public class ControleHome {
     }
     
     
-    public void paginaPerfilUser(){
+    public void redirectPerfil(Usuario usuario){
         
-        Usuario usuario = new Usuario(
-                                       view.getLbl_nome().getText(),
-                                        null,
-                                       null);
-        Conexao conexao = new Conexao();
-        
-        try{
-            Connection conn = conexao.getConnection();
-            UsuarioDAO dao = new UsuarioDAO(conn);
-            ResultSet res = dao.consultar_perfil(usuario);
-            if(res.next()){
-                String user = res.getString("usuario"); // coluna no sql chama "usuario"
-                String nome = res.getString("nome");
-                String senha = res.getString("senha");
-            
-                Usuario usuario2 = new Usuario(user, nome, senha);
-                
                 view.setVisible(false);
-                Perfil p = new Perfil(usuario2);
+                Perfil p = new Perfil(usuario);
                 p.setVisible(true);
-            }    
-            //Usuario usuario = new Usuario();
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(view,
-                    "Erro: " + e.getMessage(),
-                    "Erro ao redirecionar ao perfil",
-                    JOptionPane.ERROR_MESSAGE);
-            }
 
     }
     
@@ -97,17 +72,11 @@ public class ControleHome {
                     String nome_artista = res.getString(3);
                     String genero = res.getString(4);
                     String duracao = res.getString(5);
-                    String curtida = usuario.getNome();
-                    
-                    //view.get
+                    String curtida = "Curtir";
 
                     //System.out.println(nome_musica + " - " + nome_album + " - " + nome_artista + " - " + duracao);
                     
                     resultado_busca.addRow(add_dados_tabela(nome_musica, nome_album, nome_artista, genero, duracao, curtida));
-                    
-                    //System.out.println(add_dados_tabela(nome_musica, nome_album, nome_artista, duracao));
-                    //Object objeto = new Object[] {nomeMusica, nomeAlbum, nomeArtista, duracao};
-                    //resultado_busca.addRow(objeto);
                 }
             } catch(SQLException e){    
                 e.printStackTrace(); // mostra o erro completo no console
