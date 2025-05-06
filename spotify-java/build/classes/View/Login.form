@@ -42,11 +42,12 @@
                       <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="lbl_cadastrar" max="32767" attributes="0"/>
-                          <Component id="bt_login" min="-2" pref="55" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="lbl_cadastrar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="bt_login" min="-2" pref="72" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>

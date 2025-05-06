@@ -281,7 +281,8 @@ public class EditarPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_novo_userActionPerformed
 
     private void lbl_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_voltarMouseClicked
-        // TODO add your handling code here:
+        Usuario usuario = new Usuario(user, nome, senha); 
+        c.redirectPerfil(usuario);
     }//GEN-LAST:event_lbl_voltarMouseClicked
 
     private void txt_novo_userKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_novo_userKeyPressed

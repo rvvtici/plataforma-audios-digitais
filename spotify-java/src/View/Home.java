@@ -14,6 +14,20 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 
 
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableCellEditor;
+
+
+
+
+
+
+
+
 public class Home extends javax.swing.JFrame {
 
     private String nome, senha, user;
@@ -265,11 +279,11 @@ public class Home extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Música", "Artista", "Álbum", "Gênero", "Duração", "Curtida"
+                "Música", "Artista", "Álbum", "Gênero", "Duração", "Curtida", "Id_musica"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -422,6 +436,115 @@ public class Home extends javax.swing.JFrame {
         c.redirectMusicasCurtidas(usuario2);
     }//GEN-LAST:event_lbl_musicas_curtidasMouseClicked
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+class ButtonRenderer extends JButton implements TableCellRenderer {
+    public ButtonRenderer() {
+        setOpaque(true);
+    }
+
+    public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+        setText((value == null) ? "Curtir" : value.toString());
+        return this;
+    }
+}
+
+class ButtonEditor extends DefaultCellEditor {
+    private JButton button;
+    private String label;
+    private boolean clicked;
+    private JTable table;
+
+    public ButtonEditor(JCheckBox checkBox, JTable table) {
+        super(checkBox);
+        this.table = table;
+        button = new JButton();
+        button.setOpaque(true);
+
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                fireEditingStopped();
+            }
+        });
+    }
+
+    public Component getTableCellEditorComponent(JTable table, Object value,
+            boolean isSelected, int row, int column) {
+        label = (value == null) ? "Curtir" : value.toString();
+        button.setText(label);
+        clicked = true;
+        return button;
+    }
+
+    public Object getCellEditorValue() {
+        if (clicked) {
+            // Aqui você trata o clique no botão
+            String musica = table.getValueAt(table.getSelectedRow(), 0).toString();
+            JOptionPane.showMessageDialog(button, "Você curtiu: " + musica);
+            // Você pode mudar o texto do botão para "Descurtir", por exemplo:
+            label = label.equals("Curtir") ? "Descurtir" : "Curtir";
+        }
+        clicked = false;
+        return label;
+    }
+
+    public boolean stopCellEditing() {
+        clicked = false;
+        return super.stopCellEditing();
+    }
+
+    protected void fireEditingStopped() {
+        super.fireEditingStopped();
+    }
+}
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */

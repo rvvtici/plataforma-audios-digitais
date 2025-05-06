@@ -18,6 +18,34 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 
+
+
+
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JTable;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableCellEditor;
+import javax.swing.AbstractCellEditor;
+import javax.swing.JOptionPane;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 public class ControleHome {
     private Home view;
     
@@ -45,50 +73,207 @@ public class ControleHome {
                 Historico h = new Historico(usuario);
                 h.setVisible(true);
     }
-
-        
+    
     public void redirectMusicasCurtidas(Usuario usuario){
                 view.setVisible(false);
                 MusicasCurtidas mc = new MusicasCurtidas(usuario);
                 mc.setVisible(true);
-    }        
-        
-        public void buscar(Usuario usuario){
-            String search = view.getTxt_busca().getText();
-            String filtro = view.getCombobox_filtro().getSelectedItem().toString();
-           
-            JTable tabela = view.getTabela();    
-            DefaultTableModel resultado_busca = (DefaultTableModel) tabela.getModel();
-
-            resultado_busca.setRowCount(0); //remove todas as linhas antes de colcoar novas linhas na tabela
-            Conexao conexao = new Conexao();
-            try{
-                Connection conn = conexao.getConnection();
-                UsuarioDAO dao = new UsuarioDAO(conn);
-                ResultSet res = dao.buscar_musica(filtro, search);
-                while(res.next()){
-                    String nome_musica = res.getString(1);
-                    String nome_album = res.getString(2);
-                    String nome_artista = res.getString(3);
-                    String genero = res.getString(4);
-                    String duracao = res.getString(5);
-                    String curtida = "Curtir";
-
-                    //System.out.println(nome_musica + " - " + nome_album + " - " + nome_artista + " - " + duracao);
-                    
-                    resultado_busca.addRow(add_dados_tabela(nome_musica, nome_album, nome_artista, genero, duracao, curtida));
-                }
-            } catch(SQLException e){    
-                e.printStackTrace(); // mostra o erro completo no console
-                JOptionPane.showMessageDialog(view, 
-                    "Erro de busca!\n" + e.getMessage(), 
-                    "Aviso",
-                    JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        
-        public Object[] add_dados_tabela(String musica, String album, String artista, String genero, String duracao, String curtida){
-            return new Object[] {musica, album, artista, genero, duracao, curtida};
-        }
+    }  
     
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+public void buscar(Usuario usuario) {
+    //private Usuario usuario;
+    //private UsuarioDAO dao;
+    
+    String search = view.getTxt_busca().getText();
+    String filtro = view.getCombobox_filtro().getSelectedItem().toString();
+
+    JTable tabela = view.getTabela();
+    DefaultTableModel resultado_busca = (DefaultTableModel) tabela.getModel();
+    resultado_busca.setRowCount(0); // limpa a tabela
+
+    Conexao conexao = new Conexao();
+    try {
+        Connection conn = conexao.getConnection();
+        UsuarioDAO dao = new UsuarioDAO(conn);
+        ResultSet res = dao.buscar_musica(filtro, search);
+
+        //pegar musicas curtidas pelo usuario
+        ResultSet res_curtida_usuario = dao.buscar_curtidas(usuario);
+        ArrayList<Integer> ids_musicas_curtidas = new ArrayList<Integer>();
+        
+        while(res_curtida_usuario.next()){
+            ids_musicas_curtidas.add(res_curtida_usuario.getInt(1));
+        }
+        
+        System.out.println(ids_musicas_curtidas);
+        
+        
+        
+        
+
+        //printar resultado da busca
+        while (res.next()) {
+            String nome_musica = res.getString(1);
+            String nome_album = res.getString(2);
+            String nome_artista = res.getString(3);
+            String genero = res.getString(4);
+            String duracao = res.getString(5);
+            int id_musica = res.getInt(6);
+
+            String curtida;
+            
+            if (ids_musicas_curtidas.contains(id_musica)){
+                curtida = "♥";
+            } else{
+                curtida = "♡";
+            }
+            
+            resultado_busca.addRow(new Object[] {
+                nome_musica, nome_album, nome_artista, genero, duracao, curtida, id_musica
+            });
+        }
+
+        
+        // interação com usuário: botão para curtir !!
+        tabela.getColumnModel().getColumn(5).setCellRenderer(new ButtonRenderer());
+        tabela.getColumnModel().getColumn(5).setCellEditor(
+            new ButtonEditor(new JCheckBox(), tabela, dao, usuario)
+        );
+
+
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(view,
+            "Erro de busca!\n" + e.getMessage(),
+            "Aviso",
+            JOptionPane.ERROR_MESSAGE);
+    }
 }
+
+
+// botao sem fundo 
+class ButtonRenderer extends JButton implements TableCellRenderer {
+public ButtonRenderer() {
+    setOpaque(false);
+    setContentAreaFilled(false);
+    setBorderPainted(false);
+    setFocusPainted(false);
+}
+
+
+
+
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+        setText((value == null) ? "♡" : value.toString());
+        return this;
+    }
+}
+class ButtonEditor extends AbstractCellEditor implements TableCellEditor, ActionListener {
+    private JButton button;
+    private String label;
+    private boolean clicked;
+    private JTable tabela;
+    private int row;
+    private UsuarioDAO dao;
+    private Usuario usuario;
+    
+
+public ButtonEditor(JCheckBox checkBox, JTable tabela, UsuarioDAO dao, Usuario usuario) {
+    this.tabela = tabela;
+    this.dao = dao;
+    this.usuario = usuario;
+    
+    button = new JButton();
+    button.setOpaque(false);
+    button.setContentAreaFilled(false);
+    button.setBorderPainted(false);
+    button.setFocusPainted(false);
+
+    button.addActionListener(this);
+}
+
+
+
+    @Override
+    public Component getTableCellEditorComponent(JTable table, Object value,
+            boolean isSelected, int row, int column) {
+        this.row = row;
+        label = (value == null) ? "♡" : value.toString();
+        button.setText(label);
+        clicked = true;
+        return button;
+    }
+
+    @Override
+    public Object getCellEditorValue() {
+        return label;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (clicked) {
+            int id_musica = (int) tabela.getValueAt(row, 6); // coluna "oculta" com id_musica
+
+            if (label.equals("♥")) {
+                // Descurtir
+                label = "♡";
+                try {
+                    dao.descurtir_musica(usuario.getUsuario(), id_musica);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            } else {
+                // Curtir
+                label = "♥";
+                try {
+                    dao.curtir_musica(usuario.getUsuario(), id_musica);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            tabela.setValueAt(label, row, 5); // atualiza coração
+        }
+        clicked = false;
+        fireEditingStopped();
+}
+
+}
+}
+
+        
+        
+        
+        
+//        
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            if (clicked) {
+//                String novoValor = label.equals("♡") ? "♥" : "♡";
+//                tabela.setValueAt(novoValor, row, 5);
+//                JOptionPane.showMessageDialog(button, "Você clicou em: " + novoValor);
+//            }
+//            clicked = false;
+//            fireEditingStopped();
+//        }
+//    }
+//}
+

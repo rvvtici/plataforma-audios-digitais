@@ -34,6 +34,13 @@ public class ControleEditarPerfil {
 
     }
     
+    public void redirectPerfil(Usuario usuario){
+                view.setVisible(false);
+                Perfil p = new Perfil(usuario);
+                p.setVisible(true);
+
+    }
+    
     
     public void editarPerfil(Usuario usuario){
         usuario_antigo = usuario.getUsuario();

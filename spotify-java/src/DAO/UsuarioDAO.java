@@ -55,7 +55,7 @@ public class UsuarioDAO {
             default -> "";
         };
         
-        String sql = "select m.nome, al.nome, art.nome, al.genero, m.duracao " +
+        String sql = "select m.nome, art.nome, al.nome, al.genero, m.duracao, m.id_musica " +
                      "from musica m " +
                      "inner join album al on al.id_album = m.id_album " +
                      "inner join artista art on art.id_artista = al.id_artista " +
@@ -69,6 +69,22 @@ public class UsuarioDAO {
     }
     
     
+    public ResultSet buscar_curtidas(Usuario usuario) throws SQLException{
+        
+        String user = usuario.getUsuario();
+        
+//        select id_musica from liked_songs
+//        where usuario = 'ravi'
+        
+        String sql = "select id_musica from liked_songs " +
+                     "where usuario = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, user);
+        
+        ResultSet resultado = statement.executeQuery();
+        return resultado;
+    }   
+    
     
     
     //inserir
@@ -80,6 +96,14 @@ public class UsuarioDAO {
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.execute();
         conn.close();
+    }
+    
+    public void curtir_musica(String usuario, int id_musica) throws SQLException {
+        String sql = "INSERT INTO liked_songs (usuario, id_musica) VALUES (?, ?)";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, usuario);
+        statement.setInt(2, id_musica);
+        statement.executeUpdate();
     }
     
     
@@ -114,5 +138,13 @@ public class UsuarioDAO {
         statement.execute();
         conn.close();
     }
+    
+    public void descurtir_musica(String usuario, int id_musica) throws SQLException {
+        String sql = "DELETE FROM liked_songs WHERE usuario = ? AND id_musica = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, usuario);
+        statement.setInt(2, id_musica);
+        statement.executeUpdate();
+}
     
 }

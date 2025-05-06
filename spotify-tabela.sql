@@ -112,9 +112,10 @@ INSERT INTO playlist (id_playlist, nome, usuario, foto)
 VALUES 
 (1, 'piiii', 'ravi', 'foto.png');
 
-
-
-
+INSERT INTO liked_songs (usuario, id_musica) VALUES
+('ravi', 1),
+('ravi', 4),
+('ravi', 5);
 
 
 /*
