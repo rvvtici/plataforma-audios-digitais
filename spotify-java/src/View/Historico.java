@@ -7,6 +7,8 @@ package View;
 import javax.swing.JLabel;
 import Model.Usuario;
 import Controller.ControleHistorico;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -30,9 +32,30 @@ public class Historico extends javax.swing.JFrame {
         nome = usuario.getNome();
         senha = usuario.getSenha();
         c = new ControleHistorico(this);
-
+        txt_historico.setText(c.addLinhasHistorico(usuario));
         
     }
+
+    public JLabel getLbl_buscas() {
+        return lbl_buscas;
+    }
+
+    public void setLbl_buscas(JLabel lbl_buscas) {
+        this.lbl_buscas = lbl_buscas;
+    }
+
+    public JTextArea getTxt_historico() {
+        return txt_historico;
+    }
+
+    public void setTxt_historico(JTextArea txt_historico) {
+        this.txt_historico = txt_historico;
+    }
+
+
+    
+    
+    
     
     public JLabel getLbl_historico() {
         return lbl_historico;
@@ -65,6 +88,9 @@ public class Historico extends javax.swing.JFrame {
 
         lbl_voltar = new javax.swing.JLabel();
         lbl_historico = new javax.swing.JLabel();
+        lbl_buscas = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txt_historico = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,16 +106,27 @@ public class Historico extends javax.swing.JFrame {
         lbl_historico.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         lbl_historico.setText("Histórico");
 
+        lbl_buscas.setText("últimas 10 buscas");
+
+        txt_historico.setColumns(20);
+        txt_historico.setRows(5);
+        jScrollPane1.setViewportView(txt_historico);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(lbl_voltar)
-                .addGap(118, 118, 118)
-                .addComponent(lbl_historico)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lbl_buscas)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lbl_voltar)
+                            .addGap(118, 118, 118)
+                            .addComponent(lbl_historico)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +135,11 @@ public class Historico extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_voltar)
                     .addComponent(lbl_historico))
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_buscas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -151,7 +192,10 @@ public class Historico extends javax.swing.JFrame {
     private ControleHistorico c;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_buscas;
     private javax.swing.JLabel lbl_historico;
     private javax.swing.JLabel lbl_voltar;
+    private javax.swing.JTextArea txt_historico;
     // End of variables declaration//GEN-END:variables
 }

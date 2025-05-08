@@ -47,6 +47,14 @@ CREATE TABLE liked_songs (
 	FOREIGN KEY (id_musica) REFERENCES musica(id_musica)
 );
 
+CREATE TABLE historico (
+	usuario TEXT NOT NULL,
+	search TEXT NOT NULL,
+	filtro TEXT NOT NULL,
+	FOREIGN KEY (usuario) REFERENCES usuario(usuario)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE
+);
 
 INSERT INTO artista (id_artista, nome) 
 VALUES 

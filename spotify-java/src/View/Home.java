@@ -13,17 +13,13 @@ import Controller.ControleHome;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 
-
+//botao de curtir/descurtir
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableCellEditor;
-
-
-
-
 
 
 

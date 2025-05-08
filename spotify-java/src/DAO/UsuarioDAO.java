@@ -35,6 +35,16 @@ public class UsuarioDAO {
         return resultado;
     }
     
+        
+    public ResultSet consultar_historico(Usuario usuario) throws SQLException{
+        String sql = "select search, filtro from historico where usuario = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, usuario.getUsuario());
+        statement.execute();
+        ResultSet resultado = statement.getResultSet();
+        return resultado;
+    }
+    
     public ResultSet obter_nome(Usuario usuario) throws SQLException{
         String sql = "select nome from usuario where usuario = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -104,6 +114,16 @@ public class UsuarioDAO {
         statement.setString(1, usuario);
         statement.setInt(2, id_musica);
         statement.executeUpdate();
+    }
+    
+    public void nova_busca_historico(String usuario, String search, String filtro) throws SQLException {
+        String sql = "INSERT INTO historico (usuario, search, filtro) VALUES (?, ?, ?)";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, usuario);
+        statement.setString(2, search);
+        statement.setString(3, filtro);
+        statement.execute();
+        conn.close();
     }
     
     
