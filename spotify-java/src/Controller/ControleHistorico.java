@@ -10,7 +10,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 
 public class ControleHistorico {
@@ -34,10 +37,13 @@ public class ControleHistorico {
             h.setVisible(true);
     }
         
-        public String addLinhasHistorico(Usuario usuario){
+        public void addLinhasHistorico(Usuario usuario, JTable tabela){
             String user = usuario.getNome();
-            ArrayList<String> linhas = new ArrayList<>();
-            
+//            ArrayList<String> linhas = new ArrayList<>();
+//            List<String[]> linhas = new ArrayList<>();
+            DefaultTableModel resultado_busca = (DefaultTableModel) tabela.getModel();
+            resultado_busca.setRowCount(0); // limpa a tabela
+
             Conexao conexao = new Conexao();
             try{
                 Connection conn = conexao.getConnection();
@@ -46,13 +52,20 @@ public class ControleHistorico {
 
                 int cont = 0;
                 while(res.next()){
-                        String search = res.getString("search");
-                        String filtro = res.getString("filtro");
-                        if (search.equals("")){
-                            search = " ";
-                        } 
-                        linhas.add(search + " " + filtro);
-                        cont += 1;
+                    String search = res.getString(1);
+                    String filtro = res.getString(2);
+                    
+                    resultado_busca.addRow(new Object[] {
+                        search, filtro
+                    });
+                    
+//                        String search = res.getString("search");
+//                        String filtro = res.getString("filtro");
+//                        if (search.equals("")){
+//                            search = " ";
+//                        } 
+//                        linhas.add(new String[]{search, filtro});
+//                        cont += 1;
 
                         //if historico > 10 ??
                 }
@@ -62,10 +75,8 @@ public class ControleHistorico {
                                               "Erro de conexão!\n" + e.getMessage(), 
                                               "Aviso",
                                               JOptionPane.ERROR_MESSAGE);
-                return "erro";
+//                return "erro";
             }
-        
-        return String.join("\n", linhas);
+//        return String.join("\n", linhas);
         }
-
-        }
+    }

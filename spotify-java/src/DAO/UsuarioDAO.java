@@ -110,10 +110,15 @@ public class UsuarioDAO {
     
     public void curtir_musica(String usuario, int id_musica) throws SQLException {
         String sql = "INSERT INTO liked_songs (usuario, id_musica) VALUES (?, ?)";
-        PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, usuario);
-        statement.setInt(2, id_musica);
-        statement.executeUpdate();
+
+        Conexao conexao = new Conexao();
+        try (Connection conn = conexao.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql)){
+            
+            statement.setString(1, usuario);
+            statement.setInt(2, id_musica);
+            statement.executeUpdate();
+        }    
     }
     
     public void nova_busca_historico(String usuario, String search, String filtro) throws SQLException {
@@ -161,10 +166,14 @@ public class UsuarioDAO {
     
     public void descurtir_musica(String usuario, int id_musica) throws SQLException {
         String sql = "DELETE FROM liked_songs WHERE usuario = ? AND id_musica = ?";
-        PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, usuario);
-        statement.setInt(2, id_musica);
-        statement.executeUpdate();
-}
+        
+        Conexao conexao = new Conexao();
+        try (Connection conn = conexao.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql)){
+                statement.setString(1, usuario);
+                statement.setInt(2, id_musica);
+                statement.executeUpdate();
+        }
+    }
     
 }
