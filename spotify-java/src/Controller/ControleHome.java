@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import Model.Usuario;
 import View.MusicasCurtidas;
+import View.MusicasNaoCurtidas;
 import View.Historico;
 import View.Playlist;
 import View.Home;
@@ -64,6 +65,12 @@ public class ControleHome {
         view.setVisible(false);
         MusicasCurtidas mc = new MusicasCurtidas(usuario);
         mc.setVisible(true);
+    }
+    
+    public void redirectMusicasNaoCurtidas(Usuario usuario){
+        view.setVisible(false);
+        MusicasNaoCurtidas mnc = new MusicasNaoCurtidas(usuario);
+        mnc.setVisible(true);
     }
     
     

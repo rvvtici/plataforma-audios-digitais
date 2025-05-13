@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import Model.Usuario;
+import java.util.ArrayList;
 
 
 public class UsuarioDAO {
@@ -53,6 +54,7 @@ public class UsuarioDAO {
         ResultSet resultado = statement.getResultSet();
         return resultado;
     }    
+
     
     public ResultSet buscar_musica(String filtro, String search) throws SQLException{
         
@@ -78,7 +80,6 @@ public class UsuarioDAO {
         return resultado;
     }
     
-    
     public ResultSet buscar_curtidas(Usuario usuario) throws SQLException{
         
         String user = usuario.getUsuario();
@@ -95,7 +96,22 @@ public class UsuarioDAO {
         return resultado;
     }   
     
-    
+        public ResultSet buscar_musicas_curtidas(ArrayList<Integer> ids_musicas_curtidas, int idx) throws SQLException{
+            
+            int id = ids_musicas_curtidas.get(idx);
+            
+            String sql = "select m.nome, art.nome, al.nome, al.genero, m.duracao" +
+                         "from musica m " +
+                         "inner join album al on al.id_album = m.id_album " +
+                         "inner join artista art on art.id_artista = al.id_artista " +
+                         "where m.id_musica = " + id; 
+
+            PreparedStatement statement = conn.prepareStatement(sql);
+            
+            ResultSet resultado = statement.executeQuery();
+            return resultado;
+            }
+        
     
     //inserir
     public void inserir_novo_usuario(Usuario usuario) throws SQLException{

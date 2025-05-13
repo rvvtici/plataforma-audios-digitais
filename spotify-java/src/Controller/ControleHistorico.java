@@ -38,7 +38,7 @@ public class ControleHistorico {
     }
         
         public void addLinhasHistorico(Usuario usuario, JTable tabela){
-            String user = usuario.getNome();
+            String user = usuario.getUsuario();
 //            ArrayList<String> linhas = new ArrayList<>();
 //            List<String[]> linhas = new ArrayList<>();
             DefaultTableModel resultado_busca = (DefaultTableModel) tabela.getModel();

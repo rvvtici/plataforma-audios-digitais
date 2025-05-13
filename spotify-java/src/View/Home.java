@@ -48,6 +48,24 @@ public class Home extends javax.swing.JFrame {
         return bt_buscar;
     }
 
+    public JLabel getLbl_musicas_curtidas() {
+        return lbl_musicas_curtidas;
+    }
+
+    public void setLbl_musicas_curtidas(JLabel lbl_musicas_curtidas) {
+        this.lbl_musicas_curtidas = lbl_musicas_curtidas;
+    }
+
+    public JLabel getLbl_musicas_nao_curtidas() {
+        return lbl_musicas_nao_curtidas;
+    }
+
+    public void setLbl_musicas_nao_curtidas(JLabel lbl_musicas_nao_curtidas) {
+        this.lbl_musicas_nao_curtidas = lbl_musicas_nao_curtidas;
+    }
+
+    
+    
     public void setBt_buscar(JButton bt_buscar) {
         this.bt_buscar = bt_buscar;
     }
@@ -190,6 +208,7 @@ public class Home extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         lbl_musicas_curtidas = new javax.swing.JLabel();
+        lbl_musicas_nao_curtidas = new javax.swing.JLabel();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -297,6 +316,15 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        lbl_musicas_nao_curtidas.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lbl_musicas_nao_curtidas.setText("Músicas não-curtidas");
+        lbl_musicas_nao_curtidas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbl_musicas_nao_curtidas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_musicas_nao_curtidasMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -307,8 +335,9 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(lbl_historico)
                     .addComponent(lbl_playlists)
                     .addComponent(lbl_perfil)
-                    .addComponent(lbl_musicas_curtidas))
-                .addGap(65, 65, 65)
+                    .addComponent(lbl_musicas_curtidas)
+                    .addComponent(lbl_musicas_nao_curtidas))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbl_welcome)
@@ -329,7 +358,7 @@ public class Home extends javax.swing.JFrame {
                                     .addComponent(bt_buscar))
                                 .addComponent(lbl_filtro)))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,8 +367,10 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbl_perfil)
-                        .addGap(92, 92, 92)
+                        .addGap(67, 67, 67)
                         .addComponent(lbl_musicas_curtidas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_musicas_nao_curtidas)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbl_playlists)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -431,6 +462,11 @@ public class Home extends javax.swing.JFrame {
         Usuario usuario2 = new Usuario(user,nome,senha);
         c.redirectMusicasCurtidas(usuario2);
     }//GEN-LAST:event_lbl_musicas_curtidasMouseClicked
+
+    private void lbl_musicas_nao_curtidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_musicas_nao_curtidasMouseClicked
+        Usuario usuario2 = new Usuario(user,nome,senha);
+        c.redirectMusicasNaoCurtidas(usuario2);
+    }//GEN-LAST:event_lbl_musicas_nao_curtidasMouseClicked
 
     
     
@@ -591,6 +627,7 @@ class ButtonEditor extends DefaultCellEditor {
     private javax.swing.JLabel lbl_filtro;
     private javax.swing.JLabel lbl_historico;
     private javax.swing.JLabel lbl_musicas_curtidas;
+    private javax.swing.JLabel lbl_musicas_nao_curtidas;
     private javax.swing.JLabel lbl_nome;
     private javax.swing.JLabel lbl_perfil;
     private javax.swing.JLabel lbl_playlists;
