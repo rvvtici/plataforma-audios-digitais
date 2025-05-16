@@ -2,6 +2,7 @@
 package Controller;
 
 import DAO.UsuarioDAO;
+import DAO.MusicaDAO;
 import DAO.Conexao;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -68,7 +69,6 @@ public class ControleHome {
     }
     
     public void redirectMusicasDescurtidas(Usuario usuario){
-        System.out.println("teste");
         view.setVisible(false);
         MusicasDescurtidas md = new MusicasDescurtidas(usuario);
         md.setVisible(true);
@@ -87,7 +87,11 @@ public class ControleHome {
         Conexao conexao = new Conexao();
         try {
             Connection conn = conexao.getConnection();
+            Connection conn2 = conexao.getConnection();
             UsuarioDAO dao = new UsuarioDAO(conn);
+            MusicaDAO musica_dao = new MusicaDAO(conn2);
+
+            
             ResultSet res = dao.buscar_musica(filtro, search);
 
             //pegar musicas curtidas pelo usuario
@@ -134,7 +138,7 @@ public class ControleHome {
             // interação com usuário: botão para curtir/descurtir
             tabela.getColumnModel().getColumn(5).setCellRenderer(new ButtonRenderer());
             tabela.getColumnModel().getColumn(5).setCellEditor(
-                new ButtonEditor(new JCheckBox(), tabela, dao, usuario)
+                new ButtonEditor(new JCheckBox(), tabela, dao, musica_dao, usuario)
             );
 
             
@@ -172,12 +176,16 @@ public class ControleHome {
         private JTable tabela;
         private int row;
         private UsuarioDAO dao;
+        private MusicaDAO musica_dao;
+
         private Usuario usuario;
+        
     
 
-        public ButtonEditor(JCheckBox checkBox, JTable tabela, UsuarioDAO dao, Usuario usuario) {
+        public ButtonEditor(JCheckBox checkBox, JTable tabela, UsuarioDAO dao, MusicaDAO musica_dao, Usuario usuario) {
             this.tabela = tabela;
             this.dao = dao;
+            this.musica_dao = musica_dao;
             this.usuario = usuario;
 
             button = new JButton();
@@ -215,8 +223,12 @@ public class ControleHome {
                     // descurtir
                     label = "♡";
                     try {
-                        dao.descurtir_musica(usuario.getUsuario(), id_musica);
-                        System.out.println("usuario " + usuario.getUsuario() + " descurtiu a musica de ID " + id_musica);
+                        musica_dao.adicionar_curtida_descurtida(usuario, "unliked_songs", id_musica);
+                        //se tiver na liked_songs, consulta = true
+                        boolean consulta = musica_dao.consultar_curtidas_descurtidas(usuario, "liked_songs", id_musica);
+                        if (consulta) {
+                            musica_dao.remover_curtida_descurtida(usuario, "liked_songs", id_musica);
+                        }
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }
@@ -224,10 +236,12 @@ public class ControleHome {
                     // curtir
                     label = "♥";
                     try {
-                        dao.curtir_musica(usuario.getUsuario(), id_musica);
-                        System.out.println("usuario " + usuario.getUsuario() + " curtiu a musica de ID " + id_musica);
-
-
+                        musica_dao.adicionar_curtida_descurtida(usuario, "liked_songs", id_musica);
+                        //se tiver na liked_songs, consulta = true
+                        boolean consulta = musica_dao.consultar_curtidas_descurtidas(usuario, "unliked_songs", id_musica);
+                        if (consulta) {
+                            musica_dao.remover_curtida_descurtida(usuario, "unliked_songs", id_musica);
+                        }
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }

@@ -49,7 +49,7 @@ public class ControleMusicasCurtidas {
                 Connection conn = conexao.getConnection();
                 MusicaDAO dao = new MusicaDAO(conn);
 
-                ResultSet res_musicas = dao.buscar_musicas_curtidas(usuario);
+                ResultSet res_musicas = dao.buscar_musicas_curtidas_descurtidas(usuario, "liked_songs");
                 
                 while (res_musicas.next()) {;
                     String musica = res_musicas.getString(1);
