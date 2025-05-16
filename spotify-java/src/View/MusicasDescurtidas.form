@@ -27,8 +27,8 @@
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Component id="lbl_voltar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-              <Component id="lbl_musicas_curtidas" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="83" max="32767" attributes="0"/>
+              <Component id="lbl_musicas_descurtidas" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="92" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -38,7 +38,7 @@
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbl_voltar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbl_musicas_curtidas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbl_musicas_descurtidas" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="248" max="32767" attributes="0"/>
           </Group>
@@ -60,12 +60,12 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_voltarMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbl_musicas_curtidas">
+    <Component class="javax.swing.JLabel" name="lbl_musicas_descurtidas">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="M&#xfa;sicas n&#xe3;o-curtidas"/>
+        <Property name="text" type="java.lang.String" value="M&#xfa;sicas descurtidas"/>
       </Properties>
     </Component>
   </SubComponents>

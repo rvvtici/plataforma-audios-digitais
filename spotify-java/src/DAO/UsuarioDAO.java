@@ -95,22 +95,7 @@ public class UsuarioDAO {
         ResultSet resultado = statement.executeQuery();
         return resultado;
     }   
-    
-        public ResultSet buscar_musicas_curtidas(ArrayList<Integer> ids_musicas_curtidas, int idx) throws SQLException{
-            
-            int id = ids_musicas_curtidas.get(idx);
-            
-            String sql = "select m.nome, art.nome, al.nome, al.genero, m.duracao" +
-                         "from musica m " +
-                         "inner join album al on al.id_album = m.id_album " +
-                         "inner join artista art on art.id_artista = al.id_artista " +
-                         "where m.id_musica = " + id; 
-
-            PreparedStatement statement = conn.prepareStatement(sql);
-            
-            ResultSet resultado = statement.executeQuery();
-            return resultado;
-            }
+   
         
     
     //inserir
