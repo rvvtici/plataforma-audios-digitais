@@ -1,10 +1,13 @@
 package Model;
 
+import Model.Artista;
+
 public class Musica {
     private int id;
-    private String nome_musica, artista, genero, album, duracao;
+    private String nome_musica, genero, album, duracao;
+    private Artista artista;
     
-    public Musica (String nome_musica, String artista, String album, String genero, String duracao){
+    public Musica (String nome_musica, Artista artista, String album, String genero, String duracao){
         this.nome_musica = nome_musica;
         this.artista = artista;
         this.album = album;
@@ -29,11 +32,11 @@ public class Musica {
         this.nome_musica = nome_musica;
     }
 
-    public String getArtista() {
+    public Artista getArtista() {
         return artista;
     }
 
-    public void setArtista(String artista) {
+    public void setArtista(Artista artista) {
         this.artista = artista;
     }
 
@@ -60,6 +63,19 @@ public class Musica {
     public void setDuracao(String duracao) {
         this.duracao = duracao;
     }
+
+    @Override
+    public String toString() {
+        return "Musica{" + 
+            "id=" + id + 
+            ", nome_musica=" + nome_musica + 
+            ", genero=" + genero + 
+            ", album=" + album + 
+            ", duracao=" + duracao + 
+            ", artista=" + (artista != null ? artista.getNome() : "Sem artista") + 
+            '}';
+    }
+
     
     
     

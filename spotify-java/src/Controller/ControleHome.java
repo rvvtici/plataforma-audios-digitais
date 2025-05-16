@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import Model.Usuario;
 import View.MusicasCurtidas;
 import View.MusicasDescurtidas;
+import View.MusicasCurtidasDescurtidas;
 import View.Historico;
 import View.Playlist;
 import View.Home;
@@ -63,19 +64,47 @@ public class ControleHome {
         Historico h = new Historico(usuario);
         h.setVisible(true);
     }
-    
+//    
+//    public void redirectMusicasCurtidas(Usuario usuario){
+//        view.setVisible(false);
+//        MusicasCurtidas mc = new MusicasCurtidas(usuario);
+//        mc.setVisible(true);
+//    }
+//    
+//    public void redirectMusicasDescurtidas(Usuario usuario){
+//        view.setVisible(false);
+//        MusicasDescurtidas md = new MusicasDescurtidas(usuario);
+//        md.setVisible(true);
+//    }
+//    
+//
+//
+
+
     public void redirectMusicasCurtidas(Usuario usuario){
         view.setVisible(false);
-        MusicasCurtidas mc = new MusicasCurtidas(usuario);
+        MusicasCurtidasDescurtidas mc = new MusicasCurtidasDescurtidas(usuario, "Músicas curtidas", "liked_songs");
         mc.setVisible(true);
     }
     
     public void redirectMusicasDescurtidas(Usuario usuario){
         view.setVisible(false);
-        MusicasDescurtidas md = new MusicasDescurtidas(usuario);
+        MusicasCurtidasDescurtidas md = new MusicasCurtidasDescurtidas(usuario, "Músicas descurtidas", "unliked_songs");
         md.setVisible(true);
     }
     
+
+
+
+    
+//    
+//    
+//    public void redirectMusicasCurtidasDescurtidas(Usuario usuario){
+//        view.setVisible(false);
+//        MusicasCurtidasDescurtidas mcd = new MusicasCurtidasDescurtidas(usuario);
+//        mcd.setVisible(true);
+//    }
+//    
     
     //buscar musica, pega no database todas as musicas e as musicas curtidas pelo user logado.
     public void buscar(Usuario usuario) {

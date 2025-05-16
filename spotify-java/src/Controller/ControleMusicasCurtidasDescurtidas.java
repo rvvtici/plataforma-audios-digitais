@@ -3,9 +3,11 @@ package Controller;
 import DAO.Conexao;
 import DAO.MusicaDAO;
 import DAO.UsuarioDAO;
+import Model.Artista;
 import Model.Musica;
 import Model.Usuario;
 import View.MusicasDescurtidas;
+import View.MusicasCurtidasDescurtidas;
 import View.Home;
 import View.Historico;
 import java.sql.Connection;
@@ -16,16 +18,18 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class ControleMusicasDescurtidas {
-    private MusicasDescurtidas view;
+public class ControleMusicasCurtidasDescurtidas {
+    private MusicasCurtidasDescurtidas view;
     private Usuario usuario;
+    private String liked_unliked;
 
-    public ControleMusicasDescurtidas(MusicasDescurtidas view, Usuario usuario) {
+    public ControleMusicasCurtidasDescurtidas(MusicasCurtidasDescurtidas view, Usuario usuario, String liked_unliked) {
         this.view = view;
         this.usuario = usuario;
+        this.liked_unliked = liked_unliked;
     }
 
-    public ControleMusicasDescurtidas(MusicasDescurtidas view) {
+    public ControleMusicasCurtidasDescurtidas(MusicasCurtidasDescurtidas view) {
         this.view = view;
     }
 
@@ -35,7 +39,7 @@ public class ControleMusicasDescurtidas {
         h.setVisible(true);
     }
     
-    public void buscar(Usuario usuario, JTable table){
+    public void buscar(Usuario usuario, JTable table, String liked_unliked){
             DefaultTableModel tabela = (DefaultTableModel) table.getModel();
             tabela.setRowCount(0); // limpa a tabela
 
@@ -44,19 +48,21 @@ public class ControleMusicasDescurtidas {
                 Connection conn = conexao.getConnection();
                 MusicaDAO dao = new MusicaDAO(conn);
 
-                ResultSet res_musicas = dao.buscar_musicas_curtidas_descurtidas(usuario, "unliked_songs");
+                //
+                ResultSet res_musicas = dao.buscar_musicas_curtidas_descurtidas(usuario, liked_unliked);
                 
                 while (res_musicas.next()) {;
                     String musica = res_musicas.getString(1);
-                    String artista = res_musicas.getString(2);
+                    String nomeArtista = res_musicas.getString(2);
                     String album = res_musicas.getString(3);
                     String genero = res_musicas.getString(4);
                     String duracao = res_musicas.getString(5);
 
-                    Musica m = new Musica (musica, artista, album, genero, duracao);
-                    
+                    Artista art = new Artista(nomeArtista);
+                    Musica m = new Musica (musica, art, album, genero, duracao);
+
                     tabela.addRow(new Object[]{
-                        m.getNome_musica(), m.getArtista(), m.getAlbum(), m.getGenero(), m.getDuracao()
+                        m.getNome_musica(), m.getArtista().getNome(), m.getAlbum(), m.getGenero(), m.getDuracao()
                     });
 
                     }

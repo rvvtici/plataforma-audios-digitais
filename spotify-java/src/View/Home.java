@@ -460,7 +460,9 @@ public class Home extends javax.swing.JFrame {
 
     private void lbl_musicas_curtidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_musicas_curtidasMouseClicked
         Usuario usuario2 = new Usuario(user,nome,senha);
+//        c.redirectMusicasCurtidas(usuario2);
         c.redirectMusicasCurtidas(usuario2);
+        
     }//GEN-LAST:event_lbl_musicas_curtidasMouseClicked
 
     private void lbl_musicas_descurtidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_musicas_descurtidasMouseClicked

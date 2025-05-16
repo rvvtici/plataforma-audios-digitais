@@ -1,14 +1,14 @@
 package Model;
 
-public class Usuario {
-    private String usuario, nome, senha;
+public class Usuario extends Pessoa{
+    private String usuario, senha;
 
     public Usuario() {
     }
 
     public Usuario(String usuario, String nome, String senha) {
+        super(nome);
         this.usuario = usuario;
-        this.nome = nome;
         this.senha = senha;
     }
     
@@ -17,14 +17,6 @@ public class Usuario {
         this.senha = senha;
     }
     
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getUsuario() {
         return usuario;
     }
@@ -43,7 +35,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "nome=" + nome + ", usuario=" + usuario + ", senha=" + senha + '}';
+        return "Usuario{" + "nome=" + getNome() + ", usuario=" + usuario + ", senha=" + senha + '}';
     }
     
     

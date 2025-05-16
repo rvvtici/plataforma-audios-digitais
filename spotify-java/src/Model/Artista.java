@@ -1,23 +1,18 @@
 package Model;
 
-public class Artista {
-    private String nome;
+public class Artista extends Pessoa{
     private int id;
 
     public Artista(String nome, int id) {
-        this.nome = nome;
+        super(nome);
         this.id = id;
+    }
+    
+    public Artista(String nome){
+        super(nome);
     }
 
     public Artista() {
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public int getId() {
@@ -30,7 +25,7 @@ public class Artista {
 
     @Override
     public String toString() {
-        return "Artista{" + "nome=" + nome + ", id=" + id + '}';
+        return "Artista{" + "nome=" + getNome() + ", id=" + id + '}';
     }
     
     

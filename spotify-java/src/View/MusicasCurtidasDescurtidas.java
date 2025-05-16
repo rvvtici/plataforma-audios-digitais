@@ -1,35 +1,45 @@
 package View;
 
-import Controller.ControleMusicasCurtidas;
+import Controller.ControleMusicasCurtidasDescurtidas;
 import Model.Usuario;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
-public class MusicasCurtidas extends javax.swing.JFrame {
+public class MusicasCurtidasDescurtidas extends javax.swing.JFrame {
 
     String user, nome, senha;
     
-    public MusicasCurtidas() {
+    public MusicasCurtidasDescurtidas() {
         initComponents();
     }
-    
-    
-    public MusicasCurtidas(Usuario usuario){
+
+    public MusicasCurtidasDescurtidas(Usuario usuario, String curtidas_descurtidas, String liked_unliked){
         initComponents();
         user = usuario.getUsuario();
         nome = usuario.getNome();
         senha = usuario.getSenha();
-        c = new ControleMusicasCurtidas(this);
+        
+        lbl_musicas_curtidas_descurtidas.setText(curtidas_descurtidas);
+        
+        c = new ControleMusicasCurtidasDescurtidas(this);
         JTable tabela = getTabela();
-        c.buscar(usuario, tabela);
+        c.buscar(usuario, tabela, liked_unliked);
     }
 
-    public JLabel getLbl_musicas_curtidas() {
-        return lbl_musicas_curtidas;
+    public JLabel getLbl_musicas_curtidas_descurtidas() {
+        return lbl_musicas_curtidas_descurtidas;
     }
 
-    public void setLbl_musicas_curtidas(JLabel lbl_musicas_curtidas) {
-        this.lbl_musicas_curtidas = lbl_musicas_curtidas;
+    public void setLbl_musicas_curtidas_descurtidas(JLabel lbl_musicas_curtidas_descurtidas) {
+        this.lbl_musicas_curtidas_descurtidas = lbl_musicas_curtidas_descurtidas;
+    }
+
+    public JLabel getLbl_voltar() {
+        return lbl_voltar;
+    }
+
+    public void setLbl_voltar(JLabel lbl_voltar) {
+        this.lbl_voltar = lbl_voltar;
     }
 
     public JTable getTabela() {
@@ -39,25 +49,15 @@ public class MusicasCurtidas extends javax.swing.JFrame {
     public void setTabela(JTable tabela) {
         this.tabela = tabela;
     }
-
     
     
-    public JLabel getLbl_voltar() {
-        return lbl_voltar;
-    }
-
-    public void setLbl_voltar(JLabel lbl_voltar) {
-        this.lbl_voltar = lbl_voltar;
-    }
     
-    
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         lbl_voltar = new javax.swing.JLabel();
-        lbl_musicas_curtidas = new javax.swing.JLabel();
+        lbl_musicas_curtidas_descurtidas = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
 
@@ -72,8 +72,8 @@ public class MusicasCurtidas extends javax.swing.JFrame {
             }
         });
 
-        lbl_musicas_curtidas.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        lbl_musicas_curtidas.setText("Músicas curtidas");
+        lbl_musicas_curtidas_descurtidas.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        lbl_musicas_curtidas_descurtidas.setText("Músicas curtidas/descurtidas");
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,15 +97,15 @@ public class MusicasCurtidas extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbl_voltar)
-                        .addGap(123, 123, 123)
-                        .addComponent(lbl_musicas_curtidas)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addGap(54, 54, 54)
+                        .addComponent(lbl_musicas_curtidas_descurtidas)))
+                .addGap(17, 17, 17))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,10 +113,10 @@ public class MusicasCurtidas extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_voltar)
-                    .addComponent(lbl_musicas_curtidas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                    .addComponent(lbl_musicas_curtidas_descurtidas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -145,29 +145,29 @@ public class MusicasCurtidas extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(MusicasCurtidas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(MusicasCurtidasDescurtidas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(MusicasCurtidas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(MusicasCurtidasDescurtidas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(MusicasCurtidas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(MusicasCurtidasDescurtidas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(MusicasCurtidas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(MusicasCurtidasDescurtidas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new MusicasCurtidas().setVisible(true);
+//                new MusicasCurtidasDescurtidas().setVisible(true);
 //            }
 //        });
 //    }
-
-    private Controller.ControleMusicasCurtidas c;
     
+    private Controller.ControleMusicasCurtidasDescurtidas c;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lbl_musicas_curtidas;
+    private javax.swing.JLabel lbl_musicas_curtidas_descurtidas;
     private javax.swing.JLabel lbl_voltar;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
