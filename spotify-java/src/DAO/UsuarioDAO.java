@@ -6,7 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import Model.Usuario;
-import java.util.ArrayList;
+import java.sql.PreparedStatement;
+import java.sql.Timestamp;
+import java.sql.SQLException;
+
+import java.time.LocalDateTime;
+
 
 
 public class UsuarioDAO {
@@ -38,7 +43,9 @@ public class UsuarioDAO {
     
         
     public ResultSet consultar_historico(Usuario usuario) throws SQLException{
-        String sql = "select search, filtro from historico where usuario = ?";
+        String sql = "select search, filtro from historico where usuario = ? " +
+                    "ORDER BY data DESC " +
+                    "LIMIT 10";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, usuario.getUsuario());
         statement.execute();
@@ -122,14 +129,20 @@ public class UsuarioDAO {
         }    
     }
     
-    public void nova_busca_historico(String usuario, String search, String filtro) throws SQLException {
-        String sql = "INSERT INTO historico (usuario, search, filtro) VALUES (?, ?, ?)";
+    public void nova_busca_historico(String usuario, String search, String filtro, LocalDateTime data) throws SQLException {
+        String sql = "INSERT INTO historico (usuario, search, filtro, data) VALUES (?, ?, ?, ?)";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, usuario);
         statement.setString(2, search);
         statement.setString(3, filtro);
+        
+        Timestamp timestamp = Timestamp.valueOf(data);
+        statement.setTimestamp(4, timestamp);
+
         statement.execute();
         conn.close();
+
+
     }
     
     

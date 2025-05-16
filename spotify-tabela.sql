@@ -61,6 +61,7 @@ CREATE TABLE historico (
 	usuario TEXT NOT NULL,
 	search TEXT NOT NULL,
 	filtro TEXT NOT NULL,
+	data TIMESTAMP NOT NULL,
 	FOREIGN KEY (usuario) REFERENCES usuario(usuario)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
@@ -145,7 +146,7 @@ select m.nome as nome_musica, al.nome as nome_album, art.nome as nome_arista, m.
 
 
 /*
-DROP TABLE IF EXISTS playlist, musica, album, usuario, artista, liked_songs CASCADE;
+DROP TABLE IF EXISTS playlist, musica, album, usuario, artista, liked_songs, historico CASCADE;
 */
 
 

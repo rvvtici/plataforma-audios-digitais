@@ -194,7 +194,7 @@ public class Login extends javax.swing.JFrame {
 
     private void bt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_loginActionPerformed
         // TODO add your handling code here:
-        c.loginUsuario();
+        c.loginUsuario();        
         //this.setVisible(false);
         
         

@@ -17,6 +17,8 @@ import View.Perfil;
 import java.sql.ResultSet;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.time.LocalDateTime; // Import the LocalDateTime class
+import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
 
 
 //botao de curtir/descurtir
@@ -132,7 +134,11 @@ public class ControleHome {
 
             //adicionar busca no histórico do usuario
             // usuario, search, filtro, max 10 resultados do historico. botao do lado pra ir pra home e procurar a mesma coisa.
-            dao.nova_busca_historico(usuario.getUsuario(), search, filtro);
+            LocalDateTime data = LocalDateTime.now();
+            dao.nova_busca_historico(usuario.getUsuario(), search, filtro, data);
+            
+            
+            
             
 
             // interação com usuário: botão para curtir/descurtir
