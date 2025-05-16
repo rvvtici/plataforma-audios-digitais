@@ -1,20 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package View;
 
 import javax.swing.JLabel;
 import Controller.ControlePlaylist;
+import javax.swing.JTable;
 import Model.Usuario;
+import javax.swing.JButton;
+import javax.swing.JTextField;
 
-/**
- *
- * @author ravi
- */
 public class Playlist extends javax.swing.JFrame {
 
     private String user, nome, senha;
+    
     public Playlist() {
         initComponents();
         c = new ControlePlaylist(this);
@@ -22,15 +18,39 @@ public class Playlist extends javax.swing.JFrame {
 
     public Playlist(Usuario usuario){
         initComponents();
-        
         user = usuario.getUsuario();
         nome = usuario.getNome();
         senha = usuario.getSenha();
+        
         c = new ControlePlaylist(this);    
+        JTable tabela = getTabela();
+        c.addLinhasPlaylist(usuario, tabela);
     }
-    
-    
-    
+
+    public JButton getBt_new_playlist() {
+        return bt_new_playlist;
+    }
+
+    public void setBt_new_playlist(JButton bt_new_playlist) {
+        this.bt_new_playlist = bt_new_playlist;
+    }
+
+    public JLabel getLbl_descricao() {
+        return lbl_descricao;
+    }
+
+    public void setLbl_descricao(JLabel lbl_descricao) {
+        this.lbl_descricao = lbl_descricao;
+    }
+
+    public JLabel getLbl_nome_playlist() {
+        return lbl_nome_playlist;
+    }
+
+    public void setLbl_nome_playlist(JLabel lbl_nome_playlist) {
+        this.lbl_nome_playlist = lbl_nome_playlist;
+    }
+
     public JLabel getLbl_playlists() {
         return lbl_playlists;
     }
@@ -47,6 +67,34 @@ public class Playlist extends javax.swing.JFrame {
         this.lbl_voltar = lbl_voltar;
     }
 
+    public JTable getTabela() {
+        return tabela;
+    }
+
+    public void setTabela(JTable tabela) {
+        this.tabela = tabela;
+    }
+
+    public JTextField getTxt_descricao() {
+        return txt_descricao;
+    }
+
+    public void setTxt_descricao(JTextField txt_descricao) {
+        this.txt_descricao = txt_descricao;
+    }
+
+    public JTextField getTxt_nome_playlist() {
+        return txt_nome_playlist;
+    }
+
+    public void setTxt_nome_playlist(JTextField txt_nome_playlist) {
+        this.txt_nome_playlist = txt_nome_playlist;
+    }
+    
+    
+    
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,6 +106,13 @@ public class Playlist extends javax.swing.JFrame {
 
         lbl_voltar = new javax.swing.JLabel();
         lbl_playlists = new javax.swing.JLabel();
+        bt_new_playlist = new javax.swing.JButton();
+        lbl_nome_playlist = new javax.swing.JLabel();
+        txt_nome_playlist = new javax.swing.JTextField();
+        lbl_descricao = new javax.swing.JLabel();
+        txt_descricao = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabela = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,25 +128,101 @@ public class Playlist extends javax.swing.JFrame {
         lbl_playlists.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         lbl_playlists.setText("Playlists");
 
+        bt_new_playlist.setText("nova playlist");
+        bt_new_playlist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_new_playlistActionPerformed(evt);
+            }
+        });
+
+        lbl_nome_playlist.setText("nome da playlist");
+
+        lbl_descricao.setText("descrição");
+
+        txt_descricao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_descricaoActionPerformed(evt);
+            }
+        });
+
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "nome", "descrição"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabela);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(lbl_voltar)
-                .addGap(108, 108, 108)
-                .addComponent(lbl_playlists)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(lbl_voltar)
+                        .addGap(199, 199, 199)
+                        .addComponent(lbl_playlists))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_descricao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lbl_descricao)
+                                        .addComponent(txt_nome_playlist, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lbl_nome_playlist))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bt_new_playlist)
+                                .addGap(39, 39, 39)))))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_voltar)
-                    .addComponent(lbl_playlists))
-                .addContainerGap(247, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(lbl_voltar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lbl_playlists)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl_nome_playlist)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_nome_playlist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbl_descricao)
+                        .addGap(5, 5, 5)
+                        .addComponent(txt_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bt_new_playlist)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -106,6 +237,17 @@ public class Playlist extends javax.swing.JFrame {
         Usuario usuario2 = new Usuario(user,nome,senha);
         c.redirectPaginaHome(usuario2);
     }//GEN-LAST:event_lbl_voltarMouseClicked
+
+    private void bt_new_playlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_new_playlistActionPerformed
+        // TODO add your handling code here:
+        Usuario usuario2 = new Usuario(user,nome,senha);
+
+        c.novaPlaylist(usuario2);
+    }//GEN-LAST:event_bt_new_playlistActionPerformed
+
+    private void txt_descricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_descricaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_descricaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,7 +287,14 @@ public class Playlist extends javax.swing.JFrame {
     private ControlePlaylist c;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bt_new_playlist;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_descricao;
+    private javax.swing.JLabel lbl_nome_playlist;
     private javax.swing.JLabel lbl_playlists;
     private javax.swing.JLabel lbl_voltar;
+    private javax.swing.JTable tabela;
+    private javax.swing.JTextField txt_descricao;
+    private javax.swing.JTextField txt_nome_playlist;
     // End of variables declaration//GEN-END:variables
 }

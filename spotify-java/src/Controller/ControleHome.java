@@ -8,8 +8,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import Model.Usuario;
-import View.MusicasCurtidas;
-import View.MusicasDescurtidas;
 import View.MusicasCurtidasDescurtidas;
 import View.Historico;
 import View.Playlist;
@@ -64,22 +62,6 @@ public class ControleHome {
         Historico h = new Historico(usuario);
         h.setVisible(true);
     }
-//    
-//    public void redirectMusicasCurtidas(Usuario usuario){
-//        view.setVisible(false);
-//        MusicasCurtidas mc = new MusicasCurtidas(usuario);
-//        mc.setVisible(true);
-//    }
-//    
-//    public void redirectMusicasDescurtidas(Usuario usuario){
-//        view.setVisible(false);
-//        MusicasDescurtidas md = new MusicasDescurtidas(usuario);
-//        md.setVisible(true);
-//    }
-//    
-//
-//
-
 
     public void redirectMusicasCurtidas(Usuario usuario){
         view.setVisible(false);
@@ -95,16 +77,6 @@ public class ControleHome {
     
 
 
-
-    
-//    
-//    
-//    public void redirectMusicasCurtidasDescurtidas(Usuario usuario){
-//        view.setVisible(false);
-//        MusicasCurtidasDescurtidas mcd = new MusicasCurtidasDescurtidas(usuario);
-//        mcd.setVisible(true);
-//    }
-//    
     
     //buscar musica, pega no database todas as musicas e as musicas curtidas pelo user logado.
     public void buscar(Usuario usuario) {

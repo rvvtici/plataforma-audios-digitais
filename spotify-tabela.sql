@@ -28,10 +28,9 @@ CREATE TABLE usuario (
 );
 
 CREATE TABLE playlist (
-    id_playlist INT PRIMARY KEY,
     nome TEXT NOT NULL,
+    descricao TEXT NOT NULL,
     usuario TEXT NOT NULL,
-    foto TEXT,
     FOREIGN KEY (usuario) REFERENCES usuario(usuario)
 	ON UPDATE CASCADE
 	ON DELETE CASCADE
@@ -125,17 +124,18 @@ VALUES
 
 INSERT INTO usuario (usuario, nome, senha)
 VALUES 
-('ravi', 'ravi', '123');
+('ravi', 'ravi', '123'),
+('a', 'a', 'a');
 
-INSERT INTO playlist (id_playlist, nome, usuario, foto)
-VALUES 
-(1, 'piiii', 'ravi', 'foto.png');
 
 INSERT INTO liked_songs (usuario, id_musica) VALUES
 ('ravi', 1),
 ('ravi', 4),
 ('ravi', 5);
 
+
+INSERT INTO playlist (nome, descricao, usuario) VALUES
+('playlist1', 'playlist teste 123', 'a');
 
 /*
 select m.nome as nome_musica, al.nome as nome_album, art.nome as nome_arista, m.duracao
@@ -146,7 +146,7 @@ select m.nome as nome_musica, al.nome as nome_album, art.nome as nome_arista, m.
 
 
 /*
-DROP TABLE IF EXISTS playlist, musica, album, usuario, artista, liked_songs, historico CASCADE;
+DROP TABLE IF EXISTS playlist, musica, album, usuario, artista, liked_songs, unliked_songs, historico CASCADE;
 */
 
 

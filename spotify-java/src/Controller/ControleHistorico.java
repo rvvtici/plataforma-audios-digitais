@@ -39,8 +39,6 @@ public class ControleHistorico {
         
         public void addLinhasHistorico(Usuario usuario, JTable tabela){
             String user = usuario.getUsuario();
-//            ArrayList<String> linhas = new ArrayList<>();
-//            List<String[]> linhas = new ArrayList<>();
             DefaultTableModel resultado_busca = (DefaultTableModel) tabela.getModel();
             resultado_busca.setRowCount(0); // limpa a tabela
 
@@ -58,16 +56,6 @@ public class ControleHistorico {
                     resultado_busca.addRow(new Object[] {
                         search, filtro
                     });
-                    
-//                        String search = res.getString("search");
-//                        String filtro = res.getString("filtro");
-//                        if (search.equals("")){
-//                            search = " ";
-//                        } 
-//                        linhas.add(new String[]{search, filtro});
-//                        cont += 1;
-
-                        //if historico > 10 ??
                 }
             } catch(SQLException e){ 
                 e.printStackTrace();
@@ -75,8 +63,6 @@ public class ControleHistorico {
                                               "Erro de conexão!\n" + e.getMessage(), 
                                               "Aviso",
                                               JOptionPane.ERROR_MESSAGE);
-//                return "erro";
             }
-//        return String.join("\n", linhas);
         }
     }

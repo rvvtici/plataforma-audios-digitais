@@ -1,27 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package View;
 
 import javax.swing.JLabel;
 import Model.Usuario;
 import Controller.ControleHistorico;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 
-/**
- *
- * @author ravi
- */
 public class Historico extends javax.swing.JFrame {
 
     private String user, nome, senha;
-    
-    /**
-     * Creates new form Historico
-     */
+
     public Historico() {
         initComponents();
         c = new ControleHistorico(this);

@@ -6,7 +6,6 @@ import DAO.UsuarioDAO;
 import Model.Artista;
 import Model.Musica;
 import Model.Usuario;
-import View.MusicasDescurtidas;
 import View.MusicasCurtidasDescurtidas;
 import View.Home;
 import View.Historico;

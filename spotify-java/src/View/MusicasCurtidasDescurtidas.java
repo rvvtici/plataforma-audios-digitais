@@ -103,7 +103,7 @@ public class MusicasCurtidasDescurtidas extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbl_voltar)
-                        .addGap(54, 54, 54)
+                        .addGap(58, 58, 58)
                         .addComponent(lbl_musicas_curtidas_descurtidas)))
                 .addGap(17, 17, 17))
         );
