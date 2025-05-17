@@ -198,6 +198,7 @@ public class EditarPerfil extends javax.swing.JFrame {
             }
         });
 
+        lbl_editar_perfil.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         lbl_editar_perfil.setText("Editar perfil");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -226,7 +227,7 @@ public class EditarPerfil extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(lbl_voltar)
-                        .addGap(141, 141, 141)
+                        .addGap(101, 101, 101)
                         .addComponent(lbl_editar_perfil))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(165, 165, 165)
@@ -240,7 +241,7 @@ public class EditarPerfil extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_voltar)
                     .addComponent(lbl_editar_perfil))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(lbl_aviso)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

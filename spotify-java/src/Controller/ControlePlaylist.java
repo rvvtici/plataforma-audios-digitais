@@ -74,9 +74,14 @@ public class ControlePlaylist {
                 try {
                     Connection conn = conexao.getConnection();
                     PlaylistDAO dao = new PlaylistDAO(conn);
-                    dao.nova_playlist(usuario, nomePlaylist, descricao);
-                    JOptionPane.showMessageDialog(view, "Nova playlist criada com sucesso!","Aviso", JOptionPane.INFORMATION_MESSAGE);
-                    addLinhasPlaylist(usuario, view.getTabela());
+                    boolean modificado = dao.nova_playlist(usuario, nomePlaylist, descricao);
+                    
+                    if (modificado) {
+                        JOptionPane.showMessageDialog(view, "Nova playlist criada com sucesso!","Aviso", JOptionPane.INFORMATION_MESSAGE);
+                        addLinhasPlaylist(usuario, view.getTabela());
+                    } else {
+                        JOptionPane.showMessageDialog(view, "Nome de playlist já utilizado!", "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(view, "Erro ao criar nova playlist!", "Erro", JOptionPane.ERROR_MESSAGE);
                 }

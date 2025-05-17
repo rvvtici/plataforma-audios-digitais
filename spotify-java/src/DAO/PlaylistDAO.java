@@ -27,18 +27,38 @@ public class PlaylistDAO {
         return resultado;
     }
     
-    public void nova_playlist(Usuario usuario, String nomePlaylist, String descricao) throws SQLException {
-        String sql = "INSERT INTO playlist (nome, descricao, usuario) VALUES " +
-                    "(?,?,?)";
+    public boolean nova_playlist(Usuario usuario, String nomePlaylist, String descricao) throws SQLException {
+//        String sql = "INSERT INTO playlist (nome, descricao, usuario) VALUES " +
+//                    "(?,?,?) ";
+
+        String sql = "INSERT INTO playlist (nome, descricao, usuario) " +
+                    "SELECT ?, ?, ? "+
+                    "WHERE NOT EXISTS ( " +
+                        "SELECT 1 FROM playlist " +
+                        "WHERE nome = ? AND usuario = ?)";
+
         PreparedStatement statement = conn.prepareStatement(sql);
         
         statement.setString(1, nomePlaylist);
         statement.setString(2, descricao);
         statement.setString(3, usuario.getUsuario());
+        statement.setString(4, nomePlaylist);
+        statement.setString(5, usuario.getUsuario());
         
         
-        statement.execute();
+//        statement.setString(4, nomePlaylist);
+//        statement.setString(5, descricao);
+//        statement.setString(6, usuario.getUsuario());
+//        
+//        
+//        statement.setString(7, usuario.getUsuario());
+//        statement.setString(8, nomePlaylist);
+//        statement.setString(9, usuario.getUsuario());
+//        
+        int linhasRetornadas = statement.executeUpdate();
         conn.close();
+        boolean modificado= linhasRetornadas > 0;
+        return modificado;
     }
     
     

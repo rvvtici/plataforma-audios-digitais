@@ -126,7 +126,7 @@ public class Historico extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(lbl_voltar)
-                        .addGap(157, 157, 157)
+                        .addGap(146, 146, 146)
                         .addComponent(lbl_historico))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)

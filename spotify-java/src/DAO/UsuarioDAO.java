@@ -84,6 +84,7 @@ public class UsuarioDAO {
         statement.setString(1, "%" + search.trim() + "%");
 
         ResultSet resultado = statement.executeQuery();
+        System.out.println(resultado);
         return resultado;
     }
     

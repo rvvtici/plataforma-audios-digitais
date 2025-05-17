@@ -115,6 +115,11 @@ public class Playlist extends javax.swing.JFrame {
         tabela = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         lbl_voltar.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         lbl_voltar.setText("←");
@@ -137,11 +142,22 @@ public class Playlist extends javax.swing.JFrame {
 
         lbl_nome_playlist.setText("nome da playlist");
 
+        txt_nome_playlist.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_nome_playlistKeyPressed(evt);
+            }
+        });
+
         lbl_descricao.setText("descrição");
 
         txt_descricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_descricaoActionPerformed(evt);
+            }
+        });
+        txt_descricao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_descricaoKeyPressed(evt);
             }
         });
 
@@ -247,7 +263,32 @@ public class Playlist extends javax.swing.JFrame {
 
     private void txt_descricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_descricaoActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txt_descricaoActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formKeyPressed
+
+    private void txt_descricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descricaoKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == evt.VK_ENTER){
+        Usuario usuario2 = new Usuario(user,nome,senha);
+
+        c.novaPlaylist(usuario2);
+
+        }
+    }//GEN-LAST:event_txt_descricaoKeyPressed
+
+    private void txt_nome_playlistKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nome_playlistKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == evt.VK_ENTER){
+        Usuario usuario2 = new Usuario(user,nome,senha);
+
+        c.novaPlaylist(usuario2);
+
+        }
+    }//GEN-LAST:event_txt_nome_playlistKeyPressed
 
     /**
      * @param args the command line arguments

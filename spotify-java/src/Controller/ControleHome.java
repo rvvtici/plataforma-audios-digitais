@@ -65,13 +65,13 @@ public class ControleHome {
 
     public void redirectMusicasCurtidas(Usuario usuario){
         view.setVisible(false);
-        MusicasCurtidasDescurtidas mc = new MusicasCurtidasDescurtidas(usuario, "Músicas curtidas", "liked_songs");
+        MusicasCurtidasDescurtidas mc = new MusicasCurtidasDescurtidas(usuario, "curtidas", "liked_songs");
         mc.setVisible(true);
     }
     
     public void redirectMusicasDescurtidas(Usuario usuario){
         view.setVisible(false);
-        MusicasCurtidasDescurtidas md = new MusicasCurtidasDescurtidas(usuario, "Músicas descurtidas", "unliked_songs");
+        MusicasCurtidasDescurtidas md = new MusicasCurtidasDescurtidas(usuario, "descurtidas", "unliked_songs");
         md.setVisible(true);
     }
     

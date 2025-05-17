@@ -98,7 +98,7 @@ public class Perfil extends javax.swing.JFrame {
         lbl_nome.setText("NOME");
 
         lbl_editar_perfil.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lbl_editar_perfil.setText("Editar perfil");
+        lbl_editar_perfil.setText(" Editar perfil ");
         lbl_editar_perfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbl_editar_perfil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -139,7 +139,7 @@ public class Perfil extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(lbl_voltar)
-                .addGap(114, 114, 114)
+                .addGap(94, 94, 94)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbl_colchete_esquerda)
@@ -147,29 +147,35 @@ public class Perfil extends javax.swing.JFrame {
                         .addComponent(lbl_user)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbl_colchete_direita))
-                    .addComponent(lbl_nome)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lbl_editar_perfil)
-                        .addComponent(lbl_excluir_conta)))
-                .addContainerGap(153, Short.MAX_VALUE))
+                    .addComponent(lbl_nome))
+                .addContainerGap(130, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_editar_perfil)
+                    .addComponent(lbl_excluir_conta))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_nome)
-                    .addComponent(lbl_voltar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_user)
-                    .addComponent(lbl_colchete_esquerda)
-                    .addComponent(lbl_colchete_direita))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(lbl_voltar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(lbl_nome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_user)
+                            .addComponent(lbl_colchete_esquerda)
+                            .addComponent(lbl_colchete_direita))))
+                .addGap(129, 129, 129)
                 .addComponent(lbl_editar_perfil)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbl_excluir_conta)
-                .addGap(33, 33, 33))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();

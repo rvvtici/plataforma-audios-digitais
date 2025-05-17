@@ -32,10 +32,11 @@ CREATE TABLE playlist (
     descricao TEXT NOT NULL,
     usuario TEXT NOT NULL,
     FOREIGN KEY (usuario) REFERENCES usuario(usuario)
-	ON UPDATE CASCADE
-	ON DELETE CASCADE
-
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT unique_playlist_por_usuario UNIQUE (nome, usuario)
 );
+
 
 CREATE TABLE liked_songs (
 	usuario TEXT NOT NULL,
@@ -80,7 +81,8 @@ VALUES
 (010, 'Kendrick Lamar'),
 (011, 'Tyler, The Creator'),
 (012, 'Metro Boomin'),
-(13, 'Gorillaz');
+(13, 'Gorillaz'),
+(14, 'My Chemical Romance');
 
 INSERT INTO album (id_album, nome, data, capa, genero, id_artista)
 VALUES 
@@ -97,7 +99,9 @@ VALUES
 (011, 'GNX', '2024-11-22', 'gnx.jpg', 'Hip-hop', 010),
 (012, 'CHROMAKOPIA', '2024-10-28', 'chromakopia.jpg', 'Hip-hop', 011),
 (013, 'METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDRTRACK FROM AND INSPIRED BY THE MOTION PICTURE)', '2023-06-02', 'spiderverse.jpg', 'Alternative hip-hop', 012),
-(014, 'Cracker Island', '2023-02-24', 'cracker-island.png', 'Alternative Rock', 13);
+(014, 'Cracker Island', '2023-02-24', 'cracker-island.png', 'Alternative Rock', 13),
+(015, 'The Black Parade', '2006-10-20', 'black-parade.png', 'Rock', 14),
+(016, 'Three Cheers for Sweet Revenge', '2008-06-08', 'three-cheers.png', 'Rock', 14);
 
 
 INSERT INTO musica (id_musica, nome, duracao, id_album)
@@ -116,9 +120,10 @@ VALUES
 (12, 'Luther', '00:03:29', 011),
 (13, 'Like Him', '00:03:20', 012),
 (14, 'Annihilate', '00:03:50', 013),
-(15, 'Possession Island', '00:03:20', 014);
-
-
+(15, 'Possession Island', '00:03:20', 014),
+(16, 'Famous Last Words', '00:04:59', 015),
+(17, 'I Don''t Love You', '00:03:58', 015),
+(18, 'I''m Not Okay (I Promise)', '00:03:06', 016);
 
 
 
