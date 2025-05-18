@@ -15,21 +15,15 @@ postgresql-42.7.5.jar deve estar em Libraries
 3. buscar músicas por nome, artista ou gênero
 4. listar informações de músicas buscadas
 5. curtir e descurtir músicas
-6. gerenciar playlists
-6.1 criar, editar, excluir playlists
-6.2 adicionar & remover músicas de playlists
-7. visualizar histórico
-7.1 visualizar ultimas 10 músicas buscadas
-7.2 visualizar lista de músicas curtidas
-7.3 visualizar lista de músicas não curtidas
+6. gerenciar playlists (criar, editar, excluir playlists | adicionar & remover músicas de playlists)
+7. visualizar histórico (visualizar ultimas 10 músicas buscadas I visualizar lista de músicas curtidas | visualizar lista de músicas não curtidas)
 
-adicionais:
-8. login como adm
-9. cadastrar e excluir músicas
-10. cadastrar artistas
-11. consultar usuários
-12. visualizar estatísticas do sistema
-12.1 top 5 músicas curtidas
-12.2 top 5 músicas não curtidas
-12.3 total de usuários
-12.4 total de músicas
+## para ser adicionado:
+1. login como adm
+2. cadastrar e excluir músicas
+3. cadastrar artistas
+4. consultar usuários
+5. visualizar estatísticas do sistema (top 5 músicas curtidas | top 5 músicas não curtidas | total de usuários | total de músicas)
+
+créditos:
+para adicionar o jbutton à tabela playlist, utilizei o tutorial de [Raven](https://github.com/DJ-Raven/raven-java-swing-tutorial-project/blob/main/LICENSE)

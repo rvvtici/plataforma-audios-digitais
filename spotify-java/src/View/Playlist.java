@@ -5,7 +5,12 @@ import Controller.ControlePlaylist;
 import javax.swing.JTable;
 import Model.Usuario;
 import javax.swing.JButton;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import playlist.cell.TableActionCellRender;
+import playlist.cell.TableActionCellEditor;
+import playlist.cell.TableActionEvent;
+import javax.swing.table.DefaultTableModel;
 
 public class Playlist extends javax.swing.JFrame {
 
@@ -24,6 +29,32 @@ public class Playlist extends javax.swing.JFrame {
         
         c = new ControlePlaylist(this);    
         JTable tabela = getTabela();
+        
+                TableActionEvent event = new TableActionEvent() {
+//            @Override
+//            public void onEdit(int row) {
+//                System.out.println("Edit row : " + row);
+//            }
+//
+//            @Override
+//            public void onDelete(int row) {
+//                if (tabela.isEditing()) {
+//                    tabela.getCellEditor().stopCellEditing();
+//                }
+//                DefaultTableModel model = (DefaultTableModel) tabela.getModel();
+//                model.removeRow(row);
+//            }
+
+            @Override
+            public void onView(int row) {
+                System.out.println("View row : " + row);
+            }
+        };        
+        
+        tabela.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRender());
+        tabela.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor(event));
+        
+        
         c.addLinhasPlaylist(usuario, tabela);
     }
 
@@ -75,13 +106,15 @@ public class Playlist extends javax.swing.JFrame {
         this.tabela = tabela;
     }
 
-    public JTextField getTxt_descricao() {
+    public JLabel getLbl_criar_nova_playlist() {
+        return lbl_criar_nova_playlist;
+    }
+
+    public JTextArea getTxt_descricao() {
         return txt_descricao;
     }
 
-    public void setTxt_descricao(JTextField txt_descricao) {
-        this.txt_descricao = txt_descricao;
-    }
+    
 
     public JTextField getTxt_nome_playlist() {
         return txt_nome_playlist;
@@ -110,9 +143,11 @@ public class Playlist extends javax.swing.JFrame {
         lbl_nome_playlist = new javax.swing.JLabel();
         txt_nome_playlist = new javax.swing.JTextField();
         lbl_descricao = new javax.swing.JLabel();
-        txt_descricao = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
+        lbl_criar_nova_playlist = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txt_descricao = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -150,30 +185,19 @@ public class Playlist extends javax.swing.JFrame {
 
         lbl_descricao.setText("descrição");
 
-        txt_descricao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_descricaoActionPerformed(evt);
-            }
-        });
-        txt_descricao.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txt_descricaoKeyPressed(evt);
-            }
-        });
-
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "nome", "descrição"
+                "nome", "descrição", "botões"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -184,58 +208,67 @@ public class Playlist extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabela.setRowHeight(30);
         jScrollPane1.setViewportView(tabela);
+
+        lbl_criar_nova_playlist.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lbl_criar_nova_playlist.setText("Criar nova playlist");
+
+        txt_descricao.setColumns(20);
+        txt_descricao.setRows(5);
+        txt_descricao.setBorder(null);
+        txt_descricao.setPreferredSize(new java.awt.Dimension(160, 80));
+        jScrollPane2.setViewportView(txt_descricao);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(lbl_voltar)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(lbl_voltar)
-                        .addGap(199, 199, 199)
+                        .addGap(230, 230, 230)
                         .addComponent(lbl_playlists))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_descricao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lbl_descricao)
-                                        .addComponent(txt_nome_playlist, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lbl_nome_playlist))))
+                                .addGap(49, 49, 49)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lbl_descricao)
+                                    .addComponent(lbl_nome_playlist)
+                                    .addComponent(lbl_criar_nova_playlist)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(txt_nome_playlist, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(bt_new_playlist)
-                                .addGap(39, 39, 39)))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                                .addGap(43, 43, 43)))))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(lbl_voltar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lbl_playlists)))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_voltar)
+                    .addComponent(lbl_playlists))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbl_nome_playlist)
+                        .addComponent(lbl_criar_nova_playlist)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_nome_playlist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbl_descricao)
+                        .addComponent(lbl_nome_playlist)
                         .addGap(5, 5, 5)
-                        .addComponent(txt_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_nome_playlist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_descricao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bt_new_playlist)))
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -261,24 +294,9 @@ public class Playlist extends javax.swing.JFrame {
         c.novaPlaylist(usuario2);
     }//GEN-LAST:event_bt_new_playlistActionPerformed
 
-    private void txt_descricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_descricaoActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_txt_descricaoActionPerformed
-
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_formKeyPressed
-
-    private void txt_descricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descricaoKeyPressed
-        // TODO add your handling code here:
-        if(evt.getKeyCode() == evt.VK_ENTER){
-        Usuario usuario2 = new Usuario(user,nome,senha);
-
-        c.novaPlaylist(usuario2);
-
-        }
-    }//GEN-LAST:event_txt_descricaoKeyPressed
 
     private void txt_nome_playlistKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nome_playlistKeyPressed
         // TODO add your handling code here:
@@ -330,12 +348,14 @@ public class Playlist extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_new_playlist;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbl_criar_nova_playlist;
     private javax.swing.JLabel lbl_descricao;
     private javax.swing.JLabel lbl_nome_playlist;
     private javax.swing.JLabel lbl_playlists;
     private javax.swing.JLabel lbl_voltar;
     private javax.swing.JTable tabela;
-    private javax.swing.JTextField txt_descricao;
+    private javax.swing.JTextArea txt_descricao;
     private javax.swing.JTextField txt_nome_playlist;
     // End of variables declaration//GEN-END:variables
 }
