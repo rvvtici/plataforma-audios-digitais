@@ -2,14 +2,18 @@
 package View;
 
 import Model.Usuario;
-import Model.Playlist;
+import Model.PlaylistModel;
 
 
 
 public class PlaylistEdit extends javax.swing.JFrame {
 
-    public PlaylistEdit() {
+    String user, nome, senha;
+    
+    public PlaylistEdit(Usuario usuario) {
         initComponents();
+        
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -121,13 +125,13 @@ public class PlaylistEdit extends javax.swing.JFrame {
 
     private void lbl_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_voltarMouseClicked
         Usuario usuario = new Usuario(user, nome, senha);
-        c.redirectPerfil(usuario);
+//        c.redirectPerfil(usuario);
     }//GEN-LAST:event_lbl_voltarMouseClicked
 
     private void bt_confirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_confirmarActionPerformed
         // TODO add your handling code here:
         Usuario usuario = new Usuario(user, nome, senha);
-        c.editarPerfil(usuario);
+//        c.editarPerfil(usuario);
     }//GEN-LAST:event_bt_confirmarActionPerformed
 
     private void txt_novo_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_novo_userActionPerformed
@@ -137,7 +141,7 @@ public class PlaylistEdit extends javax.swing.JFrame {
     private void txt_novo_userKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_novo_userKeyPressed
         Usuario usuario = new Usuario(user, nome, senha);
         if(evt.getKeyCode() == evt.VK_ENTER){
-            c.editarPerfil(usuario);
+//            c.editarPerfil(usuario);
         }
     }//GEN-LAST:event_txt_novo_userKeyPressed
 
@@ -171,7 +175,7 @@ public class PlaylistEdit extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PlaylistEdit().setVisible(true);
+//                new PlaylistEdit().setVisible(true);
             }
         });
     }

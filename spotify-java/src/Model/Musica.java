@@ -15,6 +15,18 @@ public class Musica {
         this.duracao = duracao;
     }
 
+    public Musica (String nome_musica, Artista artista, String album, String genero, String duracao, int id){
+        this.nome_musica = nome_musica;
+        this.artista = artista;
+        this.album = album;
+        this.genero = genero;
+        this.duracao = duracao;
+        this.id = id;
+    }
+
+    public Musica(int id) {
+        this.id = id;
+    }
     
     public int getId() {
         return id;

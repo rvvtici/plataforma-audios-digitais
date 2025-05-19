@@ -4,6 +4,7 @@ import javax.swing.JLabel;
 import Controller.ControlePlaylist;
 import javax.swing.JTable;
 import Model.Usuario;
+import Model.PlaylistModel;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -30,31 +31,41 @@ public class Playlist extends javax.swing.JFrame {
         c = new ControlePlaylist(this);    
         JTable tabela = getTabela();
         
-                TableActionEvent event = new TableActionEvent() {
-//            @Override
-//            public void onEdit(int row) {
-//                System.out.println("Edit row : " + row);
-//            }
-//
-//            @Override
-//            public void onDelete(int row) {
-//                if (tabela.isEditing()) {
-//                    tabela.getCellEditor().stopCellEditing();
-//                }
-//                DefaultTableModel model = (DefaultTableModel) tabela.getModel();
-//                model.removeRow(row);
-//            }
+        TableActionEvent event = new TableActionEvent() {
 
-            @Override
-            public void onView(int row) {
-                System.out.println("View row : " + row);
+        @Override
+        public void onView(int row) {
+            // coluna 1 (nome playlist)
+            System.out.println("nome playlist:");
+            String nomePlaylist = tabela.getValueAt(row, 0).toString();
+            System.out.println(nomePlaylist);
+
+            // coluna 2 (descricao playlist)
+            System.out.println("descricao playlist:");
+            String descricaoPlaylist = tabela.getValueAt(row, 1).toString();
+            System.out.println(descricaoPlaylist);
+
+//            // coluna 3 (botao de acessar playlist)
+//            System.out.println("linha: " + row);
+
+            // acessar o playlistinfo
+            // info necessária: classe Playlist (nome, descricao, Musica musica, user)
+            // no PlaylistInfo: construtor com nomedaplaylist, descricao, user, musicas da playlist.
+
+            Usuario usuario = new Usuario(user, nome, senha);
+            PlaylistModel playlist = new PlaylistModel(nomePlaylist, descricaoPlaylist);
+            
+            int idPlaylist = c.adquirirIdPlaylist(usuario, playlist);
+            PlaylistModel playlist2 = new PlaylistModel(idPlaylist, nomePlaylist, descricaoPlaylist);
+            
+
+            c.redirectPlaylistInfo(usuario, playlist2);
+
             }
         };        
         
         tabela.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRender());
         tabela.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor(event));
-        
-        
         c.addLinhasPlaylist(usuario, tabela);
     }
 
@@ -214,7 +225,10 @@ public class Playlist extends javax.swing.JFrame {
         lbl_criar_nova_playlist.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         lbl_criar_nova_playlist.setText("Criar nova playlist");
 
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
         txt_descricao.setColumns(20);
+        txt_descricao.setLineWrap(true);
         txt_descricao.setRows(5);
         txt_descricao.setBorder(null);
         txt_descricao.setPreferredSize(new java.awt.Dimension(160, 80));
@@ -246,7 +260,7 @@ public class Playlist extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(bt_new_playlist)
-                                .addGap(43, 43, 43)))))
+                                .addGap(38, 38, 38)))))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -268,7 +282,7 @@ public class Playlist extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbl_descricao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bt_new_playlist)))
                 .addContainerGap(24, Short.MAX_VALUE))
