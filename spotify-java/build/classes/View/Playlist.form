@@ -187,6 +187,9 @@
               <Dimension value="[160, 80]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_descricaoKeyPressed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

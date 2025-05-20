@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class ControlePlaylistInfo {
         private PlaylistInfo view;
         private Usuario usuario;
+        private PlaylistModel playlist;
         private JTable tabela;
 
         public ControlePlaylistInfo(PlaylistInfo view, Usuario usuario){
@@ -39,18 +40,22 @@ public class ControlePlaylistInfo {
             p.setVisible(true);
         }
         
-        public void redirectPlaylistEdit(Usuario usuario){
+        public void redirectPlaylistEdit(Usuario usuario, PlaylistModel playlist){
             view.setVisible(false);
-            PlaylistEdit pe = new PlaylistEdit(usuario);
+            PlaylistEdit pe = new PlaylistEdit(usuario, playlist);
             pe.setVisible(true);
         }
         
         public void addMusicasTabela(Usuario usuario, JTable table, PlaylistModel playlist){
             DefaultTableModel tabela = (DefaultTableModel) table.getModel();
+            tabela.setRowCount(0);
+            
+            System.out.println("playlist no addmusicastabela: " + playlist);
             
             int idPlaylist = playlist.getId_playlist();
-            System.out.println(idPlaylist + "addMusicasTabela");
-
+            //System.out.println(idPlaylist + "addMusicasTabela");
+            System.out.println("playlistmodel: " + playlist);
+            System.out.println("usuario: " + usuario);
             Conexao conexao = new Conexao();
             try{
                 Connection conn = conexao.getConnection();
@@ -58,9 +63,9 @@ public class ControlePlaylistInfo {
                 
                 ResultSet res_musicas = dao.completarTabelaPlaylist(usuario, playlist);
                 
-                System.out.println("nome usuario: " + usuario.getNome());
-                System.out.println("id playlist: " + playlist.getId_playlist());
-                
+//                System.out.println("nome usuario: " + usuario.getNome());
+//                System.out.println("id playlist: " + playlist.getId_playlist());
+        
                 while (res_musicas.next()) {
                     String musica = res_musicas.getString(1);
                     String nomeArtista = res_musicas.getString(2);
@@ -97,9 +102,11 @@ public class ControlePlaylistInfo {
                 PlaylistDAO dao = new PlaylistDAO(conn);
                 
                 int idPlaylist = playlist.getId_playlist();
-                System.out.println(idPlaylist + "addMusicaPlaylist");
+                System.out.println("playlist no addmusicaplaylist" + playlist);
                 dao.inserirMusica(playlist, musica);
-                
+//                System.out.println(usuario);
+//                System.out.println(table);
+//                System.out.println(playlist);
                 addMusicasTabela(usuario, table, playlist);
                 
                 } catch(SQLException e){ 
@@ -121,13 +128,10 @@ public class ControlePlaylistInfo {
                 
                 Connection conn = conexao.getConnection();
                 PlaylistDAO dao = new PlaylistDAO(conn);
-                dao.removerPlaylist(playlist);
+                dao.removerPlaylist(playlist, usuario);
                 JOptionPane.showMessageDialog(view, "Playlist removida com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
                 
-
-                Playlist p = new Playlist();
-                p.setVisible(true);
-                view.setVisible(false);
+                redirectPlaylist(usuario);
                 
             }catch(SQLException e){
                 JOptionPane.showMessageDialog(view, "Falha de conexão!", "Erro", JOptionPane.ERROR_MESSAGE);

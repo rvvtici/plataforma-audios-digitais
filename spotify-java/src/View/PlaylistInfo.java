@@ -15,6 +15,8 @@ public class PlaylistInfo extends javax.swing.JFrame {
 
     private String user, nome, senha;
     private int idPlaylist;
+    private String nomePlaylist, descricaoPlaylist;
+    private PlaylistModel playlist;
     
     public PlaylistInfo(){
         initComponents();
@@ -29,9 +31,10 @@ public class PlaylistInfo extends javax.swing.JFrame {
         
         idPlaylist = playlist.getId_playlist();
         
-        String nomePlaylist = playlist.getNome_playlist();
+        nomePlaylist = playlist.getNome_playlist();
         lbl_nome_playlist.setText(nomePlaylist);
-        txt_descricao.setText(playlist.getDescricao_playlist());
+        descricaoPlaylist = playlist.getDescricao_playlist();
+        txt_descricao.setText(descricaoPlaylist);
         
         c = new ControlePlaylistInfo(this);
         JTable tabela = getTabela();
@@ -222,6 +225,11 @@ public class PlaylistInfo extends javax.swing.JFrame {
                 txt_id_musicaActionPerformed(evt);
             }
         });
+        txt_id_musica.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_id_musicaKeyPressed(evt);
+            }
+        });
 
         bt_adicionar.setText("adicionar");
         bt_adicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -233,6 +241,7 @@ public class PlaylistInfo extends javax.swing.JFrame {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
+        txt_descricao.setEditable(false);
         txt_descricao.setColumns(20);
         txt_descricao.setLineWrap(true);
         txt_descricao.setRows(5);
@@ -317,7 +326,7 @@ public class PlaylistInfo extends javax.swing.JFrame {
 
     private void bt_adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_adicionarActionPerformed
         Usuario usuario = new Usuario(user, nome, senha);
-        PlaylistModel playlist = new PlaylistModel(idPlaylist);
+        PlaylistModel playlist = new PlaylistModel(idPlaylist, nomePlaylist, descricaoPlaylist);
         int idMusica = Integer.parseInt(getTxt_id_musica().getText());
         Musica musica = new Musica(idMusica);
         c.addMusicaPlaylist(usuario, tabela, playlist, musica);
@@ -326,12 +335,31 @@ public class PlaylistInfo extends javax.swing.JFrame {
     private void lbl_excluir_playlistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_excluir_playlistMouseClicked
 //        Playlist playlist = new Playlist(user, nomePlaylist);
 //        c.excluirPlaylist(playlist);
+            Usuario usuario2 = new Usuario(user, nome, senha);
+            PlaylistModel playlist2 = new PlaylistModel(idPlaylist, nomePlaylist, descricaoPlaylist);
+            //System.out.println("playlist2: " + playlist2);
+            c.excluirPlaylist(usuario2, playlist2);
 //        
     }//GEN-LAST:event_lbl_excluir_playlistMouseClicked
 
     private void lbl_alterar_playlistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_alterar_playlistMouseClicked
         // TODO add your handling code here:
+        Usuario usuario2 = new Usuario(user, nome, senha);
+            PlaylistModel playlist2 = new PlaylistModel(idPlaylist, nomePlaylist, descricaoPlaylist);
+
+        c.redirectPlaylistEdit(usuario2, playlist2);
     }//GEN-LAST:event_lbl_alterar_playlistMouseClicked
+
+    private void txt_id_musicaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_id_musicaKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == evt.VK_ENTER){
+            Usuario usuario = new Usuario(user, nome, senha);
+            PlaylistModel playlist = new PlaylistModel(idPlaylist, nomePlaylist, descricaoPlaylist);
+            int idMusica = Integer.parseInt(getTxt_id_musica().getText());
+            Musica musica = new Musica(idMusica);
+            c.addMusicaPlaylist(usuario, tabela, playlist, musica);
+        }
+    }//GEN-LAST:event_txt_id_musicaKeyPressed
 
     /**
      * @param args the command line arguments

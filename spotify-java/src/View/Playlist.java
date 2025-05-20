@@ -36,14 +36,14 @@ public class Playlist extends javax.swing.JFrame {
         @Override
         public void onView(int row) {
             // coluna 1 (nome playlist)
-            System.out.println("nome playlist:");
+            //System.out.println("nome playlist:");
             String nomePlaylist = tabela.getValueAt(row, 0).toString();
-            System.out.println(nomePlaylist);
+            //System.out.println(nomePlaylist);
 
             // coluna 2 (descricao playlist)
-            System.out.println("descricao playlist:");
+            //System.out.println("descricao playlist:");
             String descricaoPlaylist = tabela.getValueAt(row, 1).toString();
-            System.out.println(descricaoPlaylist);
+            //System.out.println(descricaoPlaylist);
 
 //            // coluna 3 (botao de acessar playlist)
 //            System.out.println("linha: " + row);
@@ -232,6 +232,11 @@ public class Playlist extends javax.swing.JFrame {
         txt_descricao.setRows(5);
         txt_descricao.setBorder(null);
         txt_descricao.setPreferredSize(new java.awt.Dimension(160, 80));
+        txt_descricao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_descricaoKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(txt_descricao);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -321,6 +326,17 @@ public class Playlist extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_txt_nome_playlistKeyPressed
+
+    private void txt_descricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descricaoKeyPressed
+        if(evt.getKeyCode() == evt.VK_ENTER){
+        Usuario usuario2 = new Usuario(user,nome,senha);
+
+        c.novaPlaylist(usuario2);
+
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_descricaoKeyPressed
 
     /**
      * @param args the command line arguments

@@ -76,23 +76,24 @@ public class PlaylistDAO {
         return resultado;        
     }
     
-    public void removerPlaylist(PlaylistModel playlist) throws SQLException{
-        System.out.println(playlist);
+    public void removerPlaylist(PlaylistModel playlist, Usuario usuario) throws SQLException{
+        //System.out.println(playlist);
         
-        String sql = "delete from playlist where playlist = ?";
+        String sql = "DELETE from playlist where nome = ? and usuario = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, playlist.getNome_playlist());
+        statement.setString(2, usuario.getUsuario());
         
 //        System.out.println("user" + usuario.getUsuario());
 //        System.out.println("nome" + usuario.getNome());
         
-        statement.execute();
+        statement.executeUpdate();
         conn.close();
     }
     
         public void inserirMusica(PlaylistModel playlist, Musica musica) throws SQLException{            
             int idPlaylist = playlist.getId_playlist();
-            System.out.println(idPlaylist + "inserirMusica");
+            //System.out.println(idPlaylist + "inserirMusica");
             int idMusica = musica.getId();
             
             String sql = "insert into playlist_songs(id_playlist, id_musica) VALUES (?, ?)";
@@ -118,4 +119,32 @@ public class PlaylistDAO {
         }
 
 
+        public void atualizarPlaylist(Usuario usuario, PlaylistModel playlistAtualizada, PlaylistModel playlistAntiga) throws SQLException{
+            String sql = "UPDATE playlist SET nome = ?, descricao = ? " +
+                    "WHERE id_playlist = ? and "
+                    + "nome = ? and "
+                    + "descricao = ? and "
+                    + "usuario = ?";
+                    
+            String nomeAntigo = playlistAntiga.getNome_playlist();
+            String descricaoAntiga = playlistAntiga.getDescricao_playlist();
+            
+            int idPlaylist = playlistAtualizada.getId_playlist();
+            String nomeNovo = playlistAtualizada.getNome_playlist();
+            String descricaoNova = playlistAtualizada.getDescricao_playlist();
+            String user = usuario.getUsuario();
+            
+            
+            
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, nomeNovo);
+            statement.setString(2, descricaoNova);
+            statement.setInt(3, idPlaylist);
+            statement.setString(4, nomeAntigo);
+            statement.setString(5, descricaoAntiga);
+            statement.setString(6, user);
+            
+            statement.executeUpdate();
+            conn.close();
+        }
 }

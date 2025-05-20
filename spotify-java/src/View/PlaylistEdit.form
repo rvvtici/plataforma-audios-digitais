@@ -33,10 +33,10 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lbl_nova_descricao" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lbl_novo_nome" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbl_novo_user" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="txt_novo_user" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txt_novo_nome" alignment="0" max="32767" attributes="0"/>
                       <Component id="jScrollPane1" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -64,11 +64,11 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="lbl_aviso" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="lbl_novo_user" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="txt_novo_user" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Component id="lbl_novo_nome" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="txt_novo_nome" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+              <Component id="lbl_nova_descricao" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -79,7 +79,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lbl_novo_nome">
+    <Component class="javax.swing.JLabel" name="lbl_nova_descricao">
       <Properties>
         <Property name="text" type="java.lang.String" value="nova descri&#xe7;&#xe3;o:"/>
       </Properties>
@@ -92,7 +92,7 @@
         <Property name="text" type="java.lang.String" value="Alterar playlist"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbl_novo_user">
+    <Component class="javax.swing.JLabel" name="lbl_novo_nome">
       <Properties>
         <Property name="text" type="java.lang.String" value="novo nome:"/>
       </Properties>
@@ -121,10 +121,10 @@
         <Property name="text" type="java.lang.String" value="*caso n&#xe3;o deseje fazer alguma modifica&#xe7;&#xe3;o, deixe-a nula*"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txt_novo_user">
+    <Component class="javax.swing.JTextField" name="txt_novo_nome">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_novo_userActionPerformed"/>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_novo_userKeyPressed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_novo_nomeActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_novo_nomeKeyPressed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -134,11 +134,16 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="txt_nova_descricao">
           <Properties>
             <Property name="columns" type="int" value="20"/>
+            <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="5"/>
+            <Property name="wrapStyleWord" type="boolean" value="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_nova_descricaoKeyPressed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
