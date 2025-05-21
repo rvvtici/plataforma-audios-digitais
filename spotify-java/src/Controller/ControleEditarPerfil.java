@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controller;
 
 import DAO.UsuarioDAO;
@@ -12,10 +8,6 @@ import javax.swing.JOptionPane;
 import Model.Usuario;
 import View.EditarPerfil;
 import View.Perfil;
-import View.Home;
-import View.Perfil;
-import View.Login;
-import java.sql.ResultSet;
 
 public class ControleEditarPerfil {  
     private EditarPerfil view;
@@ -40,8 +32,7 @@ public class ControleEditarPerfil {
                 p.setVisible(true);
 
     }
-    
-    
+       
     public void editarPerfil(Usuario usuario){
         usuario_antigo = usuario.getUsuario();
         nome_antigo = usuario.getNome();
@@ -60,8 +51,8 @@ public class ControleEditarPerfil {
             nova_senha = senha_antiga;
         }
         
-        //verificar outros usuarios
-
+        
+        
         if(senha_antiga.equals(senha_inserida)){
             Usuario usuario_atualizado = new Usuario(novo_usuario, novo_nome, nova_senha);
             Conexao conexao = new Conexao();
@@ -69,23 +60,15 @@ public class ControleEditarPerfil {
             try{
                 Connection conn = conexao.getConnection();
                 UsuarioDAO dao = new UsuarioDAO(conn);
-                dao.atualizar_usuario(usuario_atualizado, usuario_antigo);  
+                dao.atualizarUsuario(usuario_atualizado, usuario_antigo);  
                 
                 JOptionPane.showMessageDialog(view, "Dados atualizados com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 
-                Perfil p = new Perfil(usuario_atualizado);
-                p.setVisible(true);
-                view.setVisible(false);
-
-//            } catch(SQLException e){
-//                JOptionPane.showMessageDialog(view, "Falha de conexão!", "Erro", JOptionPane.ERROR_MESSAGE);
-//            }
-            }catch(SQLException e){
+                redirectPerfil(usuario_atualizado);
+            } catch(SQLException e){
                 e.printStackTrace(); // Mostra o erro no console
                 JOptionPane.showMessageDialog(view, "Erro: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             }
-
-            
             
         } else {
             JOptionPane.showMessageDialog(view, "Senha incorreta!", "Erro", JOptionPane.ERROR_MESSAGE);

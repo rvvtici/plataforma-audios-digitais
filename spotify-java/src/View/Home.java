@@ -258,7 +258,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        bt_buscar.setText("buscar");
+        bt_buscar.setText("Buscar");
         bt_buscar.setToolTipText("");
         bt_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,9 +266,9 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        lbl_busca.setText("busca");
+        lbl_busca.setText("Busca");
 
-        lbl_filtro.setText("filtro");
+        lbl_filtro.setText("Filtro");
 
         lbl_perfil.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lbl_perfil.setText("Perfil");
@@ -282,7 +282,7 @@ public class Home extends javax.swing.JFrame {
         lbl_nome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_nome.setText("NOME");
 
-        combobox_filtro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "musica", "album", "artista", "genero" }));
+        combobox_filtro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Musica", "Artista", "Album", "Genero" }));
         combobox_filtro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combobox_filtroActionPerformed(evt);
@@ -345,7 +345,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(lbl_perfil)
                     .addComponent(lbl_musicas_curtidas)
                     .addComponent(lbl_musicas_descurtidas))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbl_welcome)
@@ -366,7 +366,7 @@ public class Home extends javax.swing.JFrame {
                                     .addComponent(bt_buscar))
                                 .addComponent(lbl_filtro)))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGap(105, 105, 105))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,11 +377,11 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(lbl_perfil)
                         .addGap(67, 67, 67)
                         .addComponent(lbl_musicas_curtidas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lbl_musicas_descurtidas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lbl_playlists)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lbl_historico))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lbl_welcome)
@@ -397,11 +397,12 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(txt_busca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bt_buscar))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(98, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
    
     private void txt_buscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscaActionPerformed

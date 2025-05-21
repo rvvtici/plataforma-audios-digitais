@@ -7,7 +7,7 @@ import javax.swing.JTable;
 
 public class MusicasCurtidasDescurtidas extends javax.swing.JFrame {
 
-    String user, nome, senha;
+    private String user, nome, senha;
     
     public MusicasCurtidasDescurtidas() {
         initComponents();
@@ -137,6 +137,7 @@ public class MusicasCurtidasDescurtidas extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbl_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_voltarMouseClicked

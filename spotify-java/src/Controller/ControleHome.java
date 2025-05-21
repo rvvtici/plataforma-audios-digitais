@@ -74,8 +74,6 @@ public class ControleHome {
         MusicasCurtidasDescurtidas md = new MusicasCurtidasDescurtidas(usuario, "descurtidas", "unliked_songs");
         md.setVisible(true);
     }
-    
-
 
     
     //buscar musica, pega no database todas as musicas e as musicas curtidas pelo user logado.
@@ -95,7 +93,7 @@ public class ControleHome {
             MusicaDAO musica_dao = new MusicaDAO(conn2);
 
             
-            ResultSet res = dao.buscar_musica(filtro, search);
+            ResultSet res = musica_dao.buscarMusica(filtro, search);
 
             //pegar musicas curtidas pelo usuario
             ResultSet res_curtida_usuario = dao.buscar_curtidas(usuario);

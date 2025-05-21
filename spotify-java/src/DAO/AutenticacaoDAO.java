@@ -14,7 +14,7 @@ public class AutenticacaoDAO {
         this.conn = conn;
     }      
     
-    
+    // login + nome de usuário
     public ResultSet login(Usuario usuario) throws SQLException{
         String sql = "select usuario, nome, senha from usuario where usuario = ? and senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);

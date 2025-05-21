@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import Model.Usuario;
-import java.util.ArrayList;
 
 public class MusicaDAO {
     private Connection conn;
@@ -14,8 +13,34 @@ public class MusicaDAO {
         this.conn = conn;
     }
 
+    public ResultSet buscarMusica(String filtro, String search) throws SQLException{
+        
+        String coluna = switch(filtro){
+            case "Musica" -> "m.nome";
+            case "Album" -> "al.nome";
+            case "Artista" -> "art.nome";
+            case "Genero" -> "al.genero";
+            //case "duracao" -> "m.duracao";
+            default -> "";
+        };
+        
+        String sql = "select m.nome, art.nome, al.nome, al.genero, m.duracao, m.id_musica " +
+                     "from musica m " +
+                     "inner join album al on al.id_album = m.id_album " +
+                     "inner join artista art on art.id_artista = al.id_artista " +
+                     "where " + coluna + " ilike ?";
+
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, "%" + search.trim() + "%");
+
+        ResultSet resultado = statement.executeQuery();
+        System.out.println(resultado);
+        return resultado;
+    }
     
-    public ResultSet buscar_musicas_curtidas_descurtidas(Usuario usuario, String tabela) throws SQLException{      
+    
+    //musicasCurtidasDescurtidas
+    public ResultSet buscarMusicasCurtidasDescurtidas(Usuario usuario, String tabela) throws SQLException{      
         String user = usuario.getUsuario();
 
         String sql = "select m.nome, art.nome, al.nome, al.genero, m.duracao, m.id_musica " +
@@ -31,11 +56,9 @@ public class MusicaDAO {
         return resultado;
     }
     
-    
+    //?
     public boolean consultar_curtidas_descurtidas(Usuario usuario, String consulta, int id_musica) throws SQLException{
         String user = usuario.getUsuario();
-        
-        //consulta = tabela (liked_songs / disliked_songs)
         
         String sql = "select id_musica from " + consulta +
                      " where usuario = ? and id_musica = ?";

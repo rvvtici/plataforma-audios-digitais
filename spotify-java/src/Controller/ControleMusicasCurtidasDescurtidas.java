@@ -46,11 +46,10 @@ public class ControleMusicasCurtidasDescurtidas {
             try{
                 Connection conn = conexao.getConnection();
                 MusicaDAO dao = new MusicaDAO(conn);
-
-                //
-                ResultSet res_musicas = dao.buscar_musicas_curtidas_descurtidas(usuario, liked_unliked);
                 
-                while (res_musicas.next()) {;
+                ResultSet res_musicas = dao.buscarMusicasCurtidasDescurtidas(usuario, liked_unliked);
+                
+                while (res_musicas.next()) {
                     String musica = res_musicas.getString(1);
                     String nomeArtista = res_musicas.getString(2);
                     String album = res_musicas.getString(3);

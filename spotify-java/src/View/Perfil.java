@@ -19,11 +19,9 @@ public class Perfil extends javax.swing.JFrame {
         initComponents();
         user = usuario.getUsuario();
         nome = usuario.getNome();
+        senha = usuario.getSenha();
         lbl_user.setText(user);       
         lbl_nome.setText(nome);       
-        //lbl_user.setText(usuario.getUsuario());
-        //lbl_nome.setText(usuario.getNome());
-        senha = usuario.getSenha();
         c = new ControlePerfil(this);
     }   
     
@@ -66,12 +64,6 @@ public class Perfil extends javax.swing.JFrame {
     public void setLbl_voltar(JLabel lbl_voltar) {
         this.lbl_voltar = lbl_voltar;
     }
-
-    
-    
-    
-    
-
     
     
     /**
@@ -179,23 +171,20 @@ public class Perfil extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbl_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_voltarMouseClicked
-        // TODO add your handling code here:
         Usuario usuario2 = new Usuario(user,nome,senha);
         c.redirectPaginaHome(usuario2);            
     }//GEN-LAST:event_lbl_voltarMouseClicked
 
     private void lbl_excluir_contaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_excluir_contaMouseClicked
-        // TODO add your handling code here:
-//        c.remover();
         Usuario usuario2 = new Usuario(user,nome,senha);
         c.excluirConta(usuario2);
     }//GEN-LAST:event_lbl_excluir_contaMouseClicked
 
     private void lbl_editar_perfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_editar_perfilMouseClicked
-        // TODO add your handling code here:
         Usuario usuario2 = new Usuario(user,nome,senha);
         c.redirectEditarPerfil(usuario2);
     }//GEN-LAST:event_lbl_editar_perfilMouseClicked
@@ -234,15 +223,8 @@ public class Perfil extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-
-    
-    
-    
-    
     
     private ControlePerfil c;
-    
-    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lbl_colchete_direita;

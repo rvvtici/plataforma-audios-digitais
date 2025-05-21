@@ -21,6 +21,65 @@ public class UsuarioDAO {
         this.conn = conn;
     }
     
+    
+    // cadastro
+    public void inserirNovoUsuario(Usuario usuario) throws SQLException{
+        String sql = "INSERT INTO usuario (usuario, nome, senha) VALUES"
+                + "(?, ?, ?)";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        
+        String user = usuario.getUsuario();
+        String nome = usuario.getNome();
+        String senha = usuario.getSenha();
+        statement.setString(1, user);
+        statement.setString(2, nome);
+        statement.setString(3, senha);
+        
+        statement.execute();
+        conn.close();
+    }
+    
+    //login → autenticacaoDAO
+    
+    //home: 
+    
+    
+    
+    
+    //perfil
+    public void remover_usuario(Usuario usuario) throws SQLException{
+        System.out.println(usuario);
+        
+        String sql = "delete from usuario where usuario = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, usuario.getUsuario());
+        
+        System.out.println("user" + usuario.getUsuario());
+        System.out.println("nome" + usuario.getNome());
+        
+        statement.execute();
+        conn.close();
+    }
+    
+    //editar perfil
+    public void atualizarUsuario(Usuario usuario, String usuario_antigo) throws SQLException{
+        String sql = "update usuario set usuario = ?, nome = ?, senha = ? WHERE usuario = ?";
+
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, usuario.getUsuario());
+        statement.setString(2, usuario.getNome());
+        statement.setString(3, usuario.getSenha());
+        statement.setString(4, usuario_antigo);
+        statement.execute();
+        conn.close();
+    }
+    
+    
+    
+    
+    
+    
+    
     //consultas
     public ResultSet consultar_login(Usuario usuario) throws SQLException{
         String sql = "select usuario, nome, senha from usuario where usuario = ? and senha = ?";
@@ -32,15 +91,15 @@ public class UsuarioDAO {
         return resultado;
     }
     
-    public ResultSet consultar_perfil(Usuario usuario) throws SQLException{
-        String sql = "select usuario, nome, senha from usuario where usuario = ?";
-        PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, usuario.getUsuario());
-        statement.execute();
-        ResultSet resultado = statement.getResultSet();
-        return resultado;
-    }
-    
+//    public ResultSet consultar_perfil(Usuario usuario) throws SQLException{
+//        String sql = "select usuario, nome, senha from usuario where usuario = ?";
+//        PreparedStatement statement = conn.prepareStatement(sql);
+//        statement.setString(1, usuario.getUsuario());
+//        statement.execute();
+//        ResultSet resultado = statement.getResultSet();
+//        return resultado;
+//    }
+//    ;
         
     public ResultSet consultar_historico(Usuario usuario) throws SQLException{
         String sql = "select search, filtro from historico where usuario = ? " +
@@ -102,19 +161,6 @@ public class UsuarioDAO {
         
         ResultSet resultado = statement.executeQuery();
         return resultado;
-    }   
-   
-        
-    
-    //inserir
-    public void inserir_novo_usuario(Usuario usuario) throws SQLException{
-        String sql = "insert into usuario (usuario, nome, senha) values ('"
-                      + usuario.getUsuario() + "', '"
-                      + usuario.getNome()    + "', '"
-                      + usuario.getSenha()   + "')";
-        PreparedStatement statement = conn.prepareStatement(sql);
-        statement.execute();
-        conn.close();
     }
     
     public void curtir_musica(String usuario, int id_musica) throws SQLException {
@@ -147,37 +193,6 @@ public class UsuarioDAO {
     }
     
     
-    
-    
-    //atualizar
-    public void atualizar_usuario(Usuario usuario, String usuario_antigo) throws SQLException{
-        String sql = "update usuario set usuario = ?, nome = ?, senha = ? WHERE usuario = ?";
-
-        PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, usuario.getUsuario());
-        statement.setString(2, usuario.getNome());
-        statement.setString(3, usuario.getSenha());
-        statement.setString(4, usuario_antigo);
-        statement.execute();
-        conn.close();
-    }
-     
-    
-    
-    //remover
-    public void remover_usuario(Usuario usuario) throws SQLException{
-        System.out.println(usuario);
-        
-        String sql = "delete from usuario where usuario = ?";
-        PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, usuario.getUsuario());
-        
-        System.out.println("user" + usuario.getUsuario());
-        System.out.println("nome" + usuario.getNome());
-        
-        statement.execute();
-        conn.close();
-    }
     
     public void descurtir_musica(String usuario, int id_musica) throws SQLException {
         String sql = "DELETE FROM liked_songs WHERE usuario = ? AND id_musica = ?";
