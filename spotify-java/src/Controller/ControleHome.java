@@ -4,6 +4,7 @@ package Controller;
 import DAO.UsuarioDAO;
 import DAO.MusicaDAO;
 import DAO.Conexao;
+import Model.Musica;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -223,16 +224,18 @@ public class ControleHome {
         public void actionPerformed(ActionEvent e) {
             if (clicked) {
                 int id_musica = (int) tabela.getValueAt(row, 6); // coluna "oculta" com id_musica
+                Musica musica = new Musica(id_musica);
 
                 if (label.equals("♥")) {
                     // descurtir
                     label = "♡";
                     try {
-                        musica_dao.adicionar_curtida_descurtida(usuario, "unliked_songs", id_musica);
+                        
+                        musica_dao.adicionar_curtida_descurtida(usuario, "unliked_songs", musica);
                         //se tiver na liked_songs, consulta = true
-                        boolean consulta = musica_dao.consultar_curtidas_descurtidas(usuario, "liked_songs", id_musica);
+                        boolean consulta = musica_dao.consultar_curtidas_descurtidas(usuario, "liked_songs", musica);
                         if (consulta) {
-                            musica_dao.remover_curtida_descurtida(usuario, "liked_songs", id_musica);
+                            musica_dao.remover_curtida_descurtida(usuario, "liked_songs", musica);
                         }
                     } catch (SQLException ex) {
                         ex.printStackTrace();
@@ -241,11 +244,12 @@ public class ControleHome {
                     // curtir
                     label = "♥";
                     try {
-                        musica_dao.adicionar_curtida_descurtida(usuario, "liked_songs", id_musica);
+                        musica_dao.adicionar_curtida_descurtida(usuario, "liked_songs", musica);
                         //se tiver na liked_songs, consulta = true
-                        boolean consulta = musica_dao.consultar_curtidas_descurtidas(usuario, "unliked_songs", id_musica);
+
+                        boolean consulta = musica_dao.consultar_curtidas_descurtidas(usuario, "unliked_songs", musica);
                         if (consulta) {
-                            musica_dao.remover_curtida_descurtida(usuario, "unliked_songs", id_musica);
+                            musica_dao.remover_curtida_descurtida(usuario, "unliked_songs", musica);
                         }
                     } catch (SQLException ex) {
                         ex.printStackTrace();

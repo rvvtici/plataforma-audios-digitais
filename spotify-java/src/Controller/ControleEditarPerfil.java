@@ -55,12 +55,13 @@ public class ControleEditarPerfil {
         
         if(senha_antiga.equals(senha_inserida)){
             Usuario usuario_atualizado = new Usuario(novo_usuario, novo_nome, nova_senha);
+            Usuario usuarioAntigo = new Usuario(novo_usuario, novo_nome, nova_senha);
             Conexao conexao = new Conexao();
             
             try{
                 Connection conn = conexao.getConnection();
                 UsuarioDAO dao = new UsuarioDAO(conn);
-                dao.atualizarUsuario(usuario_atualizado, usuario_antigo);  
+                dao.atualizarUsuario(usuario_atualizado, usuarioAntigo);  
                 
                 JOptionPane.showMessageDialog(view, "Dados atualizados com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 

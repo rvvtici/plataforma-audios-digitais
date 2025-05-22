@@ -1,5 +1,6 @@
 package DAO;
 
+import Model.Musica;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -57,8 +58,10 @@ public class MusicaDAO {
     }
     
     //?
-    public boolean consultar_curtidas_descurtidas(Usuario usuario, String consulta, int id_musica) throws SQLException{
+    public boolean consultar_curtidas_descurtidas(Usuario usuario, String consulta, Musica musica) throws SQLException{
         String user = usuario.getUsuario();
+        int id_musica = musica.getId();
+        
         
         String sql = "select id_musica from " + consulta +
                      " where usuario = ? and id_musica = ?";
@@ -72,10 +75,11 @@ public class MusicaDAO {
     }
     
     
-    public void adicionar_curtida_descurtida(Usuario usuario, String tabela, int id_musica) throws SQLException {
+    public void adicionar_curtida_descurtida(Usuario usuario, String tabela, Musica musica) throws SQLException {
         // adiciona a curtida/descurtida à tabela liked_songs/unliked_songs
         String user = usuario.getUsuario();
-        
+        int id_musica = musica.getId();
+                
         String sql = "INSERT INTO " + tabela + " (usuario, id_musica) VALUES (?, ?)";
         Conexao conexao = new Conexao();
         
@@ -87,8 +91,9 @@ public class MusicaDAO {
         }
     }
         
-    public void remover_curtida_descurtida(Usuario usuario, String tabela, int id_musica) throws SQLException {
-        String user = usuario.getUsuario();
+    public void remover_curtida_descurtida(Usuario usuario, String tabela, Musica musica) throws SQLException {
+        String user = usuario.getUsuario(); 
+        int id_musica = musica.getId();
         
         String sql = "DELETE FROM " + tabela + " WHERE usuario = ? AND id_musica = ?";
         Conexao conexao = new Conexao();
@@ -102,4 +107,5 @@ public class MusicaDAO {
         
     
     }
+    
 }

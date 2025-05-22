@@ -121,8 +121,6 @@ public class PlaylistInfo extends javax.swing.JFrame {
     public void setLbl_id_musica(JLabel lbl_id_musica) {
         this.lbl_id_musica = lbl_id_musica;
     }
-
-
     
     public JTextField getTxt_id_musica() {
         return txt_id_musica;
