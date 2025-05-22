@@ -1,17 +1,10 @@
-package playlist.cell;
+package View.playlist.cell;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- *
- * @author RAVEN
- */
 public class PanelAction extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelAction
-     */
     public PanelAction() {
         initComponents();
     }
@@ -29,11 +22,9 @@ public class PanelAction extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cmdView = new raven.cell.ActionButton();
+        cmdView = new View.playlist.cell.ActionButton();
 
         cmdView.setText("→");
-        cmdView.setMaximumSize(new java.awt.Dimension(16, 16));
-        cmdView.setPreferredSize(new java.awt.Dimension(16, 16));
         cmdView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdViewActionPerformed(evt);
@@ -44,7 +35,7 @@ public class PanelAction extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cmdView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -64,6 +55,6 @@ public class PanelAction extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private raven.cell.ActionButton cmdView;
+    private View.playlist.cell.ActionButton cmdView;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,9 +8,9 @@ import Model.PlaylistModel;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import playlist.cell.TableActionCellRender;
-import playlist.cell.TableActionCellEditor;
-import playlist.cell.TableActionEvent;
+import View.playlist.cell.TableActionCellRender;
+import View.playlist.cell.TableActionCellEditor;
+import View.playlist.cell.TableActionEvent;
 import javax.swing.table.DefaultTableModel;
 
 public class Playlist extends javax.swing.JFrame {

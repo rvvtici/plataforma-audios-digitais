@@ -1,4 +1,4 @@
-package playlist.cell;
+package View.playlist.cell;
 
 import java.awt.Color;
 import java.awt.Component;

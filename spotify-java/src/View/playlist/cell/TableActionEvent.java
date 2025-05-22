@@ -1,4 +1,4 @@
-package playlist.cell;
+package View.playlist.cell;
 
 
 public interface TableActionEvent {
