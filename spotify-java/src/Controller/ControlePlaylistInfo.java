@@ -50,12 +50,10 @@ public class ControlePlaylistInfo {
             DefaultTableModel tabela = (DefaultTableModel) table.getModel();
             tabela.setRowCount(0);
             
-            System.out.println("playlist no addmusicastabela: " + playlist);
+            //System.out.println("playlist no addmusicastabela: " + playlist);
             
             int idPlaylist = playlist.getId_playlist();
-            //System.out.println(idPlaylist + "addMusicasTabela");
-            System.out.println("playlistmodel: " + playlist);
-            System.out.println("usuario: " + usuario);
+            
             Conexao conexao = new Conexao();
             try{
                 Connection conn = conexao.getConnection();
@@ -63,9 +61,6 @@ public class ControlePlaylistInfo {
                 
                 ResultSet res_musicas = dao.completarTabelaPlaylist(usuario, playlist);
                 
-//                System.out.println("nome usuario: " + usuario.getNome());
-//                System.out.println("id playlist: " + playlist.getId_playlist());
-        
                 while (res_musicas.next()) {
                     String musica = res_musicas.getString(1);
                     String nomeArtista = res_musicas.getString(2);
@@ -76,11 +71,22 @@ public class ControlePlaylistInfo {
 
                     Artista art = new Artista(nomeArtista);
                     Musica m = new Musica (musica, art, album, genero, duracao, id_musica);
-
-                    //Playlist p = new Playlist();
-                    
+                    PlaylistModel playlist2 = new PlaylistModel(
+                            playlist.getId_playlist(), 
+                            playlist.getNome_playlist(), 
+                            playlist.getDescricao_playlist(), 
+                            m);
+//                    
+//                    
+//                    System.out.println(m);
+//                    System.out.println(playlist2);
                     tabela.addRow(new Object[]{
-                        m.getNome_musica(), m.getArtista().getNome(), m.getAlbum(), m.getGenero(), m.getDuracao(), m.getId()
+                        playlist2.getMusica().getNome_musica(), 
+                        playlist2.getMusica().getArtista().getNome(), 
+                        playlist2.getMusica().getAlbum(), 
+                        playlist2.getMusica().getGenero(), 
+                        playlist2.getMusica().getDuracao(), 
+                        playlist2.getMusica().getId(),   
                     });
 
                     }

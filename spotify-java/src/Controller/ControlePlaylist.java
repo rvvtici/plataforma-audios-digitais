@@ -5,7 +5,6 @@ import DAO.Conexao;
 import DAO.PlaylistDAO;
 import Model.PlaylistModel;
 import Model.Usuario;
-import Model.Musica;
 import View.Home;
 import View.PlaylistInfo;
 import java.sql.Connection;
@@ -13,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import View.Playlist;
-import java.sql.PreparedStatement;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,7 +19,6 @@ public class ControlePlaylist {
         private Playlist view;
         private Usuario usuario;
         private JTable tabela;
-//        private
 
         public ControlePlaylist(Playlist view, Usuario usuario){
             this.view = view;
@@ -46,21 +43,21 @@ public class ControlePlaylist {
         
         
         public void addLinhasPlaylist(Usuario usuario, JTable tabela){
-            DefaultTableModel resultado_busca = (DefaultTableModel) tabela.getModel();
-            resultado_busca.setRowCount(0); // limpa a tabela
+            DefaultTableModel resultadoBusca = (DefaultTableModel) tabela.getModel();
+            resultadoBusca.setRowCount(0); // limpa a tabela
 
             Conexao conexao = new Conexao();
             try{
                 Connection conn = conexao.getConnection();
                 PlaylistDAO dao = new PlaylistDAO(conn);
-                ResultSet res = dao.consultar_playlists(usuario);
+                ResultSet res = dao.consultarPlaylists(usuario);
 
-                int cont = 0;
+                //int cont = 0;
                 while(res.next()){
                     String nomePlaylist = res.getString(1);
                     String descricao = res.getString(2);
                     
-                    resultado_busca.addRow(new Object[] {
+                    resultadoBusca.addRow(new Object[] {
                         nomePlaylist, descricao
                     });
                 }
@@ -73,6 +70,7 @@ public class ControlePlaylist {
             }
         }
         
+        // usa quando se quer acessar as informacoes de uma playlist. redireciona para o PlaylistInfo (na view Playlist)
         public int adquirirIdPlaylist(Usuario usuario, PlaylistModel playlist){
             Conexao conexao = new Conexao();
             int idPlaylist = -1;
@@ -83,8 +81,6 @@ public class ControlePlaylist {
                 
                 if(res.next()){
                     idPlaylist = res.getInt(1);
-//                    String descricao = res.getString(2);
-                    
                 }
             } catch(SQLException e){ 
                 e.printStackTrace();
@@ -96,27 +92,29 @@ public class ControlePlaylist {
             return idPlaylist;
         }
         
-        
-        
-        
         public void novaPlaylist(Usuario usuario) {
             Conexao conexao = new Conexao();
             String nomePlaylist = view.getTxt_nome_playlist().getText();
             String descricao = view.getTxt_descricao().getText();
+            PlaylistModel playlistNova = new PlaylistModel(nomePlaylist, descricao);
+            
             
             if (nomePlaylist.isEmpty()){
-                JOptionPane.showMessageDialog(view, "Nome da playlist vazio!","Erro", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(view, "Nome da playlist vazio!", "Erro", JOptionPane.ERROR_MESSAGE);
             }
             else{
                 try {
                     Connection conn = conexao.getConnection();
                     PlaylistDAO dao = new PlaylistDAO(conn);
-                    boolean modificado = dao.nova_playlist(usuario, nomePlaylist, descricao);
                     
+                    // caso o nome da playlist já exista, não cria a playlist (boolean)
+                    boolean modificado = dao.criarPlaylist(usuario, playlistNova);
+                    
+                   
                     if (modificado) {
                         JOptionPane.showMessageDialog(view, "Nova playlist criada com sucesso!","Aviso", JOptionPane.INFORMATION_MESSAGE);
                         addLinhasPlaylist(usuario, view.getTabela());
-                    } else {
+                    } else { // modificado = false
                         JOptionPane.showMessageDialog(view, "Nome de playlist já utilizado!", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (SQLException ex) {

@@ -46,7 +46,7 @@ public class ControleHistorico {
             try{
                 Connection conn = conexao.getConnection();
                 UsuarioDAO dao = new UsuarioDAO(conn);
-                ResultSet res = dao.consultar_historico(usuario);
+                ResultSet res = dao.consultarHistorico(usuario);
 
                 int cont = 0;
                 while(res.next()){

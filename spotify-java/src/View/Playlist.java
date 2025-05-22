@@ -55,6 +55,9 @@ public class Playlist extends javax.swing.JFrame {
             Usuario usuario = new Usuario(user, nome, senha);
             PlaylistModel playlist = new PlaylistModel(nomePlaylist, descricaoPlaylist);
             
+            
+            
+            // usa quando se quer acessar as informacoes de uma playlist. redireciona para o PlaylistInfo
             int idPlaylist = c.adquirirIdPlaylist(usuario, playlist);
             PlaylistModel playlist2 = new PlaylistModel(idPlaylist, nomePlaylist, descricaoPlaylist);
             
@@ -201,7 +204,7 @@ public class Playlist extends javax.swing.JFrame {
 
             },
             new String [] {
-                "nome", "descrição", "botões"
+                "nome", "descrição", "acessar"
             }
         ) {
             Class[] types = new Class [] {
@@ -266,7 +269,7 @@ public class Playlist extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(bt_new_playlist)
                                 .addGap(38, 38, 38)))))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,6 +297,7 @@ public class Playlist extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbl_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_voltarMouseClicked

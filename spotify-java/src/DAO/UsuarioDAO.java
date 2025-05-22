@@ -74,6 +74,35 @@ public class UsuarioDAO {
         conn.close();
     }
     
+    // historico
+    public ResultSet consultarHistorico(Usuario usuario) throws SQLException{
+        String sql = "select search, filtro from historico where usuario = ? " +
+                    "ORDER BY data DESC " +
+                    "LIMIT 10";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, usuario.getUsuario());
+        statement.execute();
+        ResultSet resultado = statement.getResultSet();
+        return resultado;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -101,17 +130,6 @@ public class UsuarioDAO {
 //    }
 //    ;
         
-    public ResultSet consultar_historico(Usuario usuario) throws SQLException{
-        String sql = "select search, filtro from historico where usuario = ? " +
-                    "ORDER BY data DESC " +
-                    "LIMIT 10";
-        PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, usuario.getUsuario());
-        statement.execute();
-        ResultSet resultado = statement.getResultSet();
-        return resultado;
-    }
-    
     public ResultSet obter_nome(Usuario usuario) throws SQLException{
         String sql = "select nome from usuario where usuario = ?";
         PreparedStatement statement = conn.prepareStatement(sql);

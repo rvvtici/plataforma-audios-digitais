@@ -19,12 +19,11 @@ public class Historico extends javax.swing.JFrame {
         user = usuario.getUsuario();
         nome = usuario.getNome();
         senha = usuario.getSenha();
-        c = new ControleHistorico(this);
-        //txt_historico.setText(c.addLinhasHistorico(usuario));
-        JTable tabela = getTable_historico();
-        c.addLinhasHistorico(usuario, tabela);
-        //table_historico.setText(c.addLinhasHistorico(usuario));
         
+        JTable tabela = getTable_historico();
+        c = new ControleHistorico(this);
+        
+        c.addLinhasHistorico(usuario, tabela);
     }
 
     public JLabel getLbl_buscas() {
@@ -43,11 +42,6 @@ public class Historico extends javax.swing.JFrame {
         this.table_historico = table_historico;
     }
 
-
-    
-    
-    
-    
     public JLabel getLbl_historico() {
         return lbl_historico;
     }
@@ -126,15 +120,17 @@ public class Historico extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(lbl_voltar)
-                        .addGap(146, 146, 146)
-                        .addComponent(lbl_historico))
+                        .addGap(155, 155, 155)
+                        .addComponent(lbl_historico)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(lbl_buscas)))
+                        .addContainerGap(54, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(54, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lbl_buscas)
+                .addGap(164, 164, 164))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,10 +150,6 @@ public class Historico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbl_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_voltarMouseClicked
-        // TODO add your handling code here:
-//        Home h = new Home();
-//        h.setVisible(true);
-//        this.setVisible(false);
         Usuario usuario2 = new Usuario(user, nome, senha);
         c.redirectPaginaHome(usuario2);
     }//GEN-LAST:event_lbl_voltarMouseClicked

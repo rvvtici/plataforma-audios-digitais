@@ -6,7 +6,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <Events>
     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formKeyPressed"/>
@@ -56,7 +56,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <EmptySpace pref="54" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -149,7 +149,7 @@
               <Table columnCount="3" rowCount="0">
                 <Column editable="false" title="nome" type="java.lang.String"/>
                 <Column editable="false" title="descri&#xe7;&#xe3;o" type="java.lang.String"/>
-                <Column editable="true" title="bot&#xf5;es" type="java.lang.Object"/>
+                <Column editable="true" title="acessar" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="rowHeight" type="int" value="30"/>

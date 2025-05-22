@@ -20,7 +20,9 @@ public class PlaylistDAO {
         this.conn = conn;
     }
     
-    public ResultSet consultar_playlists(Usuario usuario) throws SQLException {
+    
+   //playlist
+    public ResultSet consultarPlaylists(Usuario usuario) throws SQLException {
         String sql = "select nome, descricao from playlist where usuario = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, usuario.getUsuario());
@@ -28,11 +30,22 @@ public class PlaylistDAO {
         ResultSet resultado = statement.getResultSet();
         return resultado;
     }
-    
-    public boolean nova_playlist(Usuario usuario, String nomePlaylist, String descricao) throws SQLException {
-//        String sql = "INSERT INTO playlist (nome, descricao, usuario) VALUES " +
-//                    "(?,?,?) ";
+        
+    // usa quando se quer acessar as informacoes de uma playlist. redireciona para o PlaylistInfo (na view Playlist)
+    public ResultSet getIdPlaylist(Usuario usuario, PlaylistModel playlist) throws SQLException {
+        String sql = "select id_playlist from playlist where usuario = ? and nome = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        String user = usuario.getUsuario();
+        String nomePlaylist = playlist.getNome_playlist();
+        statement.setString(1, user);
+        statement.setString(2, nomePlaylist);
 
+        ResultSet resultado = statement.executeQuery();
+        return resultado;   
+
+    }
+
+    public boolean criarPlaylist(Usuario usuario, PlaylistModel playlist) throws SQLException {
         String sql = "INSERT INTO playlist (nome, descricao, usuario) " +
                     "SELECT ?, ?, ? "+
                     "WHERE NOT EXISTS ( " +
@@ -40,6 +53,9 @@ public class PlaylistDAO {
                         "WHERE nome = ? AND usuario = ?)";
 
         PreparedStatement statement = conn.prepareStatement(sql);
+
+        String nomePlaylist = playlist.getNome_playlist();
+        String descricao = playlist.getDescricao_playlist();
         
         statement.setString(1, nomePlaylist);
         statement.setString(2, descricao);
@@ -55,7 +71,9 @@ public class PlaylistDAO {
         boolean modificado = linhasRetornadas > 0;
         return modificado;
     }
-    
+
+
+    // PlaylistInfo
     public ResultSet completarTabelaPlaylist(Usuario usuario, PlaylistModel playlist) throws SQLException {
         String nomePlaylist = playlist.getNome_playlist();
         
@@ -103,21 +121,6 @@ public class PlaylistDAO {
             statement.executeUpdate();
             conn.close();
     }
-    
-        
-        public ResultSet getIdPlaylist(Usuario usuario, PlaylistModel playlist) throws SQLException {
-            String sql = "select id_playlist from playlist where usuario = ? and nome = ?";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            String user = usuario.getUsuario();
-            String nomePlaylist = playlist.getNome_playlist();
-            statement.setString(1, user);
-            statement.setString(2, nomePlaylist);
-
-            ResultSet resultado = statement.executeQuery();
-            return resultado;   
-
-        }
-
 
         public void atualizarPlaylist(Usuario usuario, PlaylistModel playlistAtualizada, PlaylistModel playlistAntiga) throws SQLException{
             String sql = "UPDATE playlist SET nome = ?, descricao = ? " +
