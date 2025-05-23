@@ -106,14 +106,27 @@ public class ControlePlaylistInfo {
             try{
                 Connection conn = conexao.getConnection();
                 PlaylistDAO dao = new PlaylistDAO(conn);
+                MusicaDAO musicaDao = new MusicaDAO(conn);
                 
                 int idPlaylist = playlist.getId_playlist();
-                System.out.println("playlist no addmusicaplaylist" + playlist);
-                dao.inserirMusica(playlist, musica);
-//                System.out.println(usuario);
-//                System.out.println(table);
-//                System.out.println(playlist);
-                addMusicasTabela(usuario, table, playlist);
+                //System.out.println("playlist no addmusicaplaylist" + playlist);
+                
+                if(!musicaDao.musicaExiste(musica)){
+//                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(null, 
+                                              "Música inexistente!\n", 
+                                              "Aviso",
+                                              JOptionPane.ERROR_MESSAGE);
+                    return;
+                                              
+                } else {
+                    dao.inserirMusica(playlist, musica);
+                    addMusicasTabela(usuario, table, playlist);
+
+                }
+                
+                
+                
                 
                 } catch(SQLException e){ 
                     e.printStackTrace();
@@ -121,7 +134,7 @@ public class ControlePlaylistInfo {
                                               "Erro de conexão!\n" + e.getMessage(), 
                                               "Aviso",
                                               JOptionPane.ERROR_MESSAGE);
-            }
+                }
         }
         
         

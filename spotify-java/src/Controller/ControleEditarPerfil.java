@@ -49,23 +49,30 @@ public class ControleEditarPerfil {
             novo_nome = nome_antigo;
         } if (nova_senha.isEmpty()){
             nova_senha = senha_antiga;
-        }
-        
-        
+        }       
         
         if(senha_antiga.equals(senha_inserida)){
             Usuario usuario_atualizado = new Usuario(novo_usuario, novo_nome, nova_senha);
-            Usuario usuarioAntigo = new Usuario(novo_usuario, novo_nome, nova_senha);
+            Usuario usuarioAntigo = new Usuario(usuario_antigo, nome_antigo, senha_antiga);
             Conexao conexao = new Conexao();
             
             try{
                 Connection conn = conexao.getConnection();
                 UsuarioDAO dao = new UsuarioDAO(conn);
-                dao.atualizarUsuario(usuario_atualizado, usuarioAntigo);  
                 
-                JOptionPane.showMessageDialog(view, "Dados atualizados com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-
-                redirectPerfil(usuario_atualizado);
+                //user ja existente
+                if (dao.usuarioExistente(usuario_atualizado)){
+                     JOptionPane.showMessageDialog(null,
+                    "Usuário já utilizado!",
+                    "Aviso",
+                    JOptionPane.INFORMATION_MESSAGE);
+                    
+                     return;                   
+                } else {
+                    dao.atualizarUsuario(usuario_atualizado, usuarioAntigo);  
+                    JOptionPane.showMessageDialog(view, "Dados atualizados com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                    redirectPerfil(usuario_atualizado);
+                }
             } catch(SQLException e){
                 e.printStackTrace(); // Mostra o erro no console
                 JOptionPane.showMessageDialog(view, "Erro: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);

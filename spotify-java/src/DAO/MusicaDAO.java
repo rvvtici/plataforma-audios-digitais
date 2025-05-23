@@ -57,7 +57,7 @@ public class MusicaDAO {
         return resultado;
     }
     
-    //?
+    //
     public boolean consultar_curtidas_descurtidas(Usuario usuario, String consulta, Musica musica) throws SQLException{
         String user = usuario.getUsuario();
         int id_musica = musica.getId();
@@ -107,5 +107,20 @@ public class MusicaDAO {
         
     
     }
+    
+    
+    public boolean musicaExiste(Musica musica) throws SQLException{
+        int id_musica = musica.getId();
+        
+        String sql = "SELECT id_musica FROM musica WHERE id_musica = ?";
+        //Conexao conexao = new Conexao();
+
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setInt(1, id_musica);
+        
+        ResultSet res = statement.executeQuery();
+        return res.next();   
+    }
+    
     
 }

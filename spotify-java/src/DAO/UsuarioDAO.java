@@ -48,14 +48,14 @@ public class UsuarioDAO {
     
     //perfil
     public void remover_usuario(Usuario usuario) throws SQLException{
-        System.out.println(usuario);
+//        System.out.println(usuario);
         
         String sql = "delete from usuario where usuario = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, usuario.getUsuario());
-        
-        System.out.println("user" + usuario.getUsuario());
-        System.out.println("nome" + usuario.getNome());
+//        
+//        System.out.println("user" + usuario.getUsuario());
+//        System.out.println("nome" + usuario.getNome());
         
         statement.execute();
         conn.close();
@@ -70,9 +70,23 @@ public class UsuarioDAO {
         statement.setString(2, usuario.getNome());
         statement.setString(3, usuario.getSenha());
         statement.setString(4, usuarioAntigo.getUsuario());
-        statement.execute();
+        
+        statement.executeUpdate();
         conn.close();
     }
+    
+    public boolean usuarioExistente (Usuario usuario) throws SQLException {
+        String sql = "select usuario from usuario where usuario = ?";
+        
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setString(1, usuario.getUsuario());
+            ResultSet res = statement.executeQuery();
+            return res.next();
+        }
+    }
+    
+    
+    
     
     // historico
     public ResultSet consultarHistorico(Usuario usuario) throws SQLException{

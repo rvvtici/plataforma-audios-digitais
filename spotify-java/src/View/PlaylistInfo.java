@@ -6,6 +6,7 @@ import Controller.ControlePlaylistInfo;
 import Model.Musica;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -310,6 +311,7 @@ public class PlaylistInfo extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbl_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_voltarMouseClicked
@@ -323,11 +325,26 @@ public class PlaylistInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_id_musicaActionPerformed
 
     private void bt_adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_adicionarActionPerformed
-        Usuario usuario = new Usuario(user, nome, senha);
-        PlaylistModel playlist = new PlaylistModel(idPlaylist, nomePlaylist, descricaoPlaylist);
-        int idMusica = Integer.parseInt(getTxt_id_musica().getText());
-        Musica musica = new Musica(idMusica);
-        c.addMusicaPlaylist(usuario, tabela, playlist, musica);
+
+        try {
+            Usuario usuario = new Usuario(user, nome, senha);
+            PlaylistModel playlist = new PlaylistModel(idPlaylist, nomePlaylist, descricaoPlaylist);
+
+            int idMusica = Integer.parseInt(getTxt_id_musica().getText());
+            Musica musica = new Musica(idMusica);
+            c.addMusicaPlaylist(usuario, tabela, playlist, musica);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null,
+            "ID inválido",
+            "Aviso",
+            JOptionPane.ERROR_MESSAGE);   
+        } catch (NullPointerException e){
+            JOptionPane.showMessageDialog(null,
+            "ID inválido",
+            "Aviso",
+            JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_bt_adicionarActionPerformed
 
     private void lbl_excluir_playlistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_excluir_playlistMouseClicked
