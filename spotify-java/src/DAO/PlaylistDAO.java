@@ -109,7 +109,7 @@ public class PlaylistDAO {
         conn.close();
     }
     
-        public void inserirMusica(PlaylistModel playlist, Musica musica) throws SQLException{            
+        public void inserirMusicaPlaylist(PlaylistModel playlist, Musica musica) throws SQLException{            
             int idPlaylist = playlist.getId_playlist();
             //System.out.println(idPlaylist + "inserirMusica");
             int idMusica = musica.getId();
@@ -121,6 +121,20 @@ public class PlaylistDAO {
             statement.executeUpdate();
             conn.close();
     }
+        
+        public void excluirMusicaPlaylist(PlaylistModel playlist, Musica musica) throws SQLException{            
+            int idPlaylist = playlist.getId_playlist();
+            //System.out.println(idPlaylist + "inserirMusica");
+            int idMusica = musica.getId();
+            
+            String sql = "delete from playlist_songs where id_playlist = ? and id_musica = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, idPlaylist);
+            statement.setInt(2, idMusica);
+            statement.executeUpdate();
+            conn.close();
+    }
+        
 
         public void atualizarPlaylist(Usuario usuario, PlaylistModel playlistAtualizada, PlaylistModel playlistAntiga) throws SQLException{
             String sql = "UPDATE playlist SET nome = ?, descricao = ? " +

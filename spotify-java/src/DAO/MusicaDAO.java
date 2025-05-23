@@ -35,7 +35,7 @@ public class MusicaDAO {
         statement.setString(1, "%" + search.trim() + "%");
 
         ResultSet resultado = statement.executeQuery();
-        System.out.println(resultado);
+        //System.out.println(resultado);
         return resultado;
     }
     

@@ -120,7 +120,7 @@ public class ControlePlaylistInfo {
                     return;
                                               
                 } else {
-                    dao.inserirMusica(playlist, musica);
+                    dao.inserirMusicaPlaylist(playlist, musica);
                     addMusicasTabela(usuario, table, playlist);
 
                 }
@@ -136,6 +136,46 @@ public class ControlePlaylistInfo {
                                               JOptionPane.ERROR_MESSAGE);
                 }
         }
+        
+        public void removerMusicaPlaylist(Usuario usuario, JTable table, PlaylistModel playlist, Musica musica){
+//            DefaultTableModel tabela = (DefaultTableModel) table.getModel();
+            
+            Conexao conexao = new Conexao();
+            try{
+                Connection conn = conexao.getConnection();
+                PlaylistDAO dao = new PlaylistDAO(conn);
+                MusicaDAO musicaDao = new MusicaDAO(conn);
+                
+                int idPlaylist = playlist.getId_playlist();
+                //System.out.println("playlist no addmusicaplaylist" + playlist);
+                
+                if(!musicaDao.musicaExiste(musica)){
+//                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(null, 
+                                              "Música inexistente!\n", 
+                                              "Aviso",
+                                              JOptionPane.ERROR_MESSAGE);
+                    return;
+                                              
+                } else {
+                    dao.excluirMusicaPlaylist(playlist, musica);
+                    addMusicasTabela(usuario, table, playlist);
+
+                }
+                
+                
+                
+                
+                } catch(SQLException e){ 
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(null, 
+                                              "Erro de conexão!\n" + e.getMessage(), 
+                                              "Aviso",
+                                              JOptionPane.ERROR_MESSAGE);
+                }
+        }
+        
+        
         
         
     public void excluirPlaylist(Usuario usuario, PlaylistModel playlist){

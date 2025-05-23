@@ -130,6 +130,38 @@ public class PlaylistInfo extends javax.swing.JFrame {
     public void setTxt_id_musica(JTextField txt_id_musica) {
         this.txt_id_musica = txt_id_musica;
     }
+
+    public JButton getBt_remover() {
+        return bt_remover;
+    }
+
+    public void setBt_remover(JButton bt_remover) {
+        this.bt_remover = bt_remover;
+    }
+
+    public JLabel getLbl_id_musica_remover() {
+        return lbl_id_musica_remover;
+    }
+
+    public void setLbl_id_musica_remover(JLabel lbl_id_musica_remover) {
+        this.lbl_id_musica_remover = lbl_id_musica_remover;
+    }
+
+    public JLabel getLbl_remover_musica() {
+        return lbl_remover_musica;
+    }
+
+    public void setLbl_remover_musica(JLabel lbl_remover_musica) {
+        this.lbl_remover_musica = lbl_remover_musica;
+    }
+
+    public JTextField getTxt_id_musica_remover() {
+        return txt_id_musica_remover;
+    }
+
+    public void setTxt_id_musica_remover(JTextField txt_id_musica_remover) {
+        this.txt_id_musica_remover = txt_id_musica_remover;
+    }
     
     
     
@@ -154,6 +186,10 @@ public class PlaylistInfo extends javax.swing.JFrame {
         bt_adicionar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txt_descricao = new javax.swing.JTextArea();
+        lbl_remover_musica = new javax.swing.JLabel();
+        lbl_id_musica_remover = new javax.swing.JLabel();
+        txt_id_musica_remover = new javax.swing.JTextField();
+        bt_remover = new javax.swing.JButton();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -247,6 +283,29 @@ public class PlaylistInfo extends javax.swing.JFrame {
         txt_descricao.setWrapStyleWord(true);
         jScrollPane1.setViewportView(txt_descricao);
 
+        lbl_remover_musica.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lbl_remover_musica.setText("remover música da playlist");
+
+        lbl_id_musica_remover.setText("id da música");
+
+        txt_id_musica_remover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_id_musica_removerActionPerformed(evt);
+            }
+        });
+        txt_id_musica_remover.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_id_musica_removerKeyPressed(evt);
+            }
+        });
+
+        bt_remover.setText("remover");
+        bt_remover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_removerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -261,19 +320,22 @@ public class PlaylistInfo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(lbl_excluir_playlist)
-                                .addComponent(lbl_alterar_playlist))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbl_id_musica)
-                                    .addComponent(lbl_descricao_playlist)
-                                    .addComponent(lbl_adicionar_musica)
-                                    .addComponent(bt_adicionar)
-                                    .addComponent(txt_id_musica, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(lbl_alterar_playlist)))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_id_musica)
+                            .addComponent(lbl_descricao_playlist)
+                            .addComponent(lbl_adicionar_musica)
+                            .addComponent(bt_adicionar)
+                            .addComponent(txt_id_musica, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_id_musica_remover)
+                            .addComponent(lbl_remover_musica)
+                            .addComponent(bt_remover)
+                            .addComponent(txt_id_musica_remover, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -289,10 +351,10 @@ public class PlaylistInfo extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(lbl_descricao_playlist)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(lbl_adicionar_musica)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbl_id_musica)
@@ -300,14 +362,20 @@ public class PlaylistInfo extends javax.swing.JFrame {
                         .addComponent(txt_id_musica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bt_adicionar)
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(lbl_remover_musica)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_id_musica_remover)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_id_musica_remover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bt_remover))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbl_alterar_playlist)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbl_excluir_playlist)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -376,6 +444,36 @@ public class PlaylistInfo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_id_musicaKeyPressed
 
+    private void txt_id_musica_removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_id_musica_removerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_id_musica_removerActionPerformed
+
+    private void txt_id_musica_removerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_id_musica_removerKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_id_musica_removerKeyPressed
+
+    private void bt_removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_removerActionPerformed
+        // TODO add your handling code here:
+        try {
+            Usuario usuario = new Usuario(user, nome, senha);
+            PlaylistModel playlist = new PlaylistModel(idPlaylist, nomePlaylist, descricaoPlaylist);
+
+            int idMusica = Integer.parseInt(getTxt_id_musica_remover().getText());
+            Musica musica = new Musica(idMusica);
+            c.removerMusicaPlaylist(usuario, tabela, playlist, musica);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null,
+            "ID inválido",
+            "Aviso",
+            JOptionPane.ERROR_MESSAGE);   
+        } catch (NullPointerException e){
+            JOptionPane.showMessageDialog(null,
+            "ID inválido",
+            "Aviso",
+            JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bt_removerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -421,6 +519,7 @@ public class PlaylistInfo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_adicionar;
+    private javax.swing.JButton bt_remover;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -430,10 +529,13 @@ public class PlaylistInfo extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_descricao_playlist;
     private javax.swing.JLabel lbl_excluir_playlist;
     private javax.swing.JLabel lbl_id_musica;
+    private javax.swing.JLabel lbl_id_musica_remover;
     private javax.swing.JLabel lbl_nome_playlist;
+    private javax.swing.JLabel lbl_remover_musica;
     private javax.swing.JLabel lbl_voltar;
     private javax.swing.JTable tabela;
     private javax.swing.JTextArea txt_descricao;
     private javax.swing.JTextField txt_id_musica;
+    private javax.swing.JTextField txt_id_musica_remover;
     // End of variables declaration//GEN-END:variables
 }
