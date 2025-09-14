@@ -1,7 +1,8 @@
-# spotify-java
-réplica de plataformas de áudios digitais. foi utilizado:
+# plataforma-audios-digitais
+réplica de plataformas de áudios digitais, inspirado nos serviços de streming spotify e deezer. nele, foi utilizado:
   - Swing (Java)
-  - JDBC PostgreSQL
+  - JDBC
+  - PostgreSQL
   - MVC (Model, View, Controller)
 
 ## como rodar
